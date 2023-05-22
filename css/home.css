@@ -21,6 +21,7 @@
   height: 300px;
   width: 100%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .photographer_section article .article_body {
