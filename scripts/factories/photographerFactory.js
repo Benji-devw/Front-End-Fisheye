@@ -18,6 +18,7 @@ function photographerFactory(data) {
     const taglineCard = document.createElement("p")
     const priceCard = document.createElement("p")
 
+
     articleHead.classList.add("article_head");
     articleBody.classList.add("article_body");
     cityCard.classList.add("article_body_city");

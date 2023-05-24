@@ -1,3 +1,5 @@
+// import getPhotographers from "../../data/data";
+
 async function getPhotographers() {
   try {
     const response = await fetch("../../data/photographers.json");
