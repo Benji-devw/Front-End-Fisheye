@@ -1,12 +1,12 @@
 @import url("style.css");
 
-.photographer_section {
+/* .photographer_section {
   align-self: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 1400px;
-}
+} */
 
 
 .photographer_section article {

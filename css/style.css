@@ -50,3 +50,12 @@ main {
   display: flex;
   justify-content: center;
 }
+
+
+.photographer_section {
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1400px;
+}
