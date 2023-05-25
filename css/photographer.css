@@ -9,6 +9,10 @@ header .header_content {
   max-width: 1400px;
 }
 
+
+
+
+
 .photograph-header {
   display: flex;
   flex: 0 0 300px;
@@ -16,6 +20,7 @@ header .header_content {
   justify-content: space-between;
   padding: 1.5rem;
   align-items: center;
+  border: 1px solid goldenrod;
 }
 
 
@@ -47,8 +52,32 @@ header .header_content {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  gap: 2rem;
+  justify-content: space-around;
   border: 1px solid green;
+}
+
+.photographer_body .gallery .card {
+  display: flex;
+  flex-direction: column;
+  padding: .3rem;
+}
+.photographer_body .gallery img {
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.photographer_body .gallery .legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 1.8rem;
+}
+
+.photographer_body .gallery .legend span {
+  margin: 1rem 0;
+  color: var(--color-primary);
 }
 
 

@@ -28,6 +28,7 @@ function photographerFactory(data) {
     img.setAttribute("src", picture);
     img.setAttribute("alt", name);
     linkCard.setAttribute("src", "/photographer.html")
+    linkCard.setAttribute("alt", `${name}`)
     
     img.addEventListener("click", function() {
       // Photographer()

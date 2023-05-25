@@ -1,6 +1,6 @@
-// import getPhotographers from '../../data/data';
+// import GetPhotographers from '../../data/data';
 
-async function getPhotographers() {
+async function GetPhotographers() {
   try {
     const response = await fetch("../../data/photographers.json");
     const data = await response.json();
@@ -11,15 +11,19 @@ async function getPhotographers() {
   }
 }
 
-function getIdQuery() {
+
+
+function GetIdQuery() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get('id');
 }
 
+
+
 async function Profile() {
-  const { photographers } = await getPhotographers();
-  const getPhotographer = photographers.filter(user => user.id == getIdQuery())
+  const { photographers } = await GetPhotographers();
+  const getPhotographer = photographers.filter(user => user.id == GetIdQuery())
   
   const nameDiv = document.querySelector('.name')
   const cityDiv = document.querySelector('.city')
@@ -37,32 +41,48 @@ async function Profile() {
 
 }
 
+
+
 async function Medias() {
-  const { media } = await getPhotographers();
-  const getMedia = media.filter(id => id.photographerId == getIdQuery());
-  console.log(getMedia);
+  const { photographers, media } = await GetPhotographers();
+  const getPhotographer = photographers.filter(user => user.id == GetIdQuery())
+  const getMedia = media.filter(id => id.photographerId == GetIdQuery());
+  console.log(media[0]);
   
   const gallery = document.querySelector('.gallery')
+  
+  const cardsElements = getMedia.map(element => {
+    const card = document.createElement('div')
+    const image = document.createElement('img');
+    const legend = document.createElement('div')
+    const title = document.createElement('span')
+    const like = document.createElement('div')
+    
+    gallery.appendChild(card)
+    card.appendChild(image)
+    card.appendChild(legend)
+    legend.appendChild(title)
+    legend.appendChild(like)
 
-  const imageElements = getMedia.map(imageUrl => {
-    const imgElement = document.createElement('img');
-    imgElement.src = `assets/images/${imag}/${imageUrl.image}`;
-    return imgElement;
+    card.classList.add("card")
+    legend.classList.add("legend")
+    title.textContent = element.title
+    like.textContent = element.likes
+    image.src = `assets/images/${getPhotographer[0].name.replace(" ", "_")}/${element.image}`;
+    image.alt = element.title 
+    return card;
   });
   
-  imageElements.forEach(imageElement => {
+  cardsElements.forEach(imageElement => {
     gallery.appendChild(imageElement);
   });
 
-  return gallery
-
+  return gallery;
 }
+
 
 async function photographer() {
-
   Profile()
   Medias()
-  
 }
-
 photographer();
