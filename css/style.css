@@ -1,22 +1,25 @@
 
 :root {
-  --color-orange: #d3573c;
-  --color-red: #901C1C;
+  --color-primary: #901C1C;
+  --color-second: #d3573c;
+  /* --color-second-hov: #d3573; */
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: "DM Sans", sans-serif;
-  margin: 0;
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.801);
 }
 
 
 header {
-  margin: 0 auto;
+  margin: auto;
   padding: .5rem;
-  align-self: center;
   max-width: 1400px;
 }
 header .header_content {
@@ -24,15 +27,17 @@ header .header_content {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  
 }
+
 .logo {
   height: 50px;
 }
 
 h1 {
-  color: #901c1c;
-  margin-right: 100px;
+  font-size: 3.5rem;
+  color: var(--color-primary);
+  margin: 0;
+  /* margin-right: 100px; */
 }
 h2 {
   margin: 1rem 0 .2rem 0;
@@ -44,18 +49,3 @@ p, span {
   font-size: 1.3rem;
 }
 
-
-
-main {
-  display: flex;
-  justify-content: center;
-}
-
-
-.photographer_section {
-  align-self: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1400px;
-}
