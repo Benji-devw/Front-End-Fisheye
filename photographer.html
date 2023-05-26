@@ -15,23 +15,16 @@
   </header>
     <main id="main">
       <div class="photographer_section">
-        <div class="photograph-header">
-          <div class="infos">
-            <h1 class="name"></h1>
-            <p class="city"></p>
-            <span class="tagline"></span>
-          </div>
+        <div class="photographer_header">
+          <div class="infos"></div>
           <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-          <div class="image"></div>
+          <div class="image_header"></div>
         </div>
         
         <div class="photographer_body">
           <div class="filters"></div>
           <div class="gallery">
-            <div class="card">
-              <div class="img_card"></div>
-              <div class="legend"></div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -51,8 +44,8 @@
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/focus.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script type="module" src="/scripts/pages/photographerFactory.js"></script>
+    <!-- <script src="/scripts/utils/focus.js"></script> -->
+    <!-- <script src="/scripts/utils/contactForm.js"></script> -->
   </body>
 </html>

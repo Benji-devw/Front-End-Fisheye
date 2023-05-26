@@ -12,18 +12,21 @@ class Api {
 }
 
 export default class PhotographersApi extends Api {
- constructor(url) {
-  super(url)
- }
- async getPhotographers() {
-  const response = await this.get()
-  return response.photographers.map(photographer => new Photographer(photographer))
- }
- 
- async getPhotographer(id) {
-  const photographers = await this.getPhotographers()
-  const photographerJson = photographers.find(photographer => photographer.id == id)
-  if (!photographerJson) return null
-  return new Photographer(photographerJson)
- }
+  constructor(url) {
+    super(url)
+  }
+  async getPhotographers() {
+    const response = await this.get()
+    return response.photographers.map(photographer => new Photographer(photographer))
+  }
+  
+  async getPhotographer(id) {
+    const datas = await this.get()
+    const photographers = await this.getPhotographers()
+    const mediasJson = datas.media.filter(media => media.photographerId == id)
+    const photographerJson = photographers.find(photographer => photographer._photographer.id == id)
+    if (!photographerJson && !mediasJson) return null
+    return new Photographer(photographerJson._photographer, mediasJson)
+  }
+
 }

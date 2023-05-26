@@ -1,73 +1,54 @@
 export default class Photographer {
-  constructor(photographer) {
-    this._name = photographer.name
-    this._id = photographer.id
-    this._city = photographer.city
-    this._country = photographer.country
-    this._tagline = photographer._tagline
-    this._price = photographer.price
-    this._portrait = photographer.portrait
+  constructor(photographer, media) {
+    this._photographer = photographer
+    this._media = media
+    // this._name = photographer.name
   }
 
   createPhotographerCard() {
-    const $wrapper = document.createElement('div')
-    $wrapper.classList.add('photographer-card-wrapper')
+    const $wrapper = document.createElement('article')
 
     const photographerCard = `
-      <article>
         <div class="article_head">
-          <a href="${`/photographer.html?id=${this._id}`}">
-            <img class="card_img" alt="${this._name}" src="assets/photographers/${this._portrait}" />
+          <a href="${`/photographer.html?id=${this._photographer.id}`}">
+            <img class="card_img" alt="${this._photographer.name}" src="assets/photographers/${this._photographer.portrait}" />
           </a>
           </div>
         <div class="article_body">
-          <h2>${this._name}</h2>
+          <h2>${this._photographer.name}</h2>
         </div>
-      </article>
       `
     $wrapper.innerHTML = photographerCard
     return $wrapper;
   }
 
   createPhotographerBanner() {
-    // to do
+    const $infos = document.querySelector('.infos')
+    const $image = document.querySelector('.image_header')
+
+    const photographerBanner = `
+      <h1 class="name">${this._photographer.name}</h1>
+      <p class="city">${this._photographer.city}</p>
+      <span class="tagline">${this._photographer.tagline}</span>
+    `
+    $image.innerHTML = `<img src="assets/photographers/${this._photographer.portrait}" alt="${this._photographer.name}" />`
+    $infos.innerHTML = photographerBanner
+  }
+
+  createPhotographerMedia() {
+    console.log(this._media);
+    // const $body = document.querySelector('.photographer_body')
+    // console.log(this._media.title);
+    // const photographerMedia = `
+    // <div class="card">
+    //   <div class="img_card"><img src="${this._media.image}" alt="${this._media.title}" /></div>
+    //   <div class="legend">
+    //     <h2>${this._media.title}</h2>
+    //     <span class="likes"<span>
+    //   </div>
+    // </div>
+    // `
+    // $body.appendChild(photographerMedia)
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-// async function getPhotographers() {
-//   try {
-//     const response = await fetch("../../data/photographers.json");
-//     const data = await response.json();
-//     // console.log(data);
-//     return data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-// async function displayData(photographers) {
-//   const photographersSection = document.querySelector(".photographer_section");
-
-//   photographers.forEach((photographer) => {
-//     const photographerModel = photographerFactory(photographer);
-//     const userCardDOM = photographerModel.getUserCardDOM();
-//     photographersSection.appendChild(userCardDOM);
-//   });
-// }
-
-// async function init() {
-//   // Récupère les datas des photographes
-//   const { photographers } = await getPhotographers();
-//   displayData(photographers);
-// }
-// init();
