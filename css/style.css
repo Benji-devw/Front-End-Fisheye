@@ -2,7 +2,7 @@
 :root {
   --color-primary: #901C1C;
   --color-second: #d3573c;
-  /* --color-second-hov: #d3573; */
+  --color-grey: #FAFAFA;
 }
 
 * {
@@ -13,7 +13,7 @@
 body {
   font-family: "DM Sans", sans-serif;
   padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.801);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 
@@ -49,3 +49,10 @@ p, span {
   font-size: 1.3rem;
 }
 
+div:focus,
+button:focus,
+a:focus 
+.card:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px white, 0 0 0 5px var(--color-primary);
+}

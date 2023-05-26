@@ -12,7 +12,6 @@ async function GetPhotographers() {
 }
 
 
-
 function GetIdQuery() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -39,6 +38,8 @@ async function Profile() {
   img.setAttribute("src", `assets/photographers/${getPhotographer[0].portrait}`)
   img.setAttribute("alt", getPhotographer[0].name)
 }
+
+
 
 
 
@@ -69,6 +70,7 @@ async function Medias() {
     like.textContent = element.likes
     image.src = `assets/images/${getPhotographer[0].name.replace(" ", "_")}/${element.image}`;
     image.alt = element.title 
+
     return card;
   });
   

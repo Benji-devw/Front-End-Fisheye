@@ -18,11 +18,23 @@ header .header_content {
   flex: 0 0 300px;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1.5rem;
+  padding: 2.5rem;
+  margin: 3rem 2rem;
   align-items: center;
+  background-color: var(--color-grey);
 }
 
+@media screen and (max-width: 1024px) {
+  .photograph-header {
+    flex-direction: column;
+    padding: 0;
+    margin: 3rem 0;
+  }
+}
 
+.photograph-header :is(.infos, .contact_button, .image) {
+  margin: 1rem 0;
+}
 .photograph-header .name {
   color: var(--color-second);
 }
@@ -78,6 +90,7 @@ header .header_content {
   font-size: 1.8rem;
   margin: 1rem 0;
   color: var(--color-primary);
+  max-width: 80%;
 }
 .photographer_body .gallery .legend :nth-child(2) {
   font-size: 1.4rem;

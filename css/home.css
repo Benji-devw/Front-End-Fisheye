@@ -19,7 +19,7 @@
 .photographer_section article .article_head img {
   border-radius: 1000px;
   height: 300px;
-  width: 100%;
+  width: 300px;
   object-fit: cover;
   cursor: pointer;
 }
