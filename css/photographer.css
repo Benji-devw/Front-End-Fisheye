@@ -20,7 +20,6 @@ header .header_content {
   justify-content: space-between;
   padding: 1.5rem;
   align-items: center;
-  border: 1px solid goldenrod;
 }
 
 
@@ -54,7 +53,6 @@ header .header_content {
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: space-around;
-  border: 1px solid green;
 }
 
 .photographer_body .gallery .card {
@@ -66,18 +64,26 @@ header .header_content {
   height: 400px;
   width: 400px;
   object-fit: cover;
+  border-radius: 8px;
   cursor: pointer;
 }
 .photographer_body .gallery .legend {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  font-size: 1.8rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.photographer_body .gallery .legend span {
+.photographer_body .gallery .legend :nth-child(1) {
+  font-size: 1.8rem;
   margin: 1rem 0;
   color: var(--color-primary);
+}
+.photographer_body .gallery .legend :nth-child(2) {
+  font-size: 1.4rem;
+  margin: 1rem 0;
+  color: var(--color-primary);
+  
 }
 
 

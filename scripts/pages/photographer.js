@@ -38,7 +38,6 @@ async function Profile() {
   
   img.setAttribute("src", `assets/photographers/${getPhotographer[0].portrait}`)
   img.setAttribute("alt", getPhotographer[0].name)
-
 }
 
 
