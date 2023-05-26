@@ -35,20 +35,18 @@ export default class Photographer {
     $infos.innerHTML = photographerBanner
   }
 
-  createPhotographerMedia() {
-    console.log(this._media);
-    // const $body = document.querySelector('.photographer_body')
-    // console.log(this._media.title);
-    // const photographerMedia = `
-    // <div class="card">
-    //   <div class="img_card"><img src="${this._media.image}" alt="${this._media.title}" /></div>
-    //   <div class="legend">
-    //     <h2>${this._media.title}</h2>
-    //     <span class="likes"<span>
-    //   </div>
-    // </div>
-    // `
-    // $body.appendChild(photographerMedia)
-  }
+  createPhotographerMedia(card, name) {
+    const $gallery = document.querySelector('.gallery');
+    const cardDiv = document.createElement('div');
+    cardDiv.classList.add('card');
 
+    cardDiv.innerHTML = `
+        <div class="img_card"><img src="assets/images/${name.replace(' ', '_')}/${card.image}" alt="${card.title}" /></div>
+        <div class="legend">
+          <h2>${card.title}</h2>
+          <span class="likes">${card.likes}<span>
+        </div>
+      `;
+      $gallery.appendChild(cardDiv);
+  }
 }

@@ -14,10 +14,11 @@ export default class PhotographerFactory {
 
   async main() {
     const photographer = await this.photographersApi.getPhotographer(getIdQuery())
-    // const medias = await this.photographersApi.getMedias(getIdQuery())
-    // console.log(photographer);
       this.$photographerSection += photographer.createPhotographerBanner()
-      this.$photographerSection += photographer.createPhotographerMedia()
+
+      photographer._media.forEach(card => {
+        this.$photographerSection += photographer.createPhotographerMedia(card, photographer._photographer.name)
+      })
   }
 }
 
