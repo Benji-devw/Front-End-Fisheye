@@ -16,14 +16,15 @@ export default class Photographer {
     const photographerCard = `
       <article>
         <div class="article_head">
-          <img alt="${this._name}" src="assets/photographers/${this._portrait}" />
-        </div>
+          <a href="${`/photographer.html?id=${this._id}`}">
+            <img class="card_img" alt="${this._name}" src="assets/photographers/${this._portrait}" />
+          </a>
+          </div>
         <div class="article_body">
           <h2>${this._name}</h2>
         </div>
       </article>
-    `
-
+      `
     $wrapper.innerHTML = photographerCard
     return $wrapper;
   }
