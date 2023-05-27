@@ -6,7 +6,7 @@ function getIdQuery() {
   return urlParams.get('id');
 }
 
-export default class PhotographerFactory {
+export default class PhotographerPage {
   constructor() {
     this.$photographerSection = document.querySelector('.photographer_section')
     this.photographersApi = new PhotographersApi("../../data/photographers.json")
@@ -22,5 +22,5 @@ export default class PhotographerFactory {
   }
 }
 
-const app = new PhotographerFactory()
+const app = new PhotographerPage()
 app.main()
