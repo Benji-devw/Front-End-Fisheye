@@ -41,7 +41,7 @@ export default class Photographer {
     cardDiv.classList.add('card');
 
     cardDiv.innerHTML = `
-        <div class="img_card"><img src="assets/images/${name.replace(' ', '_')}/${card.image}" alt="${card.title}" /></div>
+        <div class="img_card"><img src="assets/images/${this._photographer.name.replace(' ', '_')}/${card.image}" alt="${card.title}" /></div>
         <div class="legend">
           <h2>${card.title}</h2>
           <span class="likes">${card.likes}<span>
@@ -50,20 +50,20 @@ export default class Photographer {
       $gallery.appendChild(cardDiv);
   }
   
-  createPhotographerVideo(card, name) {
-    const $gallery = document.querySelector('.gallery');
-    const cardDiv = document.createElement('div');
-    cardDiv.classList.add('card');
+  // createPhotographerVideo(card, name) {
+  //   const $gallery = document.querySelector('.gallery');
+  //   const cardDiv = document.createElement('div');
+  //   cardDiv.classList.add('card');
 
-    cardDiv.innerHTML = `
-      <video controls width="250">
-        <source src="assets/images/${name.replace(' ', '_')}/${card.video}">
-      </video>
-        <div class="legend">
-          <h2>${card.title}</h2>
-          <span class="likes">${card.likes}<span>
-        </div>
-      `;
-      $gallery.appendChild(cardDiv);
-  }
+  //   cardDiv.innerHTML = `
+  //     <video controls width="250">
+  //       <source src="assets/images/${name.replace(' ', '_')}/${card.video}">
+  //     </video>
+  //       <div class="legend">
+  //         <h2>${card.title}</h2>
+  //         <span class="likes">${card.likes}<span>
+  //       </div>
+  //     `;
+  //     $gallery.appendChild(cardDiv);
+  // }
 }

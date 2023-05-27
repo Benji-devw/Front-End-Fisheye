@@ -1,4 +1,5 @@
 import PhotographersApi from "../../data/data.js";
+import Photographer from "../utils/Photographer.js";
 
 function getIdQuery() {
   const queryString = window.location.search;
@@ -20,8 +21,11 @@ export default class PhotographerFactory {
       const Medias = photographer._media.map(media => new MediasFactory(media, photographer._photographer.name))
       console.log(Medias);
 
+      Medias.forEach(movie => {
+        console.log(movie);
+        // const Template = new Photographer(movie)
+        this.$photographerSection +=  movie })
 
-      
       // const test = photographer._media.map(data => new MediasFactory(data))
       // console.log(test);
 
