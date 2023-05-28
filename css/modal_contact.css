@@ -72,6 +72,7 @@ form {
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left !important;
 }
 
 form label {

@@ -32,7 +32,7 @@
     </main>
 
     <div id="contact_modal">
-			<div class="modal_content">
+			<!-- <div class="modal_content">
         <div class="modal">
           <header>
             <h2>Contactez-moi</h2>
@@ -40,20 +40,23 @@
           </header>
           <form id="myForm" action="" method="POST">
             <div class="form-group">
-              <label for="name">Prénom</label>
-              <input id="name" type="text" placeholder="name" required />
+              <label for="fistName">Prénom</label>
+              <input id="fistName" type="text" placeholder="fistName" required />
+              <label for="lastName">Nom</label>
+              <input id="lastName" type="text" placeholder="lastName" required />
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="email" required />
               
-              <label for="message">Message:</label>
+              <label for="message">Votre message:</label>
               <textarea id="message" name="message" placeholder="Message..." rows="5" cols="33"></textarea>
             </div>
-            <!-- <button class="contact_button" type="submit" onclick="Form.openModal()">Envoyer</button> -->
           </form>
           <button class="contact_button" onclick="Form.onSumitForm()">Envoyer</button>
         </div>
-			</div>
-		</div>
+			</div> -->
+		</div> 
     
-    
+
     <!-- Utils -->
     <script type="module"src="/scripts/utils/Photographer.js"></script>
     <!-- <script src="/scripts/utils/focus.js"></script> -->
@@ -69,6 +72,6 @@
     <script src="/scripts/models/Video.js"></script>
 
     <!-- Modal Contact -->
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script type="module" src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>
