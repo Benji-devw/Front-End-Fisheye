@@ -1,7 +1,6 @@
 @import url("style.css");
 @import url("modal_contact.css");
 
-
 header .header_content {
   justify-content: start !important;
 }
@@ -10,10 +9,6 @@ header .header_content {
   margin: auto;
   max-width: 1400px;
 }
-
-
-
-
 
 .photographer_header {
   display: flex;
@@ -53,10 +48,6 @@ header .header_content {
   object-fit: cover;
 }
 
-
-
-
-
 .photographer_body {
   max-width: 1400px;
 }
@@ -72,15 +63,19 @@ header .header_content {
 .photographer_body .gallery .card {
   display: flex;
   flex-direction: column;
-  padding: .3rem;
-}
-.photographer_body .gallery img {
-  height: 400px;
+  justify-content: start;
+  padding: 0.3rem;
   width: 400px;
+}
+.photographer_body .gallery :is(img, video) {
+  align-self: center;
+  height: 400px;
+  width: 100%;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
 }
+
 .photographer_body .gallery .legend {
   display: flex;
   flex-direction: row;
@@ -98,7 +93,4 @@ header .header_content {
   font-size: 1.4rem;
   margin: 1rem 0;
   color: var(--color-primary);
-  
 }
-
-
