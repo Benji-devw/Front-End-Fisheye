@@ -15,15 +15,15 @@ export default class PhotographerFactory {
 
   async main() {
     const photographer = await this.photographersApi.getPhotographer(getIdQuery())
-      this.$photographerSection += photographer.createPhotographerBanner()
-      // console.log(this.$photographerSection);
+    this.$photographerSection += photographer.createPhotographerBanner()
+    // console.log(this.$photographerSection);
 
+    photographer._media.forEach(mediaData => {
+      const mediaFactory = new MediasFactory(mediaData, photographer._photographer.name);
+      const mediaHTML = mediaFactory.render();
+      this.$gallery.insertAdjacentHTML('beforeend', mediaHTML);
+    });
 
-      photographer._media.forEach(mediaData => {
-        const mediaFactory = new MediasFactory(mediaData, photographer._photographer.name);
-        const mediaHTML = mediaFactory.render();
-        this.$gallery.insertAdjacentHTML('beforeend', mediaHTML);
-      });
   }
 }
 
