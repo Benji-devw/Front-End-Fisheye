@@ -5,7 +5,6 @@ class VideoMedia {
   constructor(data, photographerName) {
     this.data = data;
     this.photographerName = photographerName;
-    console.log(data.video);
   }
 
   render() {

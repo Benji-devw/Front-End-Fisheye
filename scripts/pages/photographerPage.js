@@ -1,5 +1,4 @@
 import PhotographersApi from "../../data/data.js";
-import Photographer from "../utils/Photographer.js";
 
 function getIdQuery() {
   const queryString = window.location.search;

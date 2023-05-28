@@ -15,7 +15,7 @@ class ImageMedia {
         </div>
         <div class="legend">
           <h2>${this.data.title}</h2>
-          <span class="likes">${this.data.likes}</span>
+          <span class="likes">${this.data.likes} <i class="fa-solid fa-heart"></i></span>
         </div>
       </div>
     `;
