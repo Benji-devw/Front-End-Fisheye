@@ -31,12 +31,12 @@
       </div>
     </main>
 
-    <div id="contact_modal">
+    <div id="contact_modal" aria-hidden="true" aria-describedby="contact" role="dialog">
 			<div class="modal_content">
         <div class="modal">
           <header>
-            <h2>Contactez-moi</h2>
-            <img src="assets/icons/close.svg" />
+            <h2>Contactez-moi <span class="contact_name"></span></h2>
+            <button class="close_modal"><img src="assets/icons/close.svg" alt="close" /></button>
           </header>
           <form id="myForm" action="" method="POST">
             <div class="form-group">

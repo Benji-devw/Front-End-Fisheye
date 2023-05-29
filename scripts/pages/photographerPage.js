@@ -10,13 +10,17 @@ function getIdQuery() {
 export default class PhotographerPage {
   constructor() {
     this.$photographerSection = document.querySelector('.photographer_section')
-    this.$contactSection = document.querySelector('.contact_modal')
     this.$gallery = document.querySelector('.gallery');
-    this.photographersApi = new PhotographersApi("../../data/photographers.json")
+    this.$contactModal = document.querySelector('#contact_modal')
+    this.$openContactModal = document.querySelector(".contact_button");
+    this.$closeContactModal = document.querySelector(".close_modal")
+    this.$submitContactButton = document.querySelector(".sumit_button");
+
+    this.$photographersApi = new PhotographersApi("../../data/photographers.json")
   }
 
   async main() {
-    const photographer = await this.photographersApi.getPhotographer(getIdQuery())
+    const photographer = await this.$photographersApi.getPhotographer(getIdQuery())
     this.$photographerSection += photographer.createPhotographerBanner()
     // console.log(this.$photographerSection);
 
@@ -26,19 +30,12 @@ export default class PhotographerPage {
       this.$gallery.insertAdjacentHTML('beforeend', mediaHTML);
     });
 
-    // Créer une instance de ContactModal
-    const contactModal = new ContactModal();
-
-    // Récupérer le bouton et lui attribuer un gestionnaire d'événement pour ouvrir la modal
-    const openContactModal = document.querySelector(".contact_button");
-      openContactModal.addEventListener("click", () => {
-      contactModal.openModal();
-    });
-    // Créer le modal de contact en utilisant les données du photographe
-    // const modalContactHTML = ModalContact.createModalContact(photographer._photographer.name);
-    // Insérer le modal de contact dans le document
-    // document.body.insertAdjacentHTML('beforeend', modalContactHTML);
-
+    // Instance ContactModal
+    const contactModal = new ContactModal(photographer._photographer.name);
+    this.$openContactModal.addEventListener("click", () => {contactModal.openModal()});
+    this.$closeContactModal.addEventListener("click", () => {contactModal.closeModal()});
+    this.$submitContactButton.addEventListener("click", () => {contactModal.onSubmitForm()});
+    // this.$contactModal.addEventListener('click', () => {contactModal.access()});
   }
 }
 

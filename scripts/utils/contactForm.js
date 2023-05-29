@@ -1,26 +1,36 @@
 class ContactModal {
-  constructor() {
-    this._contact_modal = document.getElementById("contact_modal");
+  constructor(name) {
+    this._name = name
+    this._contactModal = document.getElementById("contact_modal");
+    this._submitContactButton = document.querySelector(".sumit_button");
+    this._closeContactModal = document.querySelector(".close_modal")
+    this._btnContactModal = document.querySelector(".contact_button")
+    this._contactName = document.querySelector(".contact_name")
     this._firstNameInput = document.getElementById("fistName");
     this._lastNameInput = document.getElementById("lastName");
     this._emailInput = document.getElementById("email");
     this._messageTextarea = document.getElementById("message");
-    this._submitButton = document.querySelector(".sumit_button");
-
-    this.contactButton = document.querySelector(".contact_button");
-
-    // Attacher le gestionnaire d'événement pour ouvrir la modal
-    this.contactButton.addEventListener("click", this.openModal.bind(this));
   }
 
   openModal() {
-    const modalElement = document.getElementById("contact_modal");
-    modalElement.style.display = "block";
+    document.body.style.overflow = 'hidden';
+    document.body.setAttribute('aria-hidden', 'false')
+    this._contactModal.setAttribute('aria-hidden', 'true')
+    this._contactModal.style.display = "block";
+    this._contactName.innerHTML = this._name
+    this._closeContactModal.focus()
+  }
+  
+  closeModal() {
+    document.body.style.overflow = 'visible';
+    document.body.setAttribute('aria-hidden', 'true')
+    this._contactModal.setAttribute('aria-hidden', 'false')
+    this._contactModal.style.display = "none";
+    this._btnContactModal.focus()
   }
 
-  closeModal() {
-    this._contact_modal.style.overflow = 'visible';
-    this._contact_modal.style.display = "none";
+  access() {
+
   }
 
   onSubmitForm() {
@@ -29,16 +39,23 @@ class ContactModal {
     const email = this._emailInput.value;
     const message = this._messageTextarea.value;
 
-    // Effectuer les actions souhaitées avec les données du formulaire
-    // Par exemple, envoyer les données à un serveur, effectuer des validations, etc.
-    console.log(firstName);
-    // Réinitialiser les champs du formulaire après l'envoi
-    this._firstNameInput.value = "";
-    this._lastNameInput.value = "";
-    this._emailInput.value = "";
-    this._messageTextarea.value = "";
+    console.log({contact: firstName, lastName, email, message});
+    //** Reset Form */
+    // this._firstNameInput.value = "";
+    // this._lastNameInput.value = "";
+    // this._emailInput.value = "";
+    // this._messageTextarea.value = "";
+    this.closeModal()
   }
 }
+
+
+
+
+
+
+
+
 
 
 
