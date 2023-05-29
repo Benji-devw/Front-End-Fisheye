@@ -1,5 +1,5 @@
 import PhotographersApi from "../../data/data.js";
-import ModalContact from "../utils/contactForm.js";
+// import ModalContact from "../utils/contactForm.js";
 
 function getIdQuery() {
   const queryString = window.location.search;
@@ -26,6 +26,14 @@ export default class PhotographerPage {
       this.$gallery.insertAdjacentHTML('beforeend', mediaHTML);
     });
 
+    // Créer une instance de ContactModal
+    const contactModal = new ContactModal();
+
+    // Récupérer le bouton et lui attribuer un gestionnaire d'événement pour ouvrir la modal
+    const openContactModal = document.querySelector(".contact_button");
+      openContactModal.addEventListener("click", () => {
+      contactModal.openModal();
+    });
     // Créer le modal de contact en utilisant les données du photographe
     // const modalContactHTML = ModalContact.createModalContact(photographer._photographer.name);
     // Insérer le modal de contact dans le document

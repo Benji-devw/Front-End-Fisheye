@@ -4,6 +4,7 @@
   display: none;
 }
 
+.sumit_button,
 .contact_button {
   font-size: 20px;
   font-weight: bold;
@@ -31,14 +32,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, .6);
 
 }
 .modal {
   position: relative;
   border-radius: 5px;
   background-color: #db8876;
-  width: 60%;
+  width: 50vw;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
