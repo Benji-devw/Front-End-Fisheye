@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
   </head>
-  <body>
 
+  <body>
     <header>
       <div class="header_content">
         <img src="assets/images/logo.png" class="logo"/>
@@ -40,18 +40,20 @@
           </header>
           <form id="myForm" action="" method="POST">
             <div class="form-group">
-              <label for="fistName">Prénom</label>
-              <input id="fistName" type="text" placeholder="fistName" required />
-              <label for="lastName">Nom</label>
-              <input id="lastName" type="text" placeholder="lastName" required />
-              <label for="email">Email</label>
-              <input id="email" type="email" placeholder="email" required />
+              <label id="firstNameLabel" for="fistName">Prénom</label>
+              <input id="fistName" type="text" placeholder="fistName" aria-labelledby="firstNameLabel" required />
               
-              <label for="message">Votre message:</label>
-              <textarea id="message" name="message" placeholder="Message..." rows="5" cols="33"></textarea>
+              <label id="lastNameLabel" for="email" for="lastName">Nom</label>
+              <input id="lastName" type="text" placeholder="lastName" aria-labelledby="lastNameLabel" required />
+              
+              <label id="emailLabel" for="email">Email</label>
+              <input id="email" type="email" placeholder="email" aria-labelledby="emailLabel" required />
+              
+              <label id="messageLabel" for="message">Votre message:</label>
+              <textarea id="message" name="message" placeholder="Message..." aria-labelledby="messageLabel" rows="5" cols="33"></textarea>
             </div>
           </form>
-          <button class="sumit_button">Envoyer</button>
+          <button class="sumit_button" type=submit aria-describedby="envoyer">Envoyer</button>
         </div>
 			</div>
 		</div> 
@@ -59,19 +61,17 @@
 
     <!-- Utils -->
     <script type="module"src="/scripts/utils/Photographer.js"></script>
+    <script src="/scripts/utils/contactForm.js"></script>
     <!-- <script src="/scripts/utils/focus.js"></script> -->
     
     <!-- Factories -->
     <script src="/scripts/factories/MediasFactory.js"></script>
 
-    <!-- Main JS -->
+    <!-- Pages -->
     <script type="module" src="/scripts/pages/photographerPage.js"></script>
 
     <!-- Models -->
     <script src="/scripts/models/Image.js"></script>
     <script src="/scripts/models/Video.js"></script>
-
-    <!-- Modal Contact -->
-    <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

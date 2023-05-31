@@ -1,8 +1,14 @@
+
+// Regex
+var textRegex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s]{2,}$/; // seulement des lettres(2 min) et espaces
+var emailRegex = /^[a-zA-Z0-9-_.]{2,}@[a-zA-Z0-9]{1,61}\.[a-zA-Z]{2,}$/;  // deux lettres min all && autaurise le tiret ou underscore
+
+
 class ContactModal {
   constructor(name) {
     this._name = name
     this._contactModal = document.getElementById("contact_modal");
-    this._submitContactButton = document.querySelector(".sumit_button");
+    // this._submitContactButton = document.querySelector(".sumit_button");
     this._closeContactModal = document.querySelector(".close_modal")
     this._btnContactModal = document.querySelector(".contact_button")
     this._contactName = document.querySelector(".contact_name")

@@ -24,9 +24,13 @@ export default class PhotographerPage {
     this.$photographerSection += photographer.createPhotographerBanner()
     // console.log(this.$photographerSection);
 
+    let id = 0
     photographer._media.forEach(mediaData => {
-      const mediaFactory = new MediasFactory(mediaData, photographer._photographer.name);
+      // id++
+      const mediaFactory = new MediasFactory(mediaData, photographer._photographer.name, id);
       const mediaHTML = mediaFactory.render();
+      // mediaFactory.addEventListener('keydown', handleCardNavigation);
+      // mediaFactory.addEventListener('focus', highlightCard);
       this.$gallery.insertAdjacentHTML('beforeend', mediaHTML);
     });
 

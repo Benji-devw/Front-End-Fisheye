@@ -66,6 +66,7 @@ header .header_content {
   justify-content: start;
   padding: 0.3rem;
   width: 400px;
+  border-radius: 8px;
 }
 .photographer_body .gallery :is(img, video) {
   align-self: center;
