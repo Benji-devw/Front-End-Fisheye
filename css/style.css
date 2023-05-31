@@ -57,7 +57,8 @@ i {
 
 div:focus,
 button:focus,
-a:focus .card:focus {
+a:focus,
+.card:focus {
   outline: none;
   box-shadow: 0 0 0 2px white, 0 0 0 5px var(--color-primary);
 }

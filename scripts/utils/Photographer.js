@@ -9,7 +9,7 @@ export default class Photographer {
 
     const photographerCard = `
         <div class="article_head">
-          <a href="${`/photographer.html?id=${this._photographer.id}`}">
+          <a class="article_head_link" href="${`/photographer.html?id=${this._photographer.id}`}">
             <img class="card_img" alt="${this._photographer.name}" src="assets/photographers/${this._photographer.portrait}" />
           </a>
           </div>
