@@ -5,7 +5,8 @@ export default class Photographer {
   }
 
   createPhotographerCard() {
-    const $wrapper = document.createElement('article')
+    const $_article = document.createElement('article')
+    $_article.setAttribute('aria-label', this._photographer.name)
 
     const photographerCard = `
         <div class="article_head">
@@ -17,21 +18,23 @@ export default class Photographer {
           <h2>${this._photographer.name}</h2>
         </div>
       `
-    $wrapper.innerHTML = photographerCard
-    return $wrapper;
+    $_article.innerHTML = photographerCard
+    return $_article;
   }
 
   createPhotographerBanner() {
-    const $infos = document.querySelector('.infos')
-    const $image = document.querySelector('.image_header')
+    const $_photographer_infos = document.querySelector('.photographer_infos')
+    const $_image = document.querySelector('.image_header')
 
     const photographerBanner = `
-      <h1 class="name">${this._photographer.name}</h1>
-      <p class="city">${this._photographer.city}</p>
-      <span class="tagline">${this._photographer.tagline}</span>
-    `
-    $image.innerHTML = `<img src="assets/photographers/${this._photographer.portrait}" alt="${this._photographer.name}" />`
-    $infos.innerHTML = photographerBanner
+      <div class="banner">
+        <h1 class="banner_name">${this._photographer.name}</h1>
+        <p class="banner_city">${this._photographer.city}</p>
+        <span class="banner_tagline">${this._photographer.tagline}</span>
+      </div>
+      `
+    $_image.innerHTML = `<img src="assets/photographers/${this._photographer.portrait}" alt="${this._photographer.name}" />`
+    $_photographer_infos.innerHTML = photographerBanner
   }
 
 }

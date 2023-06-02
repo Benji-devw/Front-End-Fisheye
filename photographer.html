@@ -19,7 +19,7 @@
     <main id="main">
       <div class="photographer_section">
         <div class="photographer_header">
-          <div class="infos"></div>
+          <div class="photographer_infos"></div>
           <button class="contact_button">Contactez-moi</button>
           <div class="image_header"></div>
         </div>
@@ -40,17 +40,27 @@
           </header>
           <form id="myForm" action="" method="POST">
             <div class="form-group">
-              <label id="firstNameLabel" for="fistName">Prénom</label>
-              <input id="fistName" type="text" placeholder="fistName" aria-labelledby="firstNameLabel" required />
-              
-              <label id="lastNameLabel" for="email" for="lastName">Nom</label>
-              <input id="lastName" type="text" placeholder="lastName" aria-labelledby="lastNameLabel" required />
-              
-              <label id="emailLabel" for="email">Email</label>
-              <input id="email" type="email" placeholder="email" aria-labelledby="emailLabel" required />
-              
-              <label id="messageLabel" for="message">Votre message:</label>
-              <textarea id="message" name="message" placeholder="Message..." aria-labelledby="messageLabel" rows="5" cols="33"></textarea>
+
+              <div class="formData" id="firstData" data-error="Deux lettre min - Pas de caractères spéciaux">
+                <label id="firstNameLabel" for="fistName">Prénom</label>
+                <input id="fistName" name="firstName" type="text" placeholder="fistName" aria-labelledby="firstNameLabel" required />
+              </div>
+
+              <div class="formData" id="lastData" data-error="Deux lettre min - Pas de caractères spéciaux">
+                <label id="lastNameLabel" for="lastName" for="lastName">Nom</label>
+                <input id="lastName" name="lastName" type="text" placeholder="lastName" aria-labelledby="lastNameLabel" required />
+              </div>
+
+              <div class="formData" id="emailData" data-error="Email invalide">
+                <label id="emailLabel" for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="email" aria-labelledby="emailLabel" required />
+              </div>
+
+              <div class="formData" id="areaData" data-error="Deux lettre min - Pas de caractères spéciaux">
+                <label id="messageLabel" for="message">Votre message:</label>
+                <textarea id="message" name="message" placeholder="Message..." aria-labelledby="messageLabel" rows="5" cols="33"></textarea>
+              </div>
+
             </div>
           </form>
           <button class="sumit_button" type=submit aria-describedby="envoyer">Envoyer</button>

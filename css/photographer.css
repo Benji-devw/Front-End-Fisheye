@@ -29,13 +29,13 @@ header .header_content {
   }
 }
 
-.photographer_header :is(.infos, .contact_button, .image) {
+.photographer_header :is(.photographer_infos, .contact_button, .image) {
   margin: 1rem 0;
 }
-.photographer_header .name {
+.photographer_header .banner_name {
   color: var(--color-second);
 }
-.photographer_header .city {
+.photographer_header .banner_city {
   font-size: 2.3rem;
   padding-bottom: 1rem;
   color: var(--color-primary);
