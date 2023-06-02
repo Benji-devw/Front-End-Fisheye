@@ -3,23 +3,25 @@ import { Media } from "./Media.js";
 export default class VideoMedia extends Media {
   constructor(data) {
     super(data)
-    this._video = data.video
+    this.video = data.video
     // this.data = data;
     // this.photographerName = photographerName;
+    console.log("VIDEO");
   }
 
-  // render() {
-  //   return `
-  //     <div class="card">
-  //       <div class="img_card">
-  //         <video controls>
-  //         <source type="video/mp4" src="assets/images/${this.photographerName.replace(' ', '_')}/${this.data.video}" alt="${this.data.title}">
-  //       </div>
-  //       <div class="legend">
-  //         <h2>${this.data.title}</h2>
-  //         <span class="likes">${this.data.likes} <i class="fa-solid fa-heart"></i></span>
-  //       </div>
-  //       </div>
-  //       `;
-  // }
+  createVideo() {
+    const $_video = `
+    <article aria-label="${this.name}">
+        <div class="article_head">
+          <a class="article_head_link" href="${`/photographer.html?id=${this.id}`}">
+            <img class="card_img" alt="${this.name}" src="assets/photographers/${this.portrait}" />
+          </a>
+          </div>
+        <div class="article_body">
+          <h2>${this.name}</h2>
+        </div>
+      </article>
+      `
+    return $_video;
+  }
 }
