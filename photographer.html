@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -18,10 +18,11 @@
 
     <main id="main">
       <div class="photographer_section">
+
         <div class="photographer_header">
-          <div class="photographer_infos"></div>
+          <div id="photographer_infos" class="photographer_infos"></div>
           <button class="contact_button">Contactez-moi</button>
-          <div class="image_header"></div>
+          <div id="image_header" class="image_header"></div>
         </div>
         
         <div class="photographer_body">
@@ -63,25 +64,27 @@
 
             </div>
           </form>
-          <button class="sumit_button" type=submit aria-describedby="envoyer">Envoyer</button>
+          <div class="form_footer">
+            <button class="sumit_button" type=submit aria-describedby="envoyer">Envoyer</button>
+          </div>
         </div>
 			</div>
 		</div> 
     
 
     <!-- Utils -->
-    <script type="module"src="/scripts/utils/Photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <!-- <script type="module"src="/scripts/utils/Photographer.js"></script> -->
+    <!-- <script src="/scripts/utils/contactForm.js"></script> -->
     <!-- <script src="/scripts/utils/focus.js"></script> -->
     
     <!-- Factories -->
-    <script src="/scripts/factories/MediasFactory.js"></script>
+    <!-- <script src="/scripts/factories/MediasFactory.js"></script> -->
 
     <!-- Pages -->
     <script type="module" src="/scripts/pages/photographerPage.js"></script>
 
     <!-- Models -->
-    <script src="/scripts/models/Image.js"></script>
-    <script src="/scripts/models/Video.js"></script>
+    <!-- <script src="/scripts/models/Image.js"></script>
+    <script src="/scripts/models/Video.js"></script> -->
   </body>
 </html>
