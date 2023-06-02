@@ -2,7 +2,9 @@ import ImageMedia from "../models/Image.js";
 import VideoMedia from "../models/Video.js";
 
 export default class MediasFactory {
-  // constructor() {}
+  // constructor() {
+  // }
+
   createMedia(mediaJson) {
     
     if (mediaJson.image) {

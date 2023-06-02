@@ -4,24 +4,23 @@ export default class ImageMedia extends Media {
   constructor(data) {
     super(data)
     this.image = data.image
-    // this.data = data;
-    // this.photographerName = photographerName;
     console.log("IMAGE");
+    
   }
 
   createImage() {
     const $_image = `
-    <article aria-label="${this.name}">
-        <div class="article_head">
-          <a class="article_head_link" href="${`/photographer.html?id=${this.id}`}">
-            <img class="card_img" alt="${this.name}" src="assets/photographers/${this.portrait}" />
-          </a>
-          </div>
-        <div class="article_body">
-          <h2>${this.name}</h2>
+      <div class="card" tabindex="${this.id}" role="button" aria-label="${this.title}">
+        <div class="img_card">
+          <img src="assets/images/${this.photographerName.replace(' ', '_')}/${this.image}" alt="${this.title}" />
         </div>
-      </article>
+        <div class="legend">
+          <h2>${this.title}</h2>
+          <span class="likes">${this.likes} <i class="fa-solid fa-heart"></i></span>
+        </div>
+      </div>
       `
+      // console.log($_image);
     return $_image;
   }
 }

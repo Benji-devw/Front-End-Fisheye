@@ -4,24 +4,23 @@ export default class VideoMedia extends Media {
   constructor(data) {
     super(data)
     this.video = data.video
-    // this.data = data;
-    // this.photographerName = photographerName;
     console.log("VIDEO");
   }
 
   createVideo() {
     const $_video = `
-    <article aria-label="${this.name}">
-        <div class="article_head">
-          <a class="article_head_link" href="${`/photographer.html?id=${this.id}`}">
-            <img class="card_img" alt="${this.name}" src="assets/photographers/${this.portrait}" />
-          </a>
-          </div>
-        <div class="article_body">
-          <h2>${this.name}</h2>
+      <div class="card">
+        <div class="media_card">
+          <video controls>
+          <source type="video/mp4" src="assets/images/${this.photographerName.replace(' ', '_')}/${this.video}" alt="${this.title}">
         </div>
-      </article>
+        <div class="legend">
+          <h2>${this.title}</h2>
+          <span class="likes">${this.likes} <i class="fa-solid fa-heart"></i></span>
+        </div>
+      </div>
       `
+      // console.log($_video);
     return $_video;
   }
 }
