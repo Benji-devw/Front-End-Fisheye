@@ -30,19 +30,19 @@ export default class PhotographerPage {
     // console.log(this.$photographerSection);
 
 
-    photographer._media.forEach(mediaData => {
-      const mediaFactory = new MediasFactory(mediaData, photographer._photographer.name);
-      const mediaHTML = mediaFactory.render();
-      // mediaFactory.addEventListener('keydown', handleCardNavigation);
-      // mediaFactory.addEventListener('focus', highlightCard);
-      this.$gallery.insertAdjacentHTML('beforeend', mediaHTML);
-    });
+    // photographer._media.forEach(mediaData => {
+    //   const mediaFactory = new MediasFactory(mediaData, photographer._photographer.name);
+    //   const mediaHTML = mediaFactory.render();
+    //   // mediaFactory.addEventListener('keydown', handleCardNavigation);
+    //   // mediaFactory.addEventListener('focus', highlightCard);
+    //   this.$gallery.insertAdjacentHTML('beforeend', mediaHTML);
+    // });
 
     // Instance ContactModal
-    const contactModal = new ContactModal(photographer._photographer.name);
-    this.$openContactModal.addEventListener("click", () => {contactModal.openModal()});
-    this.$closeContactModal.addEventListener("click", () => {contactModal.closeModal()});
-    this.$submitContactButton.addEventListener("click", () => {contactModal.onSubmitForm()});
+    // const contactModal = new ContactModal(photographer._photographer.name);
+    // this.$openContactModal.addEventListener("click", () => {contactModal.openModal()});
+    // this.$closeContactModal.addEventListener("click", () => {contactModal.closeModal()});
+    // this.$submitContactButton.addEventListener("click", () => {contactModal.onSubmitForm()});
     // this.$contactModal.addEventListener('click', () => {contactModal.access()});
   }
 }

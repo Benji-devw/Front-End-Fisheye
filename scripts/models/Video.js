@@ -1,14 +1,9 @@
-//**
-//*  CONSTRUCTEUR PATTERN */
-//*/
-
 import { Media } from "./Media.js";
 
-
-export default  class VideoMedia extends Media {
+export default class VideoMedia extends Media {
   constructor(data) {
     super(data)
-    this._viedo = data.viedo
+    this._video = data.video
     // this.data = data;
     // this.photographerName = photographerName;
   }

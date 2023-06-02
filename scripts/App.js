@@ -3,15 +3,22 @@ import PhotographersApi from "../data/data.js"
 class App {
   constructor() {
     this.$photographerSection = document.querySelector('.photographer_section')
-    this.photographersApi = new PhotographersApi("../data/photographers.json")
+    this.$photographersApi = new PhotographersApi("../data/photographers.json")
   }
 
   async main() {
-    const photographers = await this.photographersApi.getPhotographers()
+    
+    const $_photographers = await this.$photographersApi.getPhotographers();
 
-    photographers.forEach(photographer => {
-      this.$photographerSection.appendChild(photographer.createPhotographerCard())
-    })
+    $_photographers.forEach(photographer => {
+      const $_article = document.createElement('article');
+      $_article.setAttribute('aria-label', photographer._name);
+  
+      const $_photographerCard = photographer.createPhotographerCard();
+      $_article.innerHTML = $_photographerCard;
+  
+      this.$photographerSection.appendChild($_article);
+    });
   }
 }
 

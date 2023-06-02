@@ -18,6 +18,7 @@ export default class PhotographersApi extends Api {
   constructor(url) {
     super(url);
   }
+  
   async getPhotographers() {
     const response = await this.get();
     return response.photographers.map(
@@ -36,11 +37,15 @@ export default class PhotographersApi extends Api {
       (media) => media.photographerId == id
     );
     const factory = new MediasFactory();
-    const medias = mediasJson.map((media) => factory.createMedia(media));
+    const medias = mediasJson.map(
+      (media) => factory.createMedia(media)
+      );
     console.log(medias);
+
     if (medias[0] instanceof ImageMedia) {
       console.log("image");
-    } else if (medias[0] instanceof VideoMedia) {
+    } 
+    else if (medias[0] instanceof VideoMedia) {
       console.log("video");
     }
     // if (!photographerJson && !mediasJson) return null

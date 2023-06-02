@@ -8,35 +8,32 @@ export default class Photographer {
     this._price = photographer.price
     this._portrait = photographer.portrait
     this._media = media
+    // console.log(this._id);
   }
 
   createPhotographerCard() {
-    const $_article = document.createElement('article')
-    $_article.setAttribute('aria-label', this.name)
-
-    const photographerCard = `
+    const $_photographerCard = `
         <div class="article_head">
-          <a class="article_head_link" href="${`/photographer.html?id=${this.id}`}">
-            <img class="card_img" alt="${this.name}" src="assets/photographers/${this.portrait}" />
+          <a class="article_head_link" href="${`/photographer.html?id=${this._id}`}">
+            <img class="card_img" alt="${this._name}" src="assets/photographers/${this._portrait}" />
           </a>
           </div>
         <div class="article_body">
-          <h2>${this.name}</h2>
+          <h2>${this._name}</h2>
         </div>
       `
-    $_article.innerHTML = photographerCard
-    return $_article;
+    return $_photographerCard;
   }
 
   createPhotographerBanner() {
     const $_banner = `
       <div class="banner">
-        <h1 class="banner_name">${this.name}</h1>
-        <p class="banner_city">${this.city}</p>
-        <span class="banner_tagline">${this.tagline}</span>
+        <h1 class="banner_name">${this._name}</h1>
+        <p class="banner_city">${this._city}</p>
+        <span class="banner_tagline">${this._tagline}</span>
       </div>
       `
-    const $_image = `<img src="assets/photographers/${this.portrait}" alt="${this.name}" />`
+    const $_image = `<img src="assets/photographers/${this._portrait}" alt="${this._name}" />`
     return {$_banner, $_image}
   }
 
