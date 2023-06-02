@@ -2,22 +2,19 @@ import PhotographersApi from "../data/data.js"
 
 class App {
   constructor() {
-    this.$photographerSection = document.querySelector('.photographer_section')
-    this.$photographersApi = new PhotographersApi("../data/photographers.json")
+    this.$_photographerSection = document.querySelector('.photographer_section')
+    
+    this.$_photographersApi = new PhotographersApi("../data/photographers.json")
   }
 
   async main() {
-    
-    const $_photographers = await this.$photographersApi.getPhotographers();
+    const $_photographers = await this.$_photographersApi.getPhotographers();
+    let photographerCardsHTML = '';
 
     $_photographers.forEach(photographer => {
-      const $_article = document.createElement('article');
-      $_article.setAttribute('aria-label', photographer._name);
-  
       const $_photographerCard = photographer.createPhotographerCard();
-      $_article.innerHTML = $_photographerCard;
-  
-      this.$photographerSection.appendChild($_article);
+      photographerCardsHTML += $_photographerCard;
+      this.$_photographerSection.innerHTML = photographerCardsHTML;
     });
   }
 }

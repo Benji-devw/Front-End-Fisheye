@@ -13,6 +13,7 @@ export default class Photographer {
 
   createPhotographerCard() {
     const $_photographerCard = `
+    <article aria-label="${this._name}">
         <div class="article_head">
           <a class="article_head_link" href="${`/photographer.html?id=${this._id}`}">
             <img class="card_img" alt="${this._name}" src="assets/photographers/${this._portrait}" />
@@ -21,6 +22,7 @@ export default class Photographer {
         <div class="article_body">
           <h2>${this._name}</h2>
         </div>
+      </article>
       `
     return $_photographerCard;
   }

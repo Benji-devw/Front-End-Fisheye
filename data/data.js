@@ -21,25 +21,19 @@ export default class PhotographersApi extends Api {
   
   async getPhotographers() {
     const response = await this.get();
-    return response.photographers.map(
-      (photographer) => new Photographer(photographer)
-    );
+    return response.photographers.map(photographer => new Photographer(photographer));
   }
 
   async getPhotographer(id) {
     const photographers = await this.getPhotographers();
-    const photographerJson = photographers.find(
-      (photographer) => photographer.id == id
-    );
+    const photographer = photographers.find(photographer => photographer.id == id);
+    console.log(photographers);
+
 
     const datas = await this.get();
-    const mediasJson = datas.media.filter(
-      (media) => media.photographerId == id
-    );
+    const mediasJson = datas.media.filter((media) => media.photographerId == id);
     const factory = new MediasFactory();
-    const medias = mediasJson.map(
-      (media) => factory.createMedia(media)
-      );
+    const medias = mediasJson.map((media) => factory.createMedia(media));
     console.log(medias);
 
     if (medias[0] instanceof ImageMedia) {
@@ -48,7 +42,7 @@ export default class PhotographersApi extends Api {
     else if (medias[0] instanceof VideoMedia) {
       console.log("video");
     }
-    // if (!photographerJson && !mediasJson) return null
-    return new Photographer(photographerJson, mediasJson)
+    // if (!photographer && !mediasJson) return null
+    return new Photographer(photographer, mediasJson)
   }
 }
