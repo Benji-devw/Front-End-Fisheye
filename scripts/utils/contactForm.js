@@ -20,7 +20,7 @@ class ContactModal {
     this._contactName.innerHTML = this._name
     this._closeContactModal.focus()
   }
-  
+
   closeModal() {
     document.body.style.overflow = 'visible';
     document.body.setAttribute('aria-hidden', 'true')
