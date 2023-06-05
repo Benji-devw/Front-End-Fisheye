@@ -31,16 +31,16 @@ export default class PhotographersApi extends Api {
     // console.log(photographer);
 
     const datas = await this.get();
-    const mediasJson = datas.media.filter((media) => media.photographerId == id);
-    const factory = new MediasFactory();
-    const medias = mediasJson.map((media) => factory.createMedia(media));
-    // console.log(medias);
+    const mediasJson = datas.media.filter(media => media.photographerId == id);
+    // const factory = new MediasFactory();
+    // const medias = mediasJson.map(media => factory.createMedia(media));
+    // console.log(mediasJson);
 
     // if (medias[0] instanceof ImageMedia) console.log("image");
     // else if (medias[0] instanceof VideoMedia) console.log("video");
 
     if (!photographer && !mediasJson) return null
-    return new Photographer(photographer, medias)
+    return new Photographer(photographer, mediasJson)
   }
 
 }

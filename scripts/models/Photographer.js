@@ -1,3 +1,4 @@
+import MediasFactory from "../factories/MediasFactory.js"
 
 export default class Photographer {
   constructor(photographer, media) {
@@ -38,6 +39,13 @@ export default class Photographer {
       `
     const $_image = `<img src="assets/photographers/${this.portrait}" alt="${this.name}" />`
     return {$_banner, $_image}
+  }
+
+  createMediaFactory(data) {
+    // console.log(data);
+    const factory = new MediasFactory(data);
+    const medias = factory.createMedia()
+    return medias
   }
 
 }

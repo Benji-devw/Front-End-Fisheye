@@ -24,7 +24,7 @@ export default class PhotographerPage {
 
   async main() {
     const photographer = await this.$photographersApi.getPhotographer(getIdQuery())
-    console.log(photographer);
+    // console.log(photographer);
 
     const {$_banner, $_image} = photographer.createPhotographerBanner()
     this.$photographer_infos.innerHTML = $_banner
@@ -32,12 +32,27 @@ export default class PhotographerPage {
 
     
     photographer.media.forEach(media => {
-      const test = document.createElement('div')
-      test.classList.add('card')
-  
+      // const factory = new MediasFactory();
+      // const medias = factory.createMedia(media)
       // console.log(media);
-      test.innerHTML += media;
-      this.$gallery.appendChild(test);
+
+      const test = photographer.createMediaFactory(media)
+      console.log(test);
+      this.$gallery.innerHTML += test
+
+
+      // const $_image = `
+      // <div class="card" tabindex="${media.id}" role="button" aria-label="${media.title}">
+      //   <div class="img_card">
+      //     <img src="assets/images/${photographer.name.replace(' ', '_')}/${media.image}" alt="${media.title}" />
+      //   </div>
+      //   <div class="legend">
+      //     <h2>${media.title}</h2>
+      //     <span class="likes">${media.likes} <i class="fa-solid fa-heart"></i></span>
+      //   </div>
+      // </div>
+      // `
+      // this.$gallery.innerHTML += $_image
     });
 
  
