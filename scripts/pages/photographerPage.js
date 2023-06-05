@@ -1,4 +1,5 @@
 import PhotographersApi from "../../data/data.js";
+import MediasFactory from "../factories/MediasFactory.js";
 // import ModalContact from "../utils/contactForm.js";
 
 function getIdQuery() {
@@ -23,22 +24,23 @@ export default class PhotographerPage {
 
   async main() {
     const photographer = await this.$photographersApi.getPhotographer(getIdQuery())
+    console.log(photographer);
+
     const {$_banner, $_image} = photographer.createPhotographerBanner()
     this.$photographer_infos.innerHTML = $_banner
     this.$image_header.innerHTML = $_image
+
     
-    // console.log(this.$photographerSection);
+    photographer.media.forEach(media => {
+      const test = document.createElement('div')
+      test.classList.add('card')
+  
+      // console.log(media);
+      test.innerHTML += media;
+      this.$gallery.appendChild(test);
+    });
 
-
-    // photographer._media.forEach(mediaData => {
-    //   const mediaFactory = new MediasFactory(mediaData, photographer._photographer.name);
-    //   const mediaHTML = mediaFactory.render();
-    //   // mediaFactory.addEventListener('keydown', handleCardNavigation);
-    //   // mediaFactory.addEventListener('focus', highlightCard);
-    //   this.$gallery.insertAdjacentHTML('beforeend', mediaHTML);
-    // });
-
-    // Instance ContactModal
+ 
     // const contactModal = new ContactModal(photographer._photographer.name);
     // this.$openContactModal.addEventListener("click", () => {contactModal.openModal()});
     // this.$closeContactModal.addEventListener("click", () => {contactModal.closeModal()});

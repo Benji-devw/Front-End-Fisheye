@@ -1,7 +1,8 @@
-import Photographer from "../scripts/utils/Photographer.js";
+import Photographer from "../scripts/models/Photographer.js";
 import MediasFactory from "../scripts/factories/MediasFactory.js";
 import ImageMedia from "../scripts/models/Image.js";
 import VideoMedia from "../scripts/models/Video.js";
+
 
 class Api {
   constructor(url) {
@@ -9,8 +10,8 @@ class Api {
   }
   async get() {
     return fetch(this._url)
-      .then((res) => res.json())
-      .catch((err) => console.log("ERROR => ", err));
+    .then((res) => res.json())
+    .catch((err) => console.log("ERROR => ", err));
   }
 }
 
@@ -27,22 +28,19 @@ export default class PhotographersApi extends Api {
   async getPhotographer(id) {
     const photographers = await this.getPhotographers();
     const photographer = photographers.find(photographer => photographer.id == id);
-    console.log(photographers);
-
+    // console.log(photographer);
 
     const datas = await this.get();
     const mediasJson = datas.media.filter((media) => media.photographerId == id);
     const factory = new MediasFactory();
     const medias = mediasJson.map((media) => factory.createMedia(media));
-    console.log(medias);
+    // console.log(medias);
 
-    if (medias[0] instanceof ImageMedia) {
-      console.log("image");
-    } 
-    else if (medias[0] instanceof VideoMedia) {
-      console.log("video");
-    }
-    // if (!photographer && !mediasJson) return null
-    return new Photographer(photographer, mediasJson)
+    // if (medias[0] instanceof ImageMedia) console.log("image");
+    // else if (medias[0] instanceof VideoMedia) console.log("video");
+
+    if (!photographer && !mediasJson) return null
+    return new Photographer(photographer, medias)
   }
+
 }

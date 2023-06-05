@@ -3,24 +3,25 @@ import { Media } from "./Media.js";
 export default class ImageMedia extends Media {
   constructor(data) {
     super(data)
-    this._image = data.image
-    // this._id = id;
-    // this._data = data;
-    // this._photographerName = photographerName;
+    this.image = data.image
+    console.log("IMAGE");
+    
   }
 
-  // render() {
-  //   return `
-  //     <div class="card" tabindex="${this._id}" role="button" aria-label="${this._data.title}">
-  //       <div class="img_card">
-  //         <img src="assets/images/${this._photographerName.replace(' ', '_')}/${this._data.image}" alt="${this._data.title}" />
-  //       </div>
-  //       <div class="legend">
-  //         <h2>${this._data.title}</h2>
-  //         <span class="likes">${this._data.likes} <i class="fa-solid fa-heart"></i></span>
-  //       </div>
-  //     </div>
-  //   `;
-  // }
+  createImage() {
+    const $_image = `
+      <div class="card" tabindex="${this.id}" role="button" aria-label="${this.title}">
+        <div class="img_card">
+          <img src="assets/images/${this.photographerName.replace(' ', '_')}/${this.image}" alt="${this.title}" />
+        </div>
+        <div class="legend">
+          <h2>${this.title}</h2>
+          <span class="likes">${this.likes} <i class="fa-solid fa-heart"></i></span>
+        </div>
+      </div>
+      `
+      // console.log($_image);
+    return $_image;
+  }
 }
 
