@@ -1,8 +1,14 @@
+
+// Regex
+var textRegex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s]{2,}$/; // seulement des lettres(2 min) et espaces
+var emailRegex = /^[a-zA-Z0-9-_.]{2,}@[a-zA-Z0-9]{1,61}\.[a-zA-Z]{2,}$/;  // deux lettres min all && autaurise le tiret ou underscore
+
+
 class ContactModal {
   constructor(name) {
     this._name = name
     this._contactModal = document.getElementById("contact_modal");
-    this._submitContactButton = document.querySelector(".sumit_button");
+    // this._submitContactButton = document.querySelector(".sumit_button");
     this._closeContactModal = document.querySelector(".close_modal")
     this._btnContactModal = document.querySelector(".contact_button")
     this._contactName = document.querySelector(".contact_name")
@@ -10,6 +16,8 @@ class ContactModal {
     this._lastNameInput = document.getElementById("lastName");
     this._emailInput = document.getElementById("email");
     this._messageTextarea = document.getElementById("message");
+    this._datas = []
+    this._errors = []
   }
 
   openModal() {
@@ -19,6 +27,8 @@ class ContactModal {
     this._contactModal.style.display = "block";
     this._contactName.innerHTML = this._name
     this._closeContactModal.focus()
+    // Initialise tabs
+    this._datas = []
   }
 
   closeModal() {
@@ -29,24 +39,38 @@ class ContactModal {
     this._btnContactModal.focus()
   }
 
-  access() {
-
+  inputChecker(bool, val, err) {
+    const formDataError = document.getElementById(err)
+    if (bool) {
+      this._datas.push({champ: val.name, values: val.value.trim() }) // Add value au tab datas[]
+      formDataError.setAttribute("data-error-visible", "false"); // Delete attr error
+    } else {
+      this._errors.push({champ: val.name, values: val.value.trim() }) // Add erreur au tab errors[]
+      formDataError.setAttribute("data-error-visible", "true"); // Display attr error
+    }
   }
 
   onSubmitForm() {
-    const firstName = this._firstNameInput.value;
-    const lastName = this._lastNameInput.value;
-    const email = this._emailInput.value;
-    const message = this._messageTextarea.value;
+    this._datas = []
+    this._errors = []
+    this.inputChecker(textRegex.test(this._firstNameInput.value), this._firstNameInput, 'firstData');
+    this.inputChecker(textRegex.test(this._lastNameInput.value), this._lastNameInput, 'lastData');
+    this.inputChecker(emailRegex.test(this._emailInput.value), this._emailInput, 'emailData');
+    this.inputChecker(textRegex.test(this._messageTextarea.value), this._messageTextarea, 'areaData');
 
-    console.log({contact: firstName, lastName, email, message});
-    //** Reset Form */
-    // this._firstNameInput.value = "";
-    // this._lastNameInput.value = "";
-    // this._emailInput.value = "";
-    // this._messageTextarea.value = "";
-    this.closeModal()
+    console.log('Form errors !!! => ', this._errors);
+    if (this._errors.length === 0) {
+      console.log('Form sumited !!! => ', this._datas);
+      this.closeModal()
+
+      //** Reset Form */
+      // this._firstNameInput.value = "";
+      // this._lastNameInput.value = "";
+      // this._emailInput.value = "";
+      // this._messageTextarea.value = "";
+    }
   }
+
 }
 
 

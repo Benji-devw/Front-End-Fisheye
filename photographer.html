@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
   </head>
-  <body>
 
+  <body>
     <header>
       <div class="header_content">
         <img src="assets/images/logo.png" class="logo"/>
@@ -18,10 +18,11 @@
 
     <main id="main">
       <div class="photographer_section">
+
         <div class="photographer_header">
-          <div class="infos"></div>
+          <div id="photographer_infos" class="photographer_infos"></div>
           <button class="contact_button">Contactez-moi</button>
-          <div class="image_header"></div>
+          <div id="image_header" class="image_header"></div>
         </div>
         
         <div class="photographer_body">
@@ -40,38 +41,50 @@
           </header>
           <form id="myForm" action="" method="POST">
             <div class="form-group">
-              <label for="fistName">Prénom</label>
-              <input id="fistName" type="text" placeholder="fistName" required />
-              <label for="lastName">Nom</label>
-              <input id="lastName" type="text" placeholder="lastName" required />
-              <label for="email">Email</label>
-              <input id="email" type="email" placeholder="email" required />
-              
-              <label for="message">Votre message:</label>
-              <textarea id="message" name="message" placeholder="Message..." rows="5" cols="33"></textarea>
+
+              <div class="formData" id="firstData" data-error="Deux lettre min - Pas de caractères spéciaux">
+                <label id="firstNameLabel" for="fistName">Prénom</label>
+                <input id="fistName" name="firstName" type="text" placeholder="fistName" aria-labelledby="firstNameLabel" required />
+              </div>
+
+              <div class="formData" id="lastData" data-error="Deux lettre min - Pas de caractères spéciaux">
+                <label id="lastNameLabel" for="lastName" for="lastName">Nom</label>
+                <input id="lastName" name="lastName" type="text" placeholder="lastName" aria-labelledby="lastNameLabel" required />
+              </div>
+
+              <div class="formData" id="emailData" data-error="Email invalide">
+                <label id="emailLabel" for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="email" aria-labelledby="emailLabel" required />
+              </div>
+
+              <div class="formData" id="areaData" data-error="Deux lettre min - Pas de caractères spéciaux">
+                <label id="messageLabel" for="message">Votre message:</label>
+                <textarea id="message" name="message" placeholder="Message..." aria-labelledby="messageLabel" rows="5" cols="33"></textarea>
+              </div>
+
             </div>
           </form>
-          <button class="sumit_button">Envoyer</button>
+          <div class="form_footer">
+            <button class="sumit_button" type=submit aria-describedby="envoyer">Envoyer</button>
+          </div>
         </div>
 			</div>
 		</div> 
     
 
     <!-- Utils -->
-    <script type="module"src="/scripts/utils/Photographer.js"></script>
+    <!-- <script type="module"src="/scripts/utils/Photographer.js"></script> -->
+    <!-- <script src="/scripts/utils/contactForm.js"></script> -->
     <!-- <script src="/scripts/utils/focus.js"></script> -->
     
     <!-- Factories -->
-    <script src="/scripts/factories/MediasFactory.js"></script>
+    <!-- <script src="/scripts/factories/MediasFactory.js"></script> -->
 
-    <!-- Main JS -->
+    <!-- Pages -->
     <script type="module" src="/scripts/pages/photographerPage.js"></script>
 
     <!-- Models -->
-    <script src="/scripts/models/Image.js"></script>
-    <script src="/scripts/models/Video.js"></script>
-
-    <!-- Modal Contact -->
-    <script src="/scripts/utils/contactForm.js"></script>
+    <!-- <script src="/scripts/models/Image.js"></script>
+    <script src="/scripts/models/Video.js"></script> -->
   </body>
 </html>

@@ -1,37 +1,42 @@
 export default class Photographer {
   constructor(photographer, media) {
-    this._photographer = photographer
+    this._id = photographer.id
+    this._name = photographer.name
+    this._city = photographer.city
+    this._country = photographer.country
+    this._tagline = photographer.tagline
+    this._price = photographer.price
+    this._portrait = photographer.portrait
     this._media = media
+    // console.log(this._id);
   }
 
   createPhotographerCard() {
-    const $wrapper = document.createElement('article')
-
-    const photographerCard = `
+    const $_photographerCard = `
+    <article aria-label="${this._name}">
         <div class="article_head">
-          <a href="${`/photographer.html?id=${this._photographer.id}`}">
-            <img class="card_img" alt="${this._photographer.name}" src="assets/photographers/${this._photographer.portrait}" />
+          <a class="article_head_link" href="${`/photographer.html?id=${this._id}`}">
+            <img class="card_img" alt="${this._name}" src="assets/photographers/${this._portrait}" />
           </a>
           </div>
         <div class="article_body">
-          <h2>${this._photographer.name}</h2>
+          <h2>${this._name}</h2>
         </div>
+      </article>
       `
-    $wrapper.innerHTML = photographerCard
-    return $wrapper;
+    return $_photographerCard;
   }
 
   createPhotographerBanner() {
-    const $infos = document.querySelector('.infos')
-    const $image = document.querySelector('.image_header')
-
-    const photographerBanner = `
-      <h1 class="name">${this._photographer.name}</h1>
-      <p class="city">${this._photographer.city}</p>
-      <span class="tagline">${this._photographer.tagline}</span>
-    `
-    $image.innerHTML = `<img src="assets/photographers/${this._photographer.portrait}" alt="${this._photographer.name}" />`
-    $infos.innerHTML = photographerBanner
+    const $_banner = `
+      <div class="banner">
+        <h1 class="banner_name">${this._name}</h1>
+        <p class="banner_city">${this._city}</p>
+        <span class="banner_tagline">${this._tagline}</span>
+      </div>
+      `
+    const $_image = `<img src="assets/photographers/${this._portrait}" alt="${this._name}" />`
+    return {$_banner, $_image}
   }
 
 }

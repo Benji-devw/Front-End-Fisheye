@@ -23,14 +23,14 @@
 //** Close modal when escape key is pressed */ 
 // const contactModal = document.getElementById("contact_modal");
 
-document.addEventListener('keydown', function(e) {
-  const keyCode = e.keyCode ? e.keyCode : e.which;
-  const modal = document.getElementById("contact_modal");
+// document.addEventListener('keydown', function(e) {
+//   const keyCode = e.keyCode ? e.keyCode : e.which;
+//   const modal = document.getElementById("contact_modal");
 
-  if (modal.getAttribute('aria-hidden') === 'false' && keyCode === 27) {
-    onCloseModal();
-  }
-});
+//   if (modal.getAttribute('aria-hidden') === 'false' && keyCode === 27) {
+//     onCloseModal();
+//   }
+// });
 
 
 
@@ -70,3 +70,34 @@ document.addEventListener('keydown', function(e) {
 // });
 
 // firstFocusableElement.focus();
+
+
+
+
+
+
+
+
+
+function handleCardNavigation(event) {
+  // Vérifiez la touche de navigation au clavier pressée
+  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    // Empêchez le comportement par défaut pour éviter le défilement de la page
+    event.preventDefault();
+
+    // Naviguez vers la carte suivante ou précédente en fonction de la touche pressée
+    const currentIndex = Array.from(cards).indexOf(event.currentTarget);
+    const nextIndex = event.key === 'ArrowDown' ? currentIndex + 1 : currentIndex - 1;
+    const nextCard = cards[nextIndex];
+
+    // Mettez le focus sur la carte suivante ou précédente
+    if (nextCard) {
+      nextCard.focus();
+    }
+  }
+}
+// Gestionnaire d'événement pour mettre en évidence la carte en focus
+function highlightCard(event) {
+  event.currentTarget.classList.add('focused');
+}
+

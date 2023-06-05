@@ -10,6 +10,8 @@ function getIdQuery() {
 export default class PhotographerPage {
   constructor() {
     this.$photographerSection = document.querySelector('.photographer_section')
+    this.$photographer_infos = document.querySelector('#photographer_infos')
+    this.$image_header = document.querySelector('#image_header')
     this.$gallery = document.querySelector('.gallery');
     this.$contactModal = document.querySelector('#contact_modal')
     this.$openContactModal = document.querySelector(".contact_button");
@@ -21,20 +23,26 @@ export default class PhotographerPage {
 
   async main() {
     const photographer = await this.$photographersApi.getPhotographer(getIdQuery())
-    this.$photographerSection += photographer.createPhotographerBanner()
+    const {$_banner, $_image} = photographer.createPhotographerBanner()
+    this.$photographer_infos.innerHTML = $_banner
+    this.$image_header.innerHTML = $_image
+    
     // console.log(this.$photographerSection);
 
-    photographer._media.forEach(mediaData => {
-      const mediaFactory = new MediasFactory(mediaData, photographer._photographer.name);
-      const mediaHTML = mediaFactory.render();
-      this.$gallery.insertAdjacentHTML('beforeend', mediaHTML);
-    });
+
+    // photographer._media.forEach(mediaData => {
+    //   const mediaFactory = new MediasFactory(mediaData, photographer._photographer.name);
+    //   const mediaHTML = mediaFactory.render();
+    //   // mediaFactory.addEventListener('keydown', handleCardNavigation);
+    //   // mediaFactory.addEventListener('focus', highlightCard);
+    //   this.$gallery.insertAdjacentHTML('beforeend', mediaHTML);
+    // });
 
     // Instance ContactModal
-    const contactModal = new ContactModal(photographer._photographer.name);
-    this.$openContactModal.addEventListener("click", () => {contactModal.openModal()});
-    this.$closeContactModal.addEventListener("click", () => {contactModal.closeModal()});
-    this.$submitContactButton.addEventListener("click", () => {contactModal.onSubmitForm()});
+    // const contactModal = new ContactModal(photographer._photographer.name);
+    // this.$openContactModal.addEventListener("click", () => {contactModal.openModal()});
+    // this.$closeContactModal.addEventListener("click", () => {contactModal.closeModal()});
+    // this.$submitContactButton.addEventListener("click", () => {contactModal.onSubmitForm()});
     // this.$contactModal.addEventListener('click', () => {contactModal.access()});
   }
 }
