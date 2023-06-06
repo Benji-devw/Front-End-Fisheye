@@ -41,11 +41,8 @@ export default class Photographer {
     return {$_banner, $_image}
   }
 
-  createMediaFactory(data) {
-    // console.log(data);
-    const factory = new MediasFactory(data);
-    const medias = factory.createMedia()
-    return medias
+  createMediaFactory() {
+    return this.media
   }
 
 }

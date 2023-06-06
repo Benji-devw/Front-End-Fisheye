@@ -2,17 +2,20 @@ import ImageMedia from "../models/Image.js";
 import VideoMedia from "../models/Video.js";
 
 export default class MediasFactory {
-  constructor(data) {
-    this.data = data
-    // console.log(this.data);
+  constructor(name, media) {
+    this.media = media
+    this.name = name
+    // console.log(this.media);
   }
 
   createMedia() {
-    if (this.data.image) {
-      return new ImageMedia(this.data);
+    if (this.media.image) {
+      const img = new ImageMedia(this.name, this.media)
+      return img.createImage();
     } 
-    else if (this.data.video) {
-      return new VideoMedia(this.data);
+    else if (this.media.video) {
+      const vdo = new VideoMedia(this.name, this.media)
+      return vdo.createVideo();
     } 
     else {
       throw 'Unknown media type';

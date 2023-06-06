@@ -1,11 +1,11 @@
 import { Media } from "./Media.js";
 
 export default class VideoMedia extends Media {
-  constructor(data) {
-    super(data)
+  constructor(name, data) {
+    super(name, data)
     this.data = data
+    this.name = name
     this.video = data.video
-    // console.log(this.data.id)
   }
 
   createVideo() {
@@ -13,7 +13,7 @@ export default class VideoMedia extends Media {
       <div class="card">
         <div class="media_card">
           <video controls>
-          <source type="video/mp4" src="assets/images/${this.photographerName.replace(' ', '_')}/${this.data.video}" alt="${this.data.title}">
+          <source type="video/mp4" src="assets/images/${this.name.replace(' ', '_')}/${this.data.video}" alt="${this.data.title}">
         </div>
         <div class="legend">
           <h2>${this.data.title}</h2>

@@ -1,6 +1,6 @@
 import PhotographersApi from "../../data/data.js";
 import MediasFactory from "../factories/MediasFactory.js";
-// import ModalContact from "../utils/contactForm.js";
+import { ContactModal } from "../utils/contactForm.js";
 
 function getIdQuery() {
   const queryString = window.location.search;
@@ -30,37 +30,23 @@ export default class PhotographerPage {
     this.$photographer_infos.innerHTML = $_banner
     this.$image_header.innerHTML = $_image
 
-    
     photographer.media.forEach(media => {
-      // const factory = new MediasFactory();
-      // const medias = factory.createMedia(media)
-      // console.log(media);
-
-      const test = photographer.createMediaFactory(media)
-      console.log(test);
-      this.$gallery.innerHTML += test
-
-
-      // const $_image = `
-      // <div class="card" tabindex="${media.id}" role="button" aria-label="${media.title}">
-      //   <div class="img_card">
-      //     <img src="assets/images/${photographer.name.replace(' ', '_')}/${media.image}" alt="${media.title}" />
-      //   </div>
-      //   <div class="legend">
-      //     <h2>${media.title}</h2>
-      //     <span class="likes">${media.likes} <i class="fa-solid fa-heart"></i></span>
-      //   </div>
-      // </div>
-      // `
-      // this.$gallery.innerHTML += $_image
+      const factory = new MediasFactory(photographer.name, media);
+      const medias = factory.createMedia()
+      // console.log(medias);
+      this.$gallery.innerHTML += medias
     });
 
- 
-    // const contactModal = new ContactModal(photographer._photographer.name);
-    // this.$openContactModal.addEventListener("click", () => {contactModal.openModal()});
-    // this.$closeContactModal.addEventListener("click", () => {contactModal.closeModal()});
-    // this.$submitContactButton.addEventListener("click", () => {contactModal.onSubmitForm()});
-    // this.$contactModal.addEventListener('click', () => {contactModal.access()});
+
+    /**
+     * Open close and sumit form contact
+     * 
+     * @class ContactModal
+     */
+    const contactModal = new ContactModal(photographer.name);
+    this.$openContactModal.addEventListener("click", () => {contactModal.openModal()});
+    this.$closeContactModal.addEventListener("click", () => {contactModal.closeModal()});
+    this.$submitContactButton.addEventListener("click", () => {contactModal.onSubmitForm()});
   }
 }
 
