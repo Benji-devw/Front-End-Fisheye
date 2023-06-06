@@ -1,6 +1,6 @@
 import PhotographersApi from "../../data/data.js";
 import MediasFactory from "../factories/MediasFactory.js";
-import { ContactModal } from "../utils/contactForm.js";
+import ContactModal from "../utils/contactForm.js";
 
 function getIdQuery() {
   const queryString = window.location.search;
@@ -26,9 +26,11 @@ export default class PhotographerPage {
     const photographer = await this.$photographersApi.getPhotographer(getIdQuery())
     // console.log(photographer);
 
+
     const {$_banner, $_image} = photographer.createPhotographerBanner()
     this.$photographer_infos.innerHTML = $_banner
     this.$image_header.innerHTML = $_image
+
 
     photographer.media.forEach(media => {
       const factory = new MediasFactory(photographer.name, media);
@@ -38,11 +40,6 @@ export default class PhotographerPage {
     });
 
 
-    /**
-     * Open close and sumit form contact
-     * 
-     * @class ContactModal
-     */
     const contactModal = new ContactModal(photographer.name);
     this.$openContactModal.addEventListener("click", () => {contactModal.openModal()});
     this.$closeContactModal.addEventListener("click", () => {contactModal.closeModal()});
