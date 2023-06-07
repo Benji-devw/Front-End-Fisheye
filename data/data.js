@@ -1,9 +1,14 @@
 import Photographer from "../scripts/models/Photographer.js";
-import MediasFactory from "../scripts/factories/MediasFactory.js";
-import ImageMedia from "../scripts/models/Image.js";
-import VideoMedia from "../scripts/models/Video.js";
+// import MediasFactory from "../scripts/factories/MediasFactory.js";
+// import ImageMedia from "../scripts/models/Image.js";
+// import VideoMedia from "../scripts/models/Video.js";
 
 
+/**
+ * @class Api
+ * Get photographer data
+ * Get media data
+ */
 class Api {
   constructor(url) {
     this._url = url;
@@ -15,6 +20,13 @@ class Api {
   }
 }
 
+
+/**
+ * @class PhotographersApi
+ * Get photographers
+ * Get Photographer by id
+ * Get Medias by id
+ */
 export default class PhotographersApi extends Api {
   constructor(url) {
     super(url);

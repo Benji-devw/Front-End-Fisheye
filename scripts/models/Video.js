@@ -1,5 +1,9 @@
 import { Media } from "./Media.js";
 
+/**
+ * @class VideoMedia
+ * Create Video
+ */
 export default class VideoMedia extends Media {
   constructor(name, data) {
     super(name, data)

@@ -1,12 +1,15 @@
 import { Media } from "./Media.js";
 
+/**
+ * @class ImageMedia
+ * Create Image
+ */
 export default class ImageMedia extends Media {
   constructor(name, data) {
     super(name, data)
     this.data = data
     this.name = name
     this.image = data.image
-    // console.log(this.data.id)
   }
 
   createImage() {

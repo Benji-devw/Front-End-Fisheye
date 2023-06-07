@@ -8,13 +8,16 @@ function getIdQuery() {
   return urlParams.get('id');
 }
 
+
+/**
+ * @class PhotographerPage
+ * Display Photographer by id
+ */
 export default class PhotographerPage {
   constructor() {
-    this.$photographerSection = document.querySelector('.photographer_section')
     this.$photographer_infos = document.querySelector('#photographer_infos')
     this.$image_header = document.querySelector('#image_header')
     this.$gallery = document.querySelector('.gallery');
-    this.$contactModal = document.querySelector('#contact_modal')
     this.$openContactModal = document.querySelector(".contact_button");
     this.$closeContactModal = document.querySelector(".close_modal")
     this.$submitContactButton = document.querySelector(".sumit_button");

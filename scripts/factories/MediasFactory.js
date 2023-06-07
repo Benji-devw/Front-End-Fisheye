@@ -1,6 +1,10 @@
 import ImageMedia from "../models/Image.js";
 import VideoMedia from "../models/Video.js";
 
+/**
+ * @class MediasFactory
+ * Factory Media for data image/video
+ */
 export default class MediasFactory {
   constructor(name, media) {
     this.media = media

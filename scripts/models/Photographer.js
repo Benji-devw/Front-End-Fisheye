@@ -1,5 +1,8 @@
-import MediasFactory from "../factories/MediasFactory.js"
-
+/**
+ * @class Photographer
+ * create Photographer Card
+ * create Photographer Banner
+ */
 export default class Photographer {
   constructor(photographer, media) {
     this.id = photographer.id
@@ -41,8 +44,5 @@ export default class Photographer {
     return {$_banner, $_image}
   }
 
-  createMediaFactory() {
-    return this.media
-  }
 
 }
