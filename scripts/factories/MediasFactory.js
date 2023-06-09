@@ -9,7 +9,6 @@ export default class MediasFactory {
   constructor(name, media) {
     this.media = media
     this.name = name
-    // console.log(this.media);
   }
 
   createMedia() {

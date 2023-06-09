@@ -46,7 +46,7 @@
 
 
 .modal header {
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
 }
 
@@ -68,12 +68,10 @@
 }
 
 .modal header h2 {
-  font-size: 3rem;
-  font-weight: normal;
   text-align: center;
 }
 .modal header .contact_name {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
 }
 
 form, .form_footer {
@@ -104,7 +102,7 @@ form .formData label {
 }
 
 form input, textarea {
-  width: 100%;
+  width: 95%;
   font-size: 1.2rem;
   border: none;
   border-radius: 5px;

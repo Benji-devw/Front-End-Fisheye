@@ -6,9 +6,9 @@ var emailRegex = /^[a-zA-Z0-9-_.]{2,}@[a-zA-Z0-9]{1,61}\.[a-zA-Z]{2,}$/;  // deu
 
 /**
  * @class ContactModal
- * Open Contact Modal
- * Close Contact Modal
- * Sumit Contact Form
+ * Open   Modal Contact
+ * Close  Modal Contact
+ * Sumit  Form Contact
  */
 export default class ContactModal {
   constructor(name) {
