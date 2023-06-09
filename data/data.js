@@ -1,14 +1,12 @@
 import Photographer from "../scripts/models/Photographer.js";
-// import MediasFactory from "../scripts/factories/MediasFactory.js";
-// import ImageMedia from "../scripts/models/Image.js";
-// import VideoMedia from "../scripts/models/Video.js";
-
+import ImageMedia from "../scripts/models/Image.js";
+import VideoMedia from "../scripts/models/Video.js";
 
 /**
  * @class Api
  * Get photographer data
  * Get media data
- */
+**********************************/
 class Api {
   constructor(url) {
     this._url = url;
@@ -24,9 +22,9 @@ class Api {
 /**
  * @class PhotographersApi
  * Get photographers
- * Get Photographer by id
- * Get Medias by id
- */
+ * Get Photographer by id with medias
+ * Create Media factory
+ **********************************/
 export default class PhotographersApi extends Api {
   constructor(url) {
     super(url);
@@ -37,22 +35,30 @@ export default class PhotographersApi extends Api {
     return response.photographers.map(photographer => new Photographer(photographer));
   }
 
-  async getPhotographer(id) {
-    const photographers = await this.getPhotographers();
-    const photographer = photographers.find(photographer => photographer.id == id);
+  async getPhotographerWithMedias(id) {
+    const datas = await this.get();
+    const photographer = datas.photographers.find(photographer => photographer.id == id);
+    if (!photographer) return null
     // console.log(photographer);
 
-    const datas = await this.get();
     const mediasJson = datas.media.filter(media => media.photographerId == id);
-    // const factory = new MediasFactory();
-    // const medias = mediasJson.map(media => factory.createMedia(media));
-    // console.log(mediasJson);
+    const medias = mediasJson.map(media => this.createMediaFactory(photographer.name, media));
+    // console.log(medias);
 
-    // if (medias[0] instanceof ImageMedia) console.log("image");
-    // else if (medias[0] instanceof VideoMedia) console.log("video");
+    return new Photographer(photographer, medias)
+  }
 
-    if (!photographer && !mediasJson) return null
-    return new Photographer(photographer, mediasJson)
+
+  createMediaFactory(photographerName, media) {
+    if (media.image) {
+      return new ImageMedia(photographerName, media)
+    } 
+    else if (media.video) {
+      return new VideoMedia(photographerName, media)
+    } 
+    else {
+      throw 'Unknown media type';
+    }
   }
 
 }

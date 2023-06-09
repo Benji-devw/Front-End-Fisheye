@@ -1,6 +1,6 @@
 export class Media {
-  constructor(data) {
-    // console.log(data);
+  constructor(name, data) {
+    this.name = name
     this.id = data.id
     this.photographerId = data.photographerId
     this.title = data.title
@@ -9,3 +9,4 @@ export class Media {
     this.price = data.price
   }
 }
+

@@ -2,9 +2,9 @@
  * @class Photographer
  * create Photographer Card
  * create Photographer Banner
- */
+**********************************/
 export default class Photographer {
-  constructor(photographer, media) {
+  constructor(photographer, medias) {
     this.id = photographer.id
     this.name = photographer.name
     this.city = photographer.city
@@ -12,8 +12,7 @@ export default class Photographer {
     this.tagline = photographer.tagline
     this.price = photographer.price
     this.portrait = photographer.portrait
-    this.media = media
-    // console.log(this.id);
+    this.medias = medias
   }
 
   createPhotographerCard() {
@@ -44,5 +43,8 @@ export default class Photographer {
     return {$_banner, $_image}
   }
 
+  get totalLike() {
+    return 3
+  }
 
 }

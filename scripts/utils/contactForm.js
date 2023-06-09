@@ -1,6 +1,6 @@
 /**
  * @regex Form Contact
- */
+**********************************/
 var textRegex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s]{2,}$/; // seulement des lettres(2 min) et espaces
 var emailRegex = /^[a-zA-Z0-9-_.]{2,}@[a-zA-Z0-9]{1,61}\.[a-zA-Z]{2,}$/;  // deux lettres min all && autaurise le tiret ou underscore
 
@@ -9,7 +9,7 @@ var emailRegex = /^[a-zA-Z0-9-_.]{2,}@[a-zA-Z0-9]{1,61}\.[a-zA-Z]{2,}$/;  // deu
  * Open   Modal Contact
  * Close  Modal Contact
  * Sumit  Form Contact
- */
+**********************************/
 export default class ContactModal {
   constructor(name) {
     this._name = name
