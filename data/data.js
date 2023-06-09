@@ -3,10 +3,11 @@ import ImageMedia from "../scripts/models/Image.js";
 import VideoMedia from "../scripts/models/Video.js";
 
 /**
- * @class Api
- * Get photographer data
- * Get media data
-**********************************/
+  * @class Api
+  * @description Get photographer data
+  * @description Get media data
+  * @param url - The Path to Photographer data (json)
+  **********************************/
 class Api {
   constructor(url) {
     this._url = url;
@@ -19,15 +20,17 @@ class Api {
 }
 
 
+
 /**
- * @class PhotographersApi
- * Get photographers
- * Get Photographer by id with medias
- * Create Media factory
- **********************************/
+  * @class Create Media factory
+  * @description Get photographers
+  * @description Get Photographer by id with medias
+  * @param url - The Path Photographer.json (json)
+  **********************************/
 export default class PhotographersApi extends Api {
   constructor(url) {
     super(url);
+    console.log(url);
   }
   
   async getPhotographers() {
@@ -38,12 +41,9 @@ export default class PhotographersApi extends Api {
   async getPhotographerWithMedias(id) {
     const datas = await this.get();
     const photographer = datas.photographers.find(photographer => photographer.id == id);
-    if (!photographer) return null
-    // console.log(photographer);
-
+    
     const mediasJson = datas.media.filter(media => media.photographerId == id);
     const medias = mediasJson.map(media => this.createMediaFactory(photographer.name, media));
-    // console.log(medias);
 
     return new Photographer(photographer, medias)
   }

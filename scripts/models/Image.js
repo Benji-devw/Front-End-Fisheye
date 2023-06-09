@@ -1,9 +1,11 @@
 import { Media } from "./Media.js";
 
 /**
- * @class ImageMedia
- * Create Image
-**********************************/
+  * @class ImageMedia
+  * @description Create Image element html
+  * @param name - The photographer name string
+  * @param data - The photographer media object
+  **********************************/
 export default class ImageMedia extends Media {
   constructor(name, data) {
     super(name, data)
@@ -18,7 +20,7 @@ export default class ImageMedia extends Media {
         </div>
         <div class="legend">
           <h2>${this.title}</h2>
-          <span class="likes">${this.likes} <i class="fa-solid fa-heart"></i></span>
+          <span class="likes">${this.likes} <i class="fa-solid fa-heart add-like"></i></span>
         </div>
       </div>
       `

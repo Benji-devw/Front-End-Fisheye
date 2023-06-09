@@ -1,8 +1,11 @@
 /**
- * @class Photographer
- * create Photographer Card
- * create Photographer Banner
-**********************************/
+  * @class Photographer
+  * @description Create Photographer Card element (html)
+  * @description Create Photographer Banner element (html)
+  * @description Return total likes counter from all medias (number)
+  * @param photographer - The photographer (object)
+  * @param medias - The photographer medias (array)
+  **********************************/
 export default class Photographer {
   constructor(photographer, medias) {
     this.id = photographer.id
@@ -43,8 +46,8 @@ export default class Photographer {
     return {$_banner, $_image}
   }
 
-  get totalLike() {
-    return 3
+  totalLikes() {
+    return this.medias.reduce((acc, curr) => acc + curr.likes, 0)
   }
 
 }

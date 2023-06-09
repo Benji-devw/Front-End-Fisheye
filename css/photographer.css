@@ -20,7 +20,6 @@ header .header_content {
   align-items: center;
   background-color: var(--color-grey);
 }
-
 @media screen and (max-width: 1024px) {
   .photographer_header {
     flex-direction: column;
@@ -94,4 +93,28 @@ header .header_content {
   font-size: 1.4rem;
   margin: 1rem 0;
   color: var(--color-primary);
+}
+.photographer_body .gallery .legend :nth-child(2) i  {
+  cursor: pointer;
+}
+
+
+
+
+
+
+.photographer_section .totals-photographer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  right: 2rem;
+  padding: 1rem;
+  font-weight: 700;
+  border-radius: 8px 8px 0 0;
+  background-color: var(--color-second);
+}
+.totals-photographer .likes, .price {
+  margin: 0 1rem;
 }
