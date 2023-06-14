@@ -21,7 +21,10 @@ export default class VideoMedia extends Media {
         </div>
         <div class="legend">
           <h2>${this.title}</h2>
-          <span class="likes">${this.likes} <i class="fa-solid fa-heart add-like"></i></span>
+          <div class="likes-content">
+            <span class="likes">${this.likes} </span>
+            <i class="fa-solid fa-heart add-like" title="like" aria-hidden="true"></i>
+          </div>
         </div>
       </div>
       `

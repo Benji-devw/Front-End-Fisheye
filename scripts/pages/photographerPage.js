@@ -84,8 +84,9 @@ class PhotographerInstance extends PhotographerPage {
 
   getTotals() {
     const counterLikes = this.photographer.totalLikes()
+
     this.$totalsLikes.innerHTML = `
-    <span>${counterLikes}</span>
+    <span class="likes-number">${parseInt(counterLikes)}</span>
     <i class="fa-solid fa-heart"></i>
     `;
     const price = this.photographer.price
@@ -93,14 +94,31 @@ class PhotographerInstance extends PhotographerPage {
     <span>${price}€ / jour</span>
     `;
   }
-
   
   addLike() {
-    const addLike = document.querySelector('.add-like')
-   addLike.addEventListener('click', () => {
-      console.log('dqsdqsdqsd');
-
-    })
+    const cards = document.querySelectorAll('.card');
+    const likesNumber = document.querySelector('.likes-number');
+  
+    cards.forEach(card => {
+      let addLikeButton = card.querySelector('.add-like');
+      let likesCard = card.querySelector('.likes');
+      let likes = parseInt(likesCard.textContent, 10);
+      let likesSwitch = true
+  
+      addLikeButton.addEventListener('click', () => {
+        if (likesSwitch) {
+          likes++;
+          likesNumber.textContent ++;
+          addLikeButton.classList.add("liked"); 
+        } else {
+          likes--;
+          likesNumber.textContent --;
+          addLikeButton.classList.remove("liked"); 
+        }
+        likesCard.textContent = likes;
+        likesSwitch = !likesSwitch
+      });
+    });
   }
 
 }

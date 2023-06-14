@@ -30,7 +30,6 @@ class Api {
 export default class PhotographersApi extends Api {
   constructor(url) {
     super(url);
-    console.log(url);
   }
   
   async getPhotographers() {
