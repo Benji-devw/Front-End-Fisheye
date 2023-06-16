@@ -1,15 +1,23 @@
-import Modal from "../utils/Modal.js";
-
+import checkContactForm from "../utils/checkContactForm.js";
+import CheckForm from "../utils/checkContactForm.js";
 
 /**
   * @class ContactModel
   * @description Create contact modal
-  * @param name - The photographer name string
+  * @param {string} name - The photographer name
   **********************************/
-export default class ContactModel extends Modal {
+export default class ContactModel extends checkContactForm {
   constructor(name) {
-    super(name)
+    super()
     this.name = name
+  }
+
+  checkForm() {
+    const contact_submit = document.querySelector('.submit_btn');
+    contact_submit.addEventListener('click', () => {
+      const test = new checkContactForm(this.name)
+      return test.onSubmitForm()
+    })
   }
 
   createContact() {
@@ -45,11 +53,12 @@ export default class ContactModel extends Modal {
           </div>
         </form>
         <div class="form-footer">
-          <button class="sumit_button" type=submit aria-describedby="envoyer">Envoyer</button>
+          <button class="submit_btn" type=submit aria-describedby="envoyer">Envoyer</button>
         </div>
       </div>
     `
     return $contactForm;
   }
+
 }
 

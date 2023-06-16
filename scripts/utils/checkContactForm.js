@@ -9,18 +9,16 @@ var emailRegex = /^[a-zA-Z0-9-_.]{2,}@[a-zA-Z0-9]{1,61}\.[a-zA-Z]{2,}$/;
 
 
 /**
-  * @class ContactModal
+  * @class checkContactForm
   * @description Modal Events
   * @param name - The photographer name (string)
   **********************************/
-export default class ContactModal {
+export default class checkContactForm {
   constructor(name) {
     this.name = name
+    this.$submitContact = document.querySelector('.submit_btn');
+
     this.form = document.querySelector("#myForm");
-    this.contactModal = document.getElementById("contact_modal");
-    this.closeContactModal = document.querySelector(".close_modal")
-    this.btnContactModal = document.querySelector(".contact_button")
-    this.contactName = document.querySelector(".contact_name")
     this.firstNameInput = document.getElementById("fistName");
     this.lastNameInput = document.getElementById("lastName");
     this.emailInput = document.getElementById("email");
@@ -29,24 +27,6 @@ export default class ContactModal {
     this.errors = []
   }
 
-  // openModal() {
-  //   document.body.style.overflow = 'hidden';
-  //   document.body.setAttribute('aria-hidden', 'false')
-  //   this.contactModal.setAttribute('aria-hidden', 'true')
-  //   this.contactModal.style.display = "block";
-  //   this.contactName.innerHTML = this.name
-  //   this.closeContactModal.focus()
-  //   //** Initialise tabs */
-  //   this.datas = []
-  // }
-
-  // closeModal() {
-  //   document.body.style.overflow = 'visible';
-  //   document.body.setAttribute('aria-hidden', 'true')
-  //   this.contactModal.setAttribute('aria-hidden', 'false')
-  //   this.contactModal.style.display = "none";
-  //   this.btnContactModal.focus()
-  // }
 
   inputChecker(bool, val, err) {
     const formDataError = document.getElementById(err)
@@ -69,7 +49,7 @@ export default class ContactModal {
 
     console.log('Form errors !!! => ', this.errors);
     if (this.errors.length === 0) {
-      console.log('Form sumited !!! => ', this.datas);
+      console.log('Form submited !!! => ', this.datas);
       this.closeModal()
       this.form.reset()
     }

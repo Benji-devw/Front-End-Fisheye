@@ -1,5 +1,5 @@
-@import url("style.css");
-@import url("modal_contact.css");
+@import "style.css";
+@import "modal_contact.css";
 
 header .header_content {
   justify-content: start !important;
@@ -18,7 +18,7 @@ header .header_content {
   padding: 2.5rem;
   margin: 3rem 2rem;
   align-items: center;
-  background-color: var(--color-grey);
+  background-color: var(--color-light);
 }
 @media screen and (max-width: 800px) {
   .photographer_header {
@@ -33,13 +33,16 @@ header .header_content {
 }
 .photographer_header .banner_name {
   color: var(--color-second);
+  font-size: 3rem;
 }
 .photographer_header .banner_city {
-  font-size: 2.3rem;
-  padding-bottom: 1rem;
+  font-size: 2rem;
+  padding: 1rem 0;
   color: var(--color-primary);
 }
-/* .photographer_header .tagline {}  */
+.photographer_header .banner_tagline {
+  color: var(--color-grey);
+} 
 .photographer_header img {
   border-radius: 200px;
   height: 200px;
