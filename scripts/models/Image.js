@@ -14,7 +14,7 @@ export default class ImageMedia extends Media {
 
   createImage() {
     const $_image = `
-      <div id="${this.id}" class="card" tabindex="0" role="button" aria-label="${this.title}">
+      <div id="${this.id}" class="card" tabindex="0" role="button" aria-label="titre ${this.title}, nombre de like ${this.likes}">
         <div class="img_card">
           <img src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
         </div>

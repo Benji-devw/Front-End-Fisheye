@@ -34,6 +34,7 @@ export default class PhotographerPage {
     this.$totals_likes = document.querySelector('.likes');
     this.$price = document.querySelector('.price');
     this.$submitContact = document.querySelector('.submit_btn');
+    this.$filter = document.querySelector('#filter-select')
   }
 
   async main() {
@@ -43,14 +44,24 @@ export default class PhotographerPage {
     //** Create Photographer elemenrs */
     const photographerEvents = new PhotographerInstance(photographerWithMedias)
     photographerEvents.getBanner()
-    photographerEvents.getCardsMedias()
     photographerEvents.getTotals()
+    photographerEvents.getFilter('likes')
+    photographerEvents.getCardsMedias()
     photographerEvents.addLike()
+
+    //** Create Filter */
+    this.$filter.addEventListener('change', () => {
+      console.log(this.$filter.value);
+      console.log(this.$filter);
+      photographerEvents.getFilter(this.$filter.value)
+      photographerEvents.getCardsMedias()
+    })
 
     //** Create Modal Slider */
     // const slider = new SliderInstance(photographerWithMedias.medias)
     // slider.getSlider()
 
+    // AJOUTER FOCUSTRAP pour boulez avec touche tab dans la modal
     //** Create Modal Contact */
     const contact = new ContactInstance(photographerWithMedias.name)
     contact.getFormContact()
@@ -76,13 +87,26 @@ class PhotographerInstance extends PhotographerPage {
     this.$imageBanner.innerHTML = $_image
   }
 
+  getFilter(sortBy) {
+    console.log(this.photographer.medias);
+    this.photographer.medias = this.photographer.medias.sort((mediaA, mediaB) => mediaB[sortBy] > mediaA[sortBy] ? 1 : -1)
+    if (sortBy === "title") {
+      this.photographer.medias = this.photographer.medias.reverse()
+    }
+  }
+
   getCardsMedias() {
+    this.$gallery.innerHTML = null
     this.photographer.medias.forEach(media => {
-      if (media instanceof ImageMedia ){
+      if (media instanceof ImageMedia ) {
         this.$gallery.innerHTML += media.createImage()
       } else if (media instanceof VideoMedia) {
         this.$gallery.innerHTML += media.createVideo()
       }
+      const mediaElement = document.querySelector(`${media.id}`)
+      mediaElement.querySelector('.add-like').addEventListener('click', () => {
+
+      })
     });
   }
 

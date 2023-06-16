@@ -36,7 +36,7 @@ header .header_content {
   font-size: 3rem;
 }
 .photographer_header .banner_city {
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 1rem 0;
   color: var(--color-primary);
 }

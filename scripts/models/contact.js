@@ -1,5 +1,4 @@
 import checkContactForm from "../utils/checkContactForm.js";
-import CheckForm from "../utils/checkContactForm.js";
 
 /**
   * @class ContactModel

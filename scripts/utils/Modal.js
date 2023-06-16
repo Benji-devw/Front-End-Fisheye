@@ -7,7 +7,7 @@ export default class Modal {
     this.modalContainer.classList.add('modal-container');
     this.modalElement.classList.add('modal');
   }
-  
+
   createModal() {
     this.modalElement.innerHTML = this.children
     this.modalContainer.appendChild(this.modalElement)

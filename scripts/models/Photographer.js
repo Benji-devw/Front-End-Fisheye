@@ -38,7 +38,7 @@ export default class Photographer {
     const $_banner = `
       <div class="banner">
         <h1 class="banner_name">${this.name}</h1>
-        <p class="banner_city">${this.city}</p>
+        <p class="banner_city">${this.city}, ${this.country}</p>
         <span class="banner_tagline">${this.tagline}</span>
       </div>
       `
