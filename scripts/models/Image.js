@@ -12,10 +12,6 @@ export default class ImageMedia extends Media {
     this.image = data.image
   }
 
-  increment() {
-    return +1
-  }
-
   createImage() {
     const $_image = `
       <div id="${this.id}" class="card" tabindex="0" role="button" aria-label="${this.title}">

@@ -3,6 +3,9 @@ import PhotographersApi from "../../data/data.js";
 import VideoMedia from "../models/Video.js";
 import ContactModal from "../utils/contactForm.js";
 // import Slider from "../utils/slider.js";
+import Modal from "../utils/Modal.js";
+import ContactModel from "../models/contact.js";
+
 
 /**
   * @function getIdQuery
@@ -12,44 +15,45 @@ import ContactModal from "../utils/contactForm.js";
 function getIdQuery() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  console.log(typeof(urlParams.get('id')));
+  // console.log(typeof(urlParams.get('id')));
   return urlParams.get('id');
 }
 
 
 /**
+  * Main Class for contruct photographer page
   * @class PhotographerPage
   **********************************/
 export default class PhotographerPage {
   constructor() {
-    this.$photographersApi = new PhotographersApi('../../data/photographers.json')
-    this.$photographer_infos = document.querySelector('#photographer_infos')
-    this.$image_header = document.querySelector('#image_header')
+    this.$photographersApi = new PhotographersApi('../../data/photographers.json');
+    this.$photographer_infos = document.querySelector('#photographer_infos');
+    this.$image_header = document.querySelector('#image_header');
     this.$gallery = document.querySelector('.gallery');
     this.$openContactModal = document.querySelector('.contact_button');
-    this.$closeContactModal = document.querySelector('.close_modal')
-    this.$submitContactButton = document.querySelector('.sumit_button');
-    this.$totalsLikes = document.querySelector('.likes')
-    this.$price = document.querySelector('.price')
+    this.$closeContactModal = document.querySelector('.close-modal');
+    // this.$submitContactButton = document.querySelector('.sumit_button');
+    this.$totalsLikes = document.querySelector('.likes');
+    this.$price = document.querySelector('.price');
   }
-  
+
   async main() {
     //** Get Photographer by id */
     const photographerWithMedias = await this.$photographersApi.getPhotographerWithMedias(getIdQuery())
-    
+
     //** Create Photographer */
-    const photographer = new PhotographerInstance(photographerWithMedias)
-    photographer.getBanner()
-    photographer.getCardsMedias()
-    photographer.getTotals()
-    photographer.addLike()
+    const photographerEvents = new PhotographerInstance(photographerWithMedias)
+    photographerEvents.getBanner()
+    photographerEvents.getCardsMedias()
+    photographerEvents.getTotals()
+    photographerEvents.addLike()
 
     //** Create Modal Slider */
-    const slider = new SliderInstance(photographer.medias)
+    // const slider = new SliderInstance(photographerWithMedias.medias)
     // slider.getSlider()
-    
+
     //** Create Modal Contact */
-    const contact = new ContactInstance(photographer.name)
+    const contact = new ContactInstance(photographerWithMedias.name)
     contact.getContact()
   }
 }
@@ -86,37 +90,36 @@ class PhotographerInstance extends PhotographerPage {
     const counterLikes = this.photographer.totalLikes()
 
     this.$totalsLikes.innerHTML = `
-    <span class="likes-number">${parseInt(counterLikes)}</span>
+    <span class="total-likes">${parseInt(counterLikes)}</span>
     <i class="fa-solid fa-heart"></i>
     `;
-    const price = this.photographer.price
     this.$price.innerHTML = `
-    <span>${price}€ / jour</span>
+    <span>${this.photographer.price}€ / jour</span>
     `;
   }
   
   addLike() {
     const cards = document.querySelectorAll('.card');
-    const likesNumber = document.querySelector('.likes-number');
+    const addTotalLikes = document.querySelector('.total-likes');
   
     cards.forEach(card => {
       let addLikeButton = card.querySelector('.add-like');
-      let likesCard = card.querySelector('.likes');
-      let likes = parseInt(likesCard.textContent, 10);
-      let likesSwitch = true
+      let addLikeToCard = card.querySelector('.likes');
+      let likes = parseInt(addLikeToCard.textContent, 10);
+      let likedSwitch = true
   
       addLikeButton.addEventListener('click', () => {
-        if (likesSwitch) {
+        if (likedSwitch) {
           likes++;
-          likesNumber.textContent ++;
+          addTotalLikes.textContent ++;
           addLikeButton.classList.add("liked"); 
         } else {
           likes--;
-          likesNumber.textContent --;
+          addTotalLikes.textContent --;
           addLikeButton.classList.remove("liked"); 
         }
-        likesCard.textContent = likes;
-        likesSwitch = !likesSwitch
+        addLikeToCard.textContent = likes;
+        likedSwitch = !likedSwitch
       });
     });
   }
@@ -129,17 +132,25 @@ class PhotographerInstance extends PhotographerPage {
   * @description Represents an instance of a Slider Modal
   **********************************/
 class SliderInstance {
+  constructor(medias) {
+    this.medias = medias
+  }
   getSlider() {
     // const slider = new Slider(photographer.media)
     const cards = document.querySelectorAll('.card');
+    const test = new Modal(this.medias)
+
     const handleCardInteraction = (card) => {
-      const cardId = card.id;
-      console.log(cardId);
+      // const cardId = card.id;
+      // console.log(this.medias);
+      test.createModal()
+      test.showModal()
     };
     
     cards.forEach((card) => {
-      card.addEventListener('click', () => {
-        handleCardInteraction(card);
+      card.addEventListener('click', () => { 
+        // console.log(this.modalContainer);
+        handleCardInteraction(card); 
       });
     
       card.addEventListener('keydown', (event) => {
@@ -155,7 +166,7 @@ class SliderInstance {
 /**
   * @class ContactInstance
   * @description Represents an instance of a Contact Modal
-  * @param name - The Photographer name string
+  * @param {string} name - The Photographer name
   **********************************/
 class ContactInstance extends PhotographerPage {
   constructor(name){
@@ -164,10 +175,14 @@ class ContactInstance extends PhotographerPage {
   }
 
   getContact() {
-    const contactModal = new ContactModal(this.name);
-    this.$openContactModal.addEventListener("click", () => {contactModal.openModal()});
-    this.$closeContactModal.addEventListener("click", () => {contactModal.closeModal()});
-    this.$submitContactButton.addEventListener("click", () => {contactModal.onSubmitForm()});
+    const getContactModel = new ContactModel(this.name);
+    const modal = new Modal(getContactModel.createContact())
+
+    if (getContactModel instanceof(ContactModel)){
+      this.$openContactModal.addEventListener("click", () => {
+        modal.createModal()
+      })
+    }
   }
 }
 
