@@ -6,6 +6,7 @@ export default class Modal {
     this.modalElement = document.createElement('div');
     this.modalContainer.classList.add('modal-container');
     this.modalElement.classList.add('modal');
+    this.main = document.querySelector('#main')
   }
 
   createModal() {
@@ -18,10 +19,11 @@ export default class Modal {
   showModal() {
     const closeModalBtn = document.querySelector('.close-modal');
     document.body.style.overflow = 'hidden';
-    document.body.setAttribute('aria-hidden', 'false')
+    this.modalContainer.setAttribute('role', 'dialog')
     this.modalElement.setAttribute('aria-hidden', 'true')
+    this.main.setAttribute('aria-hidden', 'false')
     closeModalBtn.focus()
-
+    
     closeModalBtn.addEventListener("click", () => {
       this.hideModal()
     })
@@ -29,11 +31,12 @@ export default class Modal {
       e.key === "e" && this.hideModal()
     })
   }
-
+  
   hideModal() {
     this.modalContainer.remove();
     document.body.style.overflow = 'auto';
-    document.body.setAttribute('aria-hidden', 'false');
+    // document.body.setAttribute('aria-hidden', 'false');
+    this.main.setAttribute('aria-hidden', 'true')
 
   }
 }

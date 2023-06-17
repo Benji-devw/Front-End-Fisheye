@@ -42,7 +42,7 @@ header .header_content {
 }
 .photographer_header .banner_tagline {
   color: var(--color-grey);
-} 
+}
 .photographer_header img {
   border-radius: 200px;
   height: 200px;
@@ -53,6 +53,7 @@ header .header_content {
 .photographer_body {
   max-width: 1400px;
 }
+
 
 .photographer_body .gallery {
   margin: auto;
@@ -72,7 +73,7 @@ header .header_content {
 }
 .photographer_body .gallery :is(img, video) {
   align-self: center;
-  height: 400px;
+  height: 350px;
   width: 100%;
   object-fit: cover;
   border-radius: 8px;
@@ -87,19 +88,19 @@ header .header_content {
 }
 
 .photographer_body .gallery .legend :nth-child(1) {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
+  font-weight: 100;
   margin: 1rem 0;
   color: var(--color-primary);
   max-width: 80%;
 }
 .photographer_body .gallery .legend :nth-child(2) span {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin: 1rem 0;
   color: var(--color-primary);
 }
 .photographer_body .gallery .legend :nth-child(2) i {
   cursor: pointer;
-  /* text-stroke: 1.2px blue ; */
   color: transparent;
   -webkit-background-clip: text;
   -moz-background-clip: text;

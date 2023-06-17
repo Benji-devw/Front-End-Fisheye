@@ -47,12 +47,10 @@ export default class PhotographerPage {
     photographerEvents.getTotals()
     photographerEvents.getFilter('likes')
     photographerEvents.getCardsMedias()
-    photographerEvents.addLike()
 
     //** Create Filter */
     this.$filter.addEventListener('change', () => {
-      console.log(this.$filter.value);
-      console.log(this.$filter);
+      // console.log(this.$filter.value);
       photographerEvents.getFilter(this.$filter.value)
       photographerEvents.getCardsMedias()
     })
@@ -88,25 +86,51 @@ class PhotographerInstance extends PhotographerPage {
   }
 
   getFilter(sortBy) {
-    console.log(this.photographer.medias);
-    this.photographer.medias = this.photographer.medias.sort((mediaA, mediaB) => mediaB[sortBy] > mediaA[sortBy] ? 1 : -1)
-    if (sortBy === "title") {
-      this.photographer.medias = this.photographer.medias.reverse()
-    }
+    this.photographer.medias = this.photographer.medias.sort((firstElement, secondElement) => secondElement[sortBy] > firstElement[sortBy] ? 1 : -1)
+    sortBy === "title" && this.photographer.medias.reverse()
+    // console.log(this.photographer.medias);
   }
 
   getCardsMedias() {
-    this.$gallery.innerHTML = null
-    this.photographer.medias.forEach(media => {
-      if (media instanceof ImageMedia ) {
-        this.$gallery.innerHTML += media.createImage()
-      } else if (media instanceof VideoMedia) {
-        this.$gallery.innerHTML += media.createVideo()
-      }
-      const mediaElement = document.querySelector(`${media.id}`)
-      mediaElement.querySelector('.add-like').addEventListener('click', () => {
+    this.$gallery.innerHTML = null;
 
-      })
+    this.photographer.medias.forEach(media => {
+      let cardHTML = '';
+  
+      if (media instanceof ImageMedia) {
+        cardHTML =  media.createImage();
+      } else if (media instanceof VideoMedia) {
+        cardHTML =  media.createVideo();
+      }
+      
+      const cardElement = document.createElement('div');
+      cardElement.innerHTML = cardHTML;
+
+      this.addLike(cardElement, media)
+      this.$gallery.appendChild(cardElement);
+    });
+  }
+
+  addLike(cardElement, test) {
+    const addTotalLikes = document.querySelector('.total-likes');
+
+    let likes = test.likes;
+    let likedSwitch = true;
+    const addLikeButton = cardElement.querySelector('.add-like');
+    const addLikeToCard = cardElement.querySelector(`.likes-${test.id}`)
+
+    addLikeButton.addEventListener('click', () => {
+      if (likedSwitch) {
+        likes++;
+        addTotalLikes.textContent++;
+        addLikeButton.classList.add('liked'); 
+      } else {
+        likes--;
+        addTotalLikes.textContent--;
+        addLikeButton.classList.remove('liked'); 
+      }
+      addLikeToCard.textContent = likes;
+      likedSwitch = !likedSwitch;
     });
   }
 
@@ -120,32 +144,6 @@ class PhotographerInstance extends PhotographerPage {
     this.$price.innerHTML = `
     <span>${this.photographer.price}€ / jour</span>
     `;
-  }
-
-  addLike() {
-    const cards = document.querySelectorAll('.card');
-    const addTotalLikes = document.querySelector('.total-likes');
-  
-    cards.forEach(card => {
-      const addLikeButton = card.querySelector('.add-like');
-      const addLikeToCard = card.querySelector('.likes');
-      let likes = parseInt(addLikeToCard.textContent, 10);
-      let likedSwitch = true
-  
-      addLikeButton.addEventListener('click', () => {
-        if (likedSwitch) {
-          likes++;
-          addTotalLikes.textContent ++;
-          addLikeButton.classList.add("liked"); 
-        } else {
-          likes--;
-          addTotalLikes.textContent --;
-          addLikeButton.classList.remove("liked"); 
-        }
-        addLikeToCard.textContent = likes;
-        likedSwitch = !likedSwitch
-      });
-    });
   }
 
 }

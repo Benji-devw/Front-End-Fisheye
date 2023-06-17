@@ -14,7 +14,7 @@ export default class VideoMedia extends Media {
 
   createVideo() {
     const $_video = `
-    <div id="${this.id}" class="card" tabindex="0" role="button" aria-label="${this.title}">
+    <div id="likes-${this.id}" class="card" tabindex="0" role="button" aria-label="${this.title}">
         <div class="media_card">
           <video controls>
           <source type="video/mp4" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" alt="${this.title}">
@@ -22,7 +22,7 @@ export default class VideoMedia extends Media {
         <div class="legend">
           <h2>${this.title}</h2>
           <div class="likes-content">
-            <span class="likes">${this.likes} </span>
+            <span class="likes-${this.id}">${this.likes} </span>
             <i class="fa-solid fa-heart add-like" title="like" aria-hidden="true"></i>
           </div>
         </div>

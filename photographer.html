@@ -12,11 +12,11 @@
   <body>
     <header>
       <div class="header_content">
-        <img src="assets/images/logo.png" class="logo"/>
+        <img src="assets/images/logo.png" alt="logo site web" class="logo"/>
       </div>
     </header>
 
-    <main id="main" name="main" >
+    <main id="main" name="main" aria-hidden="true">
       <div class="photographer_section">
 
         <div class="photographer_header">
@@ -24,17 +24,18 @@
           <div class="contact_btn_banner"></div>
           <div id="image_banner" class="image_banner"></div>
         </div>
-        
         <div class="photographer_body">
-          <div class="filters">
-            <select name="filter" value="likes" id="filter-select">
-              <option value="likes">Popularité</option>
-              <option value="date">Date</option>
-              <option value="title">Titre</option>
+          <div class="filters"> 
+            <label for="filter-select">Trier par </label>
+            <select name="filter" value="likes" id="filter-select" aria-label="Trier par" aria-describedby="filter-select-desc">
+              <option class="filter-option" value="likes">Popularité</option>
+              <option class="filter-option" value="date">Date</option>
+              <option class="filter-option" value="title">Titre</option>
             </select>
           </div>
-          <div class="gallery"></div>
+          <div class="gallery" aria-live="polite"></div>
         </div>
+        
 
         <div class="totals-photographer">
           <div class="likes"></div>
