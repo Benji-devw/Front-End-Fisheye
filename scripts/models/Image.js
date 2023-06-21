@@ -14,15 +14,15 @@ export default class ImageMedia extends Media {
 
   createImage() {
     const $_image = `
-      <div id="likes-${this.id}" class="card" tabindex="0" role="button" aria-label="titre ${this.title}, nombre de like ${this.likes}">
-        <div class="img_card">
-          <img src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
+      <div id="${this.id}" class="card" aria-label="titre ${this.title}, nombre de like ${this.likes}">
+        <div class="card-media">
+          <img tabindex="0" role="button" aria-label=”image closeup view” src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
         </div>
         <div class="legend">
           <h2>${this.title}</h2>
           <div class="likes-container">
             <span class="likes-${this.id}">${this.likes} </span>
-            <i class="fa-solid fa-heart add-like" title="like" aria-hidden="true"></i>
+            <i class="fa-solid fa-heart add-like" title="like" aria-hidden="true" tabindex="0" role="button"></i>
           </div>
         </div>
       </div>

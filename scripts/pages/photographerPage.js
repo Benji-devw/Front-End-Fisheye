@@ -2,8 +2,8 @@ import PhotographersApi from "../../data/data.js";
 import ImageMedia from "../models/Image.js";
 import VideoMedia from "../models/Video.js";
 import Modal from "../utils/Modal.js";
-// import Slider from "../utils/slider.js";
 import ContactModel from "../models/contact.js";
+import SliderModel from "../utils/slider.js";
 
 
 /**
@@ -56,8 +56,8 @@ export default class PhotographerPage {
     })
 
     //** Create Modal Slider */
-    // const slider = new SliderInstance(photographerWithMedias.medias)
-    // slider.getSlider()
+    const slider = new SliderInstance(photographerWithMedias)
+    slider.getSlider()
 
     // AJOUTER FOCUSTRAP pour boulez avec touche tab dans la modal
     //** Create Modal Contact */
@@ -65,6 +65,7 @@ export default class PhotographerPage {
     contact.getFormContact()
   }
 }
+
 
 
 /**
@@ -119,7 +120,7 @@ class PhotographerInstance extends PhotographerPage {
     const addLikeButton = cardElement.querySelector('.add-like');
     const addLikeToCard = cardElement.querySelector(`.likes-${test.id}`)
 
-    addLikeButton.addEventListener('click', () => {
+    addLikeButton.addEventListener('click', (event) => {
       if (likedSwitch) {
         likes++;
         addTotalLikes.textContent++;
@@ -131,6 +132,22 @@ class PhotographerInstance extends PhotographerPage {
       }
       addLikeToCard.textContent = likes;
       likedSwitch = !likedSwitch;
+    });
+    addLikeButton.addEventListener('keydown', (event) => {
+      if (event.key === "Enter") {
+        if (likedSwitch) {
+          likes++;
+          addTotalLikes.textContent++;
+          addLikeButton.classList.add('liked'); 
+        } else {
+          likes--;
+          addTotalLikes.textContent--;
+          addLikeButton.classList.remove('liked'); 
+        }
+        addLikeToCard.textContent = likes;
+        likedSwitch = !likedSwitch;
+
+      }
     });
   }
 
@@ -154,34 +171,39 @@ class PhotographerInstance extends PhotographerPage {
   * @description Represents an instance of a Slider Modal
   **********************************/
 class SliderInstance {
-  constructor(medias) {
-    this.medias = medias
+  constructor(datas) {
+    this.datas = datas
+    this.id = ''
   }
+
+
   getSlider() {
-    // const slider = new Slider(photographer.media)
     const cards = document.querySelectorAll('.card');
-    const test = new Modal(this.medias)
     
-    const handleCardInteraction = (card) => {
-      // const cardId = card.id;
-      // console.log(this.medias);
-      test.createModal()
-      test.showModal()
+    const handleSlider = () => {
+      const sliderModel = new SliderModel(this.datas)
+      const modal = new Modal(sliderModel.createSlider(this.id))
+      modal.createModal()
+      sliderModel.getNavigation()
     };
-    
+
     cards.forEach((card) => {
-      card.addEventListener('click', () => { 
-        // console.log(this.modalContainer);
-        handleCardInteraction(card); 
+      const cardMedia = card.querySelector('.card-media');
+      
+      cardMedia.addEventListener('click', () => { 
+        this.id = card.id;
+        handleSlider(); 
       });
-    
-      card.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-          handleCardInteraction(card);
+      
+      cardMedia.addEventListener('keydown', (event) => {
+        if (event.key === "e") {
+          this.id = card.id;
+          handleSlider();
         }
       });
     });
-  }
+  } 
+
 }
 
 
@@ -194,25 +216,23 @@ class ContactInstance extends PhotographerPage {
   constructor(name){
     super(name)
     this.name = name
-    this.getContactModel = new ContactModel(this.name);
-    this.modal = new Modal(this.getContactModel.createContact())
   }
-
+  
   getFormContact() {
+    const handleSlider = () => {
+      const getContactModel = new ContactModel(this.name);
+      const modal = new Modal(getContactModel.createContact())
+      modal.createModal()
+      getContactModel.checkForm()
+    }
 
     this.$openContactModal.addEventListener("click", () => {
-      this.modal.createModal()
-      this.submitForm()
+      handleSlider()
     })
     this.$openContactModal.addEventListener("keydown", (e) => {
       if (e.key === "e" ) {
-        this.modal.createModal()
-        this.submitForm()}
-      })
-    }
-
-    submitForm() {
-      this.getContactModel.checkForm()
+        handleSlider()
+      }})
     }
 }
 

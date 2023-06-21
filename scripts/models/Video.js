@@ -14,16 +14,16 @@ export default class VideoMedia extends Media {
 
   createVideo() {
     const $_video = `
-    <div id="likes-${this.id}" class="card" tabindex="0" role="button" aria-label="${this.title}">
-        <div class="media_card">
-          <video controls>
+    <div id="${this.id}" class="card" aria-label="${this.title}">
+        <div class="card-media">
+          <video controls tabindex="0" role="button">
           <source type="video/mp4" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" alt="${this.title}">
         </div>
         <div class="legend">
           <h2>${this.title}</h2>
           <div class="likes-content">
             <span class="likes-${this.id}">${this.likes} </span>
-            <i class="fa-solid fa-heart add-like" title="like" aria-hidden="true"></i>
+            <i class="fa-solid fa-heart add-like" title="like" aria-hidden="true"  tabindex="0" role="button"></i>
           </div>
         </div>
       </div>

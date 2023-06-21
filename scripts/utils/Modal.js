@@ -7,6 +7,8 @@ export default class Modal {
     this.modalContainer.classList.add('modal-container');
     this.modalElement.classList.add('modal');
     this.main = document.querySelector('#main')
+    // console.log(this.children);
+
   }
 
   createModal() {
@@ -22,8 +24,8 @@ export default class Modal {
     this.modalContainer.setAttribute('role', 'dialog')
     this.modalElement.setAttribute('aria-hidden', 'true')
     this.main.setAttribute('aria-hidden', 'false')
-    closeModalBtn.focus()
     
+    closeModalBtn.focus()
     closeModalBtn.addEventListener("click", () => {
       this.hideModal()
     })
