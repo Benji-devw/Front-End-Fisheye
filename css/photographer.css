@@ -16,7 +16,7 @@ header .header_content {
   flex-direction: row;
   justify-content: space-between;
   padding: 2.5rem;
-  margin: 3rem 2rem;
+  margin: 3rem 0;
   align-items: center;
   background-color: var(--color-light);
 }
@@ -60,7 +60,21 @@ header .header_content {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.card-container {
+  width: 30%;
+}
+@media screen and (max-width: 1024px) {
+  .card-container {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .card-container {
+    width: 100%;
+  }
 }
 
 .photographer_body .gallery .card {
@@ -68,7 +82,7 @@ header .header_content {
   flex-direction: column;
   justify-content: start;
   padding: 0.3rem;
-  width: 400px;
+  width: 100%;
   border-radius: 8px;
 }
 .photographer_body .gallery :is(img, video) {
