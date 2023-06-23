@@ -7,8 +7,6 @@ export default class Modal {
     this.modalContainer.classList.add('modal-container');
     this.modalElement.classList.add('modal');
     this.main = document.querySelector('#main')
-    // console.log(this.children);
-
   }
 
   createModal() {
@@ -30,7 +28,7 @@ export default class Modal {
       this.hideModal()
     })
     closeModalBtn.addEventListener("keydown", (e) => {
-      e.key === "e" && this.hideModal()
+      e.key === "Enter" && this.hideModal()
     })
   }
   

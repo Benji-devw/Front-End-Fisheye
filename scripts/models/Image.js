@@ -26,16 +26,15 @@ export default class ImageMedia extends Media {
           </div>
         </div>
       </div>
-      `
-      // console.log($_image);
+      `;
     return $_image;
   }
 
   createSliderItem(currentId) {
     return `
       <li class="slide" ${currentId == `${this.id}` ? 'data-active' : ''}>
-        <img src="assets/images/${this.name.replace(' ', '_')}/${this.image}" 
-          alt="${this.title}" />
+        <img src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
+        <p class="slide-title">${this.title}</p>
       </li>
     `;
   }

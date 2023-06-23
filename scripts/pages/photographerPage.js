@@ -12,20 +12,17 @@ import SliderModel from "../utils/slider.js";
   * @param {object} element - The html element
   **********************************/
 function FocusTrap(element) {
-  console.log(typeof(element));
   const focusableElements = element.querySelectorAll(
     'video, a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
   );
+
   const firstFocusable = focusableElements[0];
   const lastFocusable = focusableElements[focusableElements.length - 1];
 
-  element.addEventListener('keydown', function(e) {
+  element.addEventListener('keydown', (e) => {
     var isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
-
-    if (!isTabPressed) { 
-      return; 
-    }
-
+    if (!isTabPressed) return; 
+    
     if ( e.shiftKey ) /* shift + tab */ {
       if (document.activeElement === firstFocusable) {
         lastFocusable.focus();
@@ -232,7 +229,7 @@ class SliderInstance {
       
       cardMedia.addEventListener('click', () => { 
         this.id = card.id;
-        handleSlider(); 
+        handleSlider();
       });
       
       cardMedia.addEventListener('keydown', (event) => {

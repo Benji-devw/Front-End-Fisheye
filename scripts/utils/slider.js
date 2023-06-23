@@ -1,7 +1,7 @@
 /**
  * @class Slider
 **********************************/
-export default class SliderModel{
+export default class SliderModel {
   constructor(datas) {
     this.name =  datas.name
     this.medias = datas.medias
@@ -29,7 +29,7 @@ export default class SliderModel{
 
   createSlider(currentId) {
     const $slider = `
-    <div class="slider-container" aria-label="${currentId}">
+    <div class="slider-container" aria-label="Slider Medias">
       <div class="slider-content">
   
         <div class="slider-header">
@@ -37,30 +37,19 @@ export default class SliderModel{
         </div>
   
         <div class="slider-body">
+          <button class="carousel-nav prev" data-carousel-btn="prev">&lt;</button>
         
-        <button class="carousel-nav prev" data-carousel-btn="prev">&lt;</button>
-        <button class="carousel-nav next" data-carousel-btn="next">&gt;</button>
-        
-        <div id="image-carousel" class="carousel" data-carousel>
+          <div id="image-carousel" class="carousel" data-carousel>
             <ul data-slides>
               ${this.medias.map((media) => media.createSliderItem(currentId) )}
             </ul>
           </div>
+          <button class="carousel-nav next" data-carousel-btn="next">&gt;</button>
+          
         </div>
-  
-        <div class="slider-footer">
-              sqsdqsdqd
-        </div>
-  
       </div>
     </div>
   `;
     return $slider;
   }
-
-  getCurrent() {
-    const test = document.querySelector('.slide')
-    console.log(test);
-  }
-
 }

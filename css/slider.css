@@ -36,8 +36,8 @@
 .slide {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  /* display: none; */
+  /* opacity: 0; */
+  display: none;
   transition: 200ms opacity ease-in-out;
   transition-delay: 200ms;
 }
@@ -52,13 +52,22 @@
 }
 
 .slide[data-active] {
-  opacity: 1;
-  /* display: block; */
+  /* opacity: 1; */
+  display: block;
   z-index: 200;
   transition-delay: 0ms;
 }
 
 
+.slide-title {
+  /* position: absolute;
+  z-index: 800;
+  bottom: -2rem; */
+  left: 0;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  transition-delay: 0s;
+}
 
 
 

@@ -23,7 +23,7 @@ export default class VideoMedia extends Media {
           <h2>${this.title}</h2>
           <div class="likes-content">
             <span class="likes-${this.id}">${this.likes} </span>
-            <i class="fa-solid fa-heart add-like" title="like" aria-hidden="true"  tabindex="0" role="button"></i>
+            <i class="fa-solid fa-heart add-like" title="like" aria-hidden="true"   tabindex="0" role="button"></i>
           </div>
         </div>
       </div>
@@ -33,10 +33,10 @@ export default class VideoMedia extends Media {
 
   createSliderItem(currentId) {
     return `
-    <li class="slide" ${currentId == `${this.id}` ? 'data-active' : ''}>
-      <video controls  tabindex="0" role="button">
-        <source type="video/mp4" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" alt="${this.title}">
+      <li class="slide" ${currentId == `${this.id}` ? 'data-active' : ''}>
+        <video tabindex="0" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" controls></video>
+        <p class="slide-title">${this.title}</p>
       </li>
-      `;
+    `;
   }
 }
