@@ -29,7 +29,7 @@ export default class SliderModel{
 
   createSlider(currentId) {
     const $slider = `
-    <div class="slider-container" aria-hidden="true" aria-label="${currentId}" role="dialog">
+    <div class="slider-container" aria-label="${currentId}" role="dialog">
       <div class="slider-content">
   
         <div class="slider-header">

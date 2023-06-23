@@ -7,6 +7,42 @@ import SliderModel from "../utils/slider.js";
 
 
 /**
+  * @function FocusTrap
+  * @description Get Photographer id
+  * @param {string} id - The url params ?id
+  **********************************/
+function FocusTrap(element) {
+  const focusableElements = element.querySelectorAll(
+    'video, a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+  );
+  const firstFocusable = focusableElements[0];
+  const lastFocusable = focusableElements[focusableElements.length - 1];
+
+  element.addEventListener('keydown', function(e) {
+    var isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
+
+    if (!isTabPressed) { 
+      return; 
+    }
+
+    if ( e.shiftKey ) /* shift + tab */ {
+      if (document.activeElement === firstFocusable) {
+        lastFocusable.focus();
+          e.preventDefault();
+        }
+      } else /* tab */ {
+      if (document.activeElement === lastFocusable) {
+        firstFocusable.focus();
+          e.preventDefault();
+        }
+      }
+  });
+
+}
+
+
+
+/**
   * @function getIdQuery
   * @description Get Photographer id
   * @param {string} id - The url params ?id
@@ -97,13 +133,13 @@ class PhotographerInstance extends PhotographerPage {
 
     this.photographer.medias.forEach(media => {
       let cardHTML = '';
-  
+
       if (media instanceof ImageMedia) {
         cardHTML =  media.createImage();
       } else if (media instanceof VideoMedia) {
         cardHTML =  media.createVideo();
       }
-      
+
       const cardElement = document.createElement('div');
       cardElement.innerHTML = cardHTML;
 
@@ -176,7 +212,6 @@ class SliderInstance {
     this.id = ''
   }
 
-
   getSlider() {
     const cards = document.querySelectorAll('.card');
     
@@ -185,6 +220,7 @@ class SliderInstance {
       const modal = new Modal(sliderModel.createSlider(this.id))
       modal.createModal()
       sliderModel.getNavigation()
+      FocusTrap(document.querySelector('.modal-container'))
     };
 
     cards.forEach((card) => {
@@ -224,6 +260,7 @@ class ContactInstance extends PhotographerPage {
       const modal = new Modal(getContactModel.createContact())
       modal.createModal()
       getContactModel.checkForm()
+      FocusTrap(document.querySelector('.modal-container')) 
     }
 
     this.$openContactModal.addEventListener("click", () => {
