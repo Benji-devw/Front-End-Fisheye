@@ -15,7 +15,7 @@ export default class SliderModel{
         btn.addEventListener('click', () => {
             const offset = btn.dataset.carouselBtn === 'next' ? 1 : -1
             const slides = btn.closest('.slider-body').querySelector('[data-slides]')
-            console.log(offset);
+            // console.log(offset);
             const activeSlide = slides.querySelector('[data-active]')
             let newIndex = [...slides.children].indexOf(activeSlide) + offset
             if (newIndex < 0) newIndex = slides.children.length - 1
@@ -29,7 +29,7 @@ export default class SliderModel{
 
   createSlider(currentId) {
     const $slider = `
-    <div class="slider-container" aria-label="${currentId}" role="dialog">
+    <div class="slider-container" aria-label="${currentId}">
       <div class="slider-content">
   
         <div class="slider-header">
@@ -43,23 +43,7 @@ export default class SliderModel{
         
         <div id="image-carousel" class="carousel" data-carousel>
             <ul data-slides>
-              ${this.medias.map((media, index) => {
-                if (media.image) {
-                  return `
-                  <li class="slide" ${currentId == `${media.id}` ? 'data-active' : ''}>
-                    <img src="assets/images/${this.name.replace(' ', '_')}/${media.image}" 
-                      alt="${media.title}" />
-                  </li>
-                `;
-                } else if (media.video) {
-                  return `
-                  <li class="slide" ${currentId == `${media.id}` ? 'data-active' : ''}>
-                    <video controls>
-                      <source type="video/mp4" src="assets/images/${this.name.replace(' ', '_')}/${media.video}" alt="${media.title}">
-                    </li>
-                    `;
-                }
-              })}
+              ${this.medias.map((media) => media.createSliderItem(currentId) )}
             </ul>
           </div>
         </div>
