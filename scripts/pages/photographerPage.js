@@ -8,10 +8,11 @@ import SliderModel from "../utils/slider.js";
 
 /**
   * @function FocusTrap
-  * @description Get Photographer id
-  * @param {string} id - The url params ?id
+  * @description Get Elements focusable in modal
+  * @param {object} element - The html element
   **********************************/
 function FocusTrap(element) {
+  console.log(typeof(element));
   const focusableElements = element.querySelectorAll(
     'video, a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
   );
@@ -91,9 +92,7 @@ export default class PhotographerPage {
       photographerEvents.getCardsMedias()
     })
 
-    //** Create Modal Slider */
-    const slider = new SliderInstance(photographerWithMedias)
-    slider.getSlider()
+
 
     // AJOUTER FOCUSTRAP pour boulez avec touche tab dans la modal
     //** Create Modal Contact */
@@ -141,11 +140,16 @@ class PhotographerInstance extends PhotographerPage {
       }
 
       const cardElement = document.createElement('div');
+      cardElement.classList.add('card-container')
       cardElement.innerHTML = cardHTML;
 
       this.addLike(cardElement, media)
       this.$gallery.appendChild(cardElement);
     });
+
+    //** Create Modal Slider */
+    const slider = new SliderInstance(this.photographer)
+    slider.getSlider()
   }
 
   addLike(cardElement, test) {
