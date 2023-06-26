@@ -28,8 +28,8 @@ export default class ImageMedia extends Media {
         </div>
       </div>
       `;
-    return $_image;
-  }
+      return $_image;
+    }
 
 
   createSliderItem(currentId) {

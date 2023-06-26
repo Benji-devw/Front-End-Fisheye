@@ -1,4 +1,4 @@
-  import PhotographersApi from "../../data/data.js";
+import PhotographersApi from "../../data/data.js";
 import ImageMedia from "../models/Image.js";
 import VideoMedia from "../models/Video.js";
 import Modal from "../utils/Modal.js";
@@ -80,7 +80,7 @@ export default class PhotographerPage {
   }
 
   async main() {
-    //** Get Photographer with medias */
+    //** Get Photographer by id */
     const photographerWithMedias = await this.$photographersApi.getPhotographerWithMedias(getIdQuery())
 
     //** Create Photographer elemenrs */
@@ -119,8 +119,8 @@ class PhotographerInstance extends PhotographerPage {
   constructor(photographer) {
     super(photographer)
     this.photographer = photographer
-    this.incrementLikes = 0
   }
+
 
   getBanner() {
     const {$_banner, $_contactBtn, $_image} = this.photographer.createPhotographerBanner()
@@ -129,29 +129,31 @@ class PhotographerInstance extends PhotographerPage {
     this.$imageBanner.innerHTML = $_image
   }
 
+
   getFilter(sortBy) {
     this.photographer.medias = this.photographer.medias.sort((firstElement, secondElement) => secondElement[sortBy] > firstElement[sortBy] ? 1 : -1)
     sortBy === "title" && this.photographer.medias.reverse()
     // console.log(this.photographer.medias);
   }
 
+
   getCardsMedias() {
     this.$gallery.innerHTML = null;
 
-    this.photographer.medias.forEach(media => {
+    this.photographer.medias.forEach(mediaElement => {
       let cardHTML = '';
 
-      if (media instanceof ImageMedia) {
-        cardHTML =  media.createImage();
-      } else if (media instanceof VideoMedia) {
-        cardHTML =  media.createVideo();
+      if (mediaElement instanceof ImageMedia) {
+        cardHTML =  mediaElement.createImage();
+      } else if (mediaElement instanceof VideoMedia) {
+        cardHTML =  mediaElement.createVideo();
       }
 
       const cardElement = document.createElement('div');
       cardElement.classList.add('card-container')
       cardElement.innerHTML = cardHTML;
 
-      this.addLike(cardElement, media)
+      this.addLike(cardElement, mediaElement)
       this.$gallery.appendChild(cardElement);
     });
 
@@ -160,15 +162,16 @@ class PhotographerInstance extends PhotographerPage {
     slider.getSlider()
   }
 
-  addLike(cardElement, test) {
+
+  addLike(cardElement, MediaElement) {
     const addTotalLikes = document.querySelector('.total-likes');
 
-    let likes = test.likes;
+    let likes = MediaElement.likes;
     let likedSwitch = true;
     const addLikeButton = cardElement.querySelector('.add-like');
-    const addLikeToCard = cardElement.querySelector(`.likes-${test.id}`)
+    const addLikeToCard = cardElement.querySelector(`.likes-${MediaElement.id}`)
 
-    addLikeButton.addEventListener('click', (event) => {
+    const addLikeEvent = () => {
       if (likedSwitch) {
         likes++;
         addTotalLikes.textContent++;
@@ -180,24 +183,14 @@ class PhotographerInstance extends PhotographerPage {
       }
       addLikeToCard.textContent = likes;
       likedSwitch = !likedSwitch;
+    }
+    addLikeButton.addEventListener('click', (event) => {
+      addLikeEvent()
     });
     addLikeButton.addEventListener('keydown', (event) => {
-      if (event.key === "Enter") {
-        if (likedSwitch) {
-          likes++;
-          addTotalLikes.textContent++;
-          addLikeButton.classList.add('liked'); 
-        } else {
-          likes--;
-          addTotalLikes.textContent--;
-          addLikeButton.classList.remove('liked'); 
-        }
-        addLikeToCard.textContent = likes;
-        likedSwitch = !likedSwitch;
-
-      }
-    });
+      if(event.key === "Enter") addLikeEvent()})
   }
+
 
   getTotals() {
     const counterLikes = this.photographer.totalLikes()
@@ -219,7 +212,7 @@ class PhotographerInstance extends PhotographerPage {
 
 /**
   * @class SliderInstance
-  * @description Represents an instance of Slider Modal
+  * @description Represents an instance of a Slider Modal
   **********************************/
 class SliderInstance {
   constructor(datas) {
@@ -238,18 +231,20 @@ class SliderInstance {
       FocusTrap(document.querySelector('.modal-container'))
     };
 
-    cards.forEach((card) => {
-      const cardMedia = card.querySelector('.card-media .media');
-      
-      cardMedia.addEventListener('click', () => { 
+    cards.forEach(card => {
+      const cardMedia = card.querySelector('.media');
+      const cardEvent = () => {
         this.id = card.id;
         handleSlider();
+      }
+
+      cardMedia.addEventListener('click', () => { 
+        cardEvent()
       });
-      
       cardMedia.addEventListener('keydown', (event) => {
-        if (event.key === "Enter") {
-          this.id = card.id;
-          handleSlider();
+        if (event.key === "e") {
+          console.log(cardMedia );
+          cardEvent()
         }
       });
     });
