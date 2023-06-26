@@ -9,15 +9,14 @@ import { Media } from "./Media.js";
 export default class ImageMedia extends Media {
   constructor(name, data) {
     super(name, data)
-    // this.likes = data.likes
     this.image = data.image
   }
-  
+
   createImage() {
     const $_image = `
       <div id="${this.id}" class="card" aria-label="titre ${this.title}, nombre de like ${this.likes}">
         <div class="card-media">
-          <img class="media" tabindex="0" role="button" aria-label=”image closeup view” src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
+          <img class="media" tabindex="0" role="button" src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
         </div>
         <div class="legend">
           <h2>${this.title}</h2>

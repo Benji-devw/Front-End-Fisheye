@@ -163,13 +163,13 @@ class PhotographerInstance extends PhotographerPage {
   }
 
 
-  addLike(cardElement, MediaElement) {
+  addLike(cardElement, mediaElement) {
     const addTotalLikes = document.querySelector('.total-likes');
 
-    let likes = MediaElement.likes;
+    let likes = mediaElement.likes;
     let likedSwitch = true;
     const addLikeButton = cardElement.querySelector('.add-like');
-    const addLikeToCard = cardElement.querySelector(`.likes-${MediaElement.id}`)
+    const addLikeToCard = cardElement.querySelector(`.likes-${mediaElement.id}`)
 
     const addLikeEvent = () => {
       if (likedSwitch) {
