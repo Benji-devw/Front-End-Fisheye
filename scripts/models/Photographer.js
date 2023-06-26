@@ -46,7 +46,7 @@ export default class Photographer {
     return {$_banner, $_image}
   }
 
-  totalLikes() {
+  countTotalLikes() {
     return this.medias.reduce((acc, curr) => acc + curr.likes, 0)
   }
 

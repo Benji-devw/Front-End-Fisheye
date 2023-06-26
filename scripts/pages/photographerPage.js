@@ -12,7 +12,6 @@ import ContactModal from "../utils/contactForm.js";
 function getIdQuery() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  console.log(typeof(urlParams.get('id')));
   return urlParams.get('id');
 }
 
@@ -34,7 +33,7 @@ export default class PhotographerPage {
   }
   
   async main() {
-    //** Get Photographer by id */
+    //** Get Photographer with medias */
     const photographerWithMedias = await this.$photographersApi.getPhotographerWithMedias(getIdQuery())
     
     //** Create Photographer */
@@ -57,13 +56,14 @@ export default class PhotographerPage {
 
 /**
   * @class PhotographerInstance
-  * @description Represents an instance of a photographer on the photographer page
+  * @description Represents an instance of photographer
   * @param Photographer - The photographer object
   **********************************/
 class PhotographerInstance extends PhotographerPage {
   constructor(photographer) {
     super(photographer)
     this.photographer = photographer
+    this.incrementLikes = 0
   }
 
   getBanner() {
@@ -74,16 +74,16 @@ class PhotographerInstance extends PhotographerPage {
 
   getCardsMedias() {
     this.photographer.medias.forEach(media => {
-      if (media instanceof ImageMedia ){
-        this.$gallery.innerHTML += media.createImage()
+      if (media instanceof ImageMedia ) {
+        this.$gallery.innerHTML += media.createImage(this.incrementLikes)
       } else if (media instanceof VideoMedia) {
-        this.$gallery.innerHTML += media.createVideo()
+        this.$gallery.innerHTML += media.createVideo(this.incrementLikes)
       }
     });
   }
 
-  getTotals() {
-    const counterLikes = this.photographer.totalLikes()
+  getTotals(val) {
+    const counterLikes = this.photographer.countTotalLikes()
     this.$totalsLikes.innerHTML = `
     <span>${counterLikes}</span>
     <i class="fa-solid fa-heart"></i>
@@ -94,12 +94,22 @@ class PhotographerInstance extends PhotographerPage {
     `;
   }
 
-  
   addLike() {
     const addLike = document.querySelector('.add-like')
-   addLike.addEventListener('click', () => {
-      console.log('dqsdqsdqsd');
-
+    const test = document.querySelector('.likes span')
+    let toogleLike = true
+    addLike.addEventListener('click', () => {
+      if (this.incrementLikes)  {
+        this.incrementLikes++
+        test.textContent = this.incrementLikes
+        // this.getTotals(incrementLikes ++) 
+        toogleLike = false
+      } else {
+        this.incrementLikes--
+        // this.getTotals(incrementLikes --)
+        toogleLike = false
+      }
+      
     })
   }
 
@@ -108,7 +118,7 @@ class PhotographerInstance extends PhotographerPage {
 
 /**
   * @class SliderInstance
-  * @description Represents an instance of a Slider Modal
+  * @description Represents an instance of Slider Modal
   **********************************/
 class SliderInstance {
   getSlider() {
@@ -136,7 +146,7 @@ class SliderInstance {
 
 /**
   * @class ContactInstance
-  * @description Represents an instance of a Contact Modal
+  * @description Represents an instance of Contact Modal
   * @param name - The Photographer name string
   **********************************/
 class ContactInstance extends PhotographerPage {

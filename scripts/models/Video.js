@@ -12,7 +12,7 @@ export default class VideoMedia extends Media {
     this.video = data.video
   }
 
-  createVideo() {
+  createVideo(val) {
     const $_video = `
     <div id="${this.id}" class="card" tabindex="0" role="button" aria-label="${this.title}">
         <div class="media_card">
@@ -21,7 +21,7 @@ export default class VideoMedia extends Media {
         </div>
         <div class="legend">
           <h2>${this.title}</h2>
-          <span class="likes">${this.likes} <i class="fa-solid fa-heart add-like"></i></span>
+          <span class="likes">${this.likes + val} <i class="fa-solid fa-heart add-like"></i></span>
         </div>
       </div>
       `

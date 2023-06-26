@@ -9,10 +9,11 @@ import { Media } from "./Media.js";
 export default class ImageMedia extends Media {
   constructor(name, data) {
     super(name, data)
+    // this.likes = data.likes
     this.image = data.image
   }
 
-  createImage() {
+  createImage(val) {
     const $_image = `
       <div id="${this.id}" class="card" tabindex="0" role="button" aria-label="${this.title}">
         <div class="img_card">
@@ -20,12 +21,18 @@ export default class ImageMedia extends Media {
         </div>
         <div class="legend">
           <h2>${this.title}</h2>
-          <span class="likes">${this.likes} <i class="fa-solid fa-heart add-like"></i></span>
+          <span class="likes">${this.likes + val} <i class="fa-solid fa-heart add-like"></i></span>
         </div>
       </div>
       `
       // console.log($_image);
     return $_image;
   }
+  // add() {
+  //   const likes = document.querySelector('.add-like')
+  //   likes.addEventListener('click', () => {
+  //     console.log('dsqds');
+  //   });
+  // }
 }
 
