@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <meta charset="utf-8">
-    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
+    <link type='text/css' href="/css/photographer.css" rel="stylesheet"/>
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -12,23 +12,30 @@
   <body>
     <header>
       <div class="header_content">
-        <img src="assets/images/logo.png" class="logo"/>
+        <img src="assets/images/logo.png" alt="logo site web" class="logo"/>
       </div>
     </header>
 
-    <main id="main" name="main" >
+    <main id="main" name="main" aria-hidden="false">
       <div class="photographer_section">
 
         <div class="photographer_header">
-          <div id="photographer_infos" class="photographer_infos"></div>
-          <button class="contact_button">Contactez-moi</button>
-          <div id="image_header" class="image_header"></div>
+          <div id="photographer_infos_banner" class="photographer_infos_banner"></div>
+          <div class="contact_btn_banner"></div>
+          <div id="image_banner" class="image_banner"></div>
+        </div>
+        <div class="photographer_body">
+          <div class="filters"> 
+            <label for="filter-select">Trier par </label>
+            <select name="filter" value="likes" id="filter-select" aria-label="Trier par">
+              <option class="filter-option" value="likes">Popularité</option>
+              <option class="filter-option" value="date">Date</option>
+              <option class="filter-option" value="title">Titre</option>
+            </select>
+          </div>
+          <div class="gallery" aria-live="polite"></div>
         </div>
         
-        <div class="photographer_body">
-          <div class="filters"></div>
-          <div class="gallery"></div>
-        </div>
 
         <div class="totals-photographer">
           <div class="likes"></div>
@@ -36,45 +43,6 @@
         </div>
       </div>
     </main>
-
-    <div id="contact_modal" aria-hidden="true" aria-describedby="contact" role="dialog">
-			<div class="modal_content">
-        <div class="modal">
-          <header>
-            <h2>Contactez-moi <br /> <span class="contact_name"></span></h2>
-            <button class="close_modal"><img src="assets/icons/close.svg" alt="close" /></button>
-          </header>
-          <form id="myForm" action="" method="POST">
-            <div class="form-group">
-
-              <div class="formData" id="firstData" data-error="Deux lettre min - Pas de caractères spéciaux">
-                <label id="firstNameLabel" for="fistName">Prénom</label>
-                <input id="fistName" name="firstName" type="text" placeholder="fistName" aria-labelledby="firstNameLabel" required />
-              </div>
-
-              <div class="formData" id="lastData" data-error="Deux lettre min - Pas de caractères spéciaux">
-                <label id="lastNameLabel" for="lastName" for="lastName">Nom</label>
-                <input id="lastName" name="lastName" type="text" placeholder="lastName" aria-labelledby="lastNameLabel" required />
-              </div>
-
-              <div class="formData" id="emailData" data-error="Email invalide">
-                <label id="emailLabel" for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="email" aria-labelledby="emailLabel" required />
-              </div>
-
-              <div class="formData" id="areaData" data-error="Deux lettre min - Pas de caractères spéciaux">
-                <label id="messageLabel" for="message">Votre message:</label>
-                <textarea id="message" name="message" placeholder="Message..." aria-labelledby="messageLabel" rows="5" cols="33"></textarea>
-              </div>
-
-            </div>
-          </form>
-          <div class="form_footer">
-            <button class="sumit_button" type=submit aria-describedby="envoyer">Envoyer</button>
-          </div>
-        </div>
-			</div>
-		</div> 
 
     <!-- Pages -->
     <script type="module" src="/scripts/pages/photographerPage.js"></script>

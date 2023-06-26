@@ -9,74 +9,49 @@ var emailRegex = /^[a-zA-Z0-9-_.]{2,}@[a-zA-Z0-9]{1,61}\.[a-zA-Z]{2,}$/;
 
 
 /**
-  * @class ContactModal
+  * @class checkContactForm
   * @description Modal Events
   * @param name - The photographer name (string)
   **********************************/
-export default class ContactModal {
+export default class checkContactForm {
   constructor(name) {
-    this._name = name
-    this._contactModal = document.getElementById("contact_modal");
-    // this._submitContactButton = document.querySelector(".sumit_button");
-    this._closeContactModal = document.querySelector(".close_modal")
-    this._btnContactModal = document.querySelector(".contact_button")
-    this._contactName = document.querySelector(".contact_name")
-    this._firstNameInput = document.getElementById("fistName");
-    this._lastNameInput = document.getElementById("lastName");
-    this._emailInput = document.getElementById("email");
-    this._messageTextarea = document.getElementById("message");
-    this._datas = []
-    this._errors = []
+    this.name = name
+    this.$submitContact = document.querySelector('.submit_btn');
+
+    this.form = document.querySelector("#myForm");
+    this.firstNameInput = document.getElementById("fistName");
+    this.lastNameInput = document.getElementById("lastName");
+    this.emailInput = document.getElementById("email");
+    this.messageTextarea = document.getElementById("message");
+    this.datas = []
+    this.errors = []
   }
 
-  openModal() {
-    document.body.style.overflow = 'hidden';
-    document.body.setAttribute('aria-hidden', 'false')
-    this._contactModal.setAttribute('aria-hidden', 'true')
-    this._contactModal.style.display = "block";
-    this._contactName.innerHTML = this._name
-    this._closeContactModal.focus()
-    //** Initialise tabs */
-    this._datas = []
-  }
-
-  closeModal() {
-    document.body.style.overflow = 'visible';
-    document.body.setAttribute('aria-hidden', 'true')
-    this._contactModal.setAttribute('aria-hidden', 'false')
-    this._contactModal.style.display = "none";
-    this._btnContactModal.focus()
-  }
 
   inputChecker(bool, val, err) {
     const formDataError = document.getElementById(err)
     if (bool) {
-      this._datas.push({champ: val.name, values: val.value.trim() })
+      this.datas.push({champ: val.name, values: val.value.trim() })
       formDataError.setAttribute("data-error-visible", "false");
     } else {
-      this._errors.push({champ: val.name, values: val.value.trim() })
+      this.errors.push({champ: val.name, values: val.value.trim() })
       formDataError.setAttribute("data-error-visible", "true");
     }
   }
 
   onSubmitForm() {
-    this._datas = []
-    this._errors = []
-    this.inputChecker(textRegex.test(this._firstNameInput.value), this._firstNameInput, 'firstData');
-    this.inputChecker(textRegex.test(this._lastNameInput.value), this._lastNameInput, 'lastData');
-    this.inputChecker(emailRegex.test(this._emailInput.value), this._emailInput, 'emailData');
-    this.inputChecker(textRegex.test(this._messageTextarea.value), this._messageTextarea, 'areaData');
+    this.datas = []
+    this.errors = []
+    this.inputChecker(textRegex.test(this.firstNameInput.value), this.firstNameInput, 'firstData');
+    this.inputChecker(textRegex.test(this.lastNameInput.value), this.lastNameInput, 'lastData');
+    this.inputChecker(emailRegex.test(this.emailInput.value), this.emailInput, 'emailData');
+    this.inputChecker(textRegex.test(this.messageTextarea.value), this.messageTextarea, 'areaData');
 
-    console.log('Form errors !!! => ', this._errors);
-    if (this._errors.length === 0) {
-      console.log('Form sumited !!! => ', this._datas);
+    console.log('Form errors !!! => ', this.errors);
+    if (this.errors.length === 0) {
+      console.log('Form submited !!! => ', this.datas);
       this.closeModal()
-
-      //** Reset Form */
-      // this._firstNameInput.value = "";
-      // this._lastNameInput.value = "";
-      // this._emailInput.value = "";
-      // this._messageTextarea.value = "";
+      this.form.reset()
     }
   }
 

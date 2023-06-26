@@ -1,5 +1,5 @@
-@import url("style.css");
-@import url("modal_contact.css");
+@import "style.css";
+@import "modal_contact.css";
 
 header .header_content {
   justify-content: start !important;
@@ -16,11 +16,11 @@ header .header_content {
   flex-direction: row;
   justify-content: space-between;
   padding: 2.5rem;
-  margin: 3rem 2rem;
+  margin: 3rem 0;
   align-items: center;
-  background-color: var(--color-grey);
+  background-color: var(--color-light);
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 800px) {
   .photographer_header {
     flex-direction: column;
     padding: 0;
@@ -33,13 +33,16 @@ header .header_content {
 }
 .photographer_header .banner_name {
   color: var(--color-second);
+  font-size: 3rem;
 }
 .photographer_header .banner_city {
-  font-size: 2.3rem;
-  padding-bottom: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem 0;
   color: var(--color-primary);
 }
-/* .photographer_header .tagline {}  */
+.photographer_header .banner_tagline {
+  color: var(--color-grey);
+}
 .photographer_header img {
   border-radius: 200px;
   height: 200px;
@@ -51,12 +54,27 @@ header .header_content {
   max-width: 1400px;
 }
 
+
 .photographer_body .gallery {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.card-container {
+  width: 30%;
+}
+@media screen and (max-width: 1024px) {
+  .card-container {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .card-container {
+    width: 100%;
+  }
 }
 
 .photographer_body .gallery .card {
@@ -64,12 +82,12 @@ header .header_content {
   flex-direction: column;
   justify-content: start;
   padding: 0.3rem;
-  width: 400px;
+  width: 100%;
   border-radius: 8px;
 }
 .photographer_body .gallery :is(img, video) {
   align-self: center;
-  height: 400px;
+  height: 350px;
   width: 100%;
   object-fit: cover;
   border-radius: 8px;
@@ -84,21 +102,29 @@ header .header_content {
 }
 
 .photographer_body .gallery .legend :nth-child(1) {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
+  font-weight: 100;
   margin: 1rem 0;
   color: var(--color-primary);
   max-width: 80%;
 }
-.photographer_body .gallery .legend :nth-child(2) {
-  font-size: 1.4rem;
+.photographer_body .gallery .legend :nth-child(2) span {
+  font-size: 1.2rem;
   margin: 1rem 0;
   color: var(--color-primary);
 }
-.photographer_body .gallery .legend :nth-child(2) i  {
+.photographer_body .gallery .legend :nth-child(2) i {
   cursor: pointer;
+  color: transparent;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px var(--color-primary);
 }
-
-
+.liked {
+  -webkit-text-fill-color: var(--color-primary) !important;
+}
 
 
 

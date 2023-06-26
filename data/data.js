@@ -47,17 +47,10 @@ export default class PhotographersApi extends Api {
     return new Photographer(photographer, medias)
   }
 
-
   createMediaFactory(photographerName, media) {
-    if (media.image) {
-      return new ImageMedia(photographerName, media)
-    } 
-    else if (media.video) {
-      return new VideoMedia(photographerName, media)
-    } 
-    else {
-      throw 'Unknown media type';
-    }
+    if (media.image)  return new ImageMedia(photographerName, media)
+    else if (media.video) return new VideoMedia(photographerName, media)
+    else throw 'Unknown media type';
   }
 
 }

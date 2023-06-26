@@ -12,27 +12,33 @@ export default class ImageMedia extends Media {
     // this.likes = data.likes
     this.image = data.image
   }
-
-  createImage(val) {
+  
+  createImage() {
     const $_image = `
-      <div id="${this.id}" class="card" tabindex="0" role="button" aria-label="${this.title}">
-        <div class="img_card">
-          <img src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
+      <div id="${this.id}" class="card" aria-label="titre ${this.title}, nombre de like ${this.likes}">
+        <div class="card-media">
+          <img class="media" tabindex="0" role="button" aria-label=”image closeup view” src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
         </div>
         <div class="legend">
           <h2>${this.title}</h2>
-          <span class="likes">${this.likes + val} <i class="fa-solid fa-heart add-like"></i></span>
+          <div class="likes-container">
+            <span class="likes-${this.id}">${this.likes} </span>
+            <i class="fa-solid fa-heart add-like" title="like" aria-hidden="true" tabindex="0" role="button"></i>
+          </div>
         </div>
       </div>
-      `
-      // console.log($_image);
+      `;
     return $_image;
   }
-  // add() {
-  //   const likes = document.querySelector('.add-like')
-  //   likes.addEventListener('click', () => {
-  //     console.log('dsqds');
-  //   });
-  // }
+
+
+  createSliderItem(currentId) {
+    return `
+      <li class="slide" ${currentId == `${this.id}` ? 'data-active' : ''}>
+        <img src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
+        <p class="slide-title">${this.title}</p>
+      </li>
+    `;
+  }
 }
 

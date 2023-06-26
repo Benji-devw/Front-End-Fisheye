@@ -12,19 +12,33 @@ export default class VideoMedia extends Media {
     this.video = data.video
   }
 
-  createVideo(val) {
+
+  createVideo() {
     const $_video = `
-    <div id="${this.id}" class="card" tabindex="0" role="button" aria-label="${this.title}">
-        <div class="media_card">
-          <video controls>
-          <source type="video/mp4" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" alt="${this.title}">
+    <div id="${this.id}" class="card" aria-label="${this.title}">
+        <div class="card-media">
+          <video>
+          <source class="media" type="video/mp4" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" alt="${this.title}">
         </div>
         <div class="legend">
           <h2>${this.title}</h2>
-          <span class="likes">${this.likes + val} <i class="fa-solid fa-heart add-like"></i></span>
+          <div class="likes-content">
+            <span class="likes-${this.id}">${this.likes} </span>
+            <i class="fa-solid fa-heart add-like" title="like" aria-hidden="true"   tabindex="0" role="button"></i>
+          </div>
         </div>
       </div>
       `
     return $_video;
+  }
+
+
+  createSliderItem(currentId) {
+    return `
+      <li class="slide" ${currentId == `${this.id}` ? 'data-active' : ''}>
+        <video tabindex="0" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" controls></video>
+        <p class="slide-title">${this.title}</p>
+      </li>
+    `;
   }
 }
