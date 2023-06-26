@@ -8,6 +8,7 @@ export default class SliderModel {
     this.$card = document.querySelectorAll('.gallery .card')
   }
 
+
   getNavigation() {
     const buttons = document.querySelectorAll('.carousel-nav');
 
@@ -27,6 +28,7 @@ export default class SliderModel {
     });
   }
 
+  
   createSlider(currentId) {
     const $slider = `
     <div class="slider-container" aria-label="Slider Medias">

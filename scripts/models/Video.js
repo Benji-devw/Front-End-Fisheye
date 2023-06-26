@@ -12,12 +12,13 @@ export default class VideoMedia extends Media {
     this.video = data.video
   }
 
+
   createVideo() {
     const $_video = `
     <div id="${this.id}" class="card" aria-label="${this.title}">
         <div class="card-media">
           <video>
-          <source type="video/mp4" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" alt="${this.title}">
+          <source class="media" type="video/mp4" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" alt="${this.title}">
         </div>
         <div class="legend">
           <h2>${this.title}</h2>
@@ -30,6 +31,7 @@ export default class VideoMedia extends Media {
       `
     return $_video;
   }
+
 
   createSliderItem(currentId) {
     return `

@@ -12,11 +12,12 @@ export default class ImageMedia extends Media {
     this.image = data.image
   }
 
+  
   createImage() {
     const $_image = `
       <div id="${this.id}" class="card" aria-label="titre ${this.title}, nombre de like ${this.likes}">
         <div class="card-media">
-          <img tabindex="0" role="button" aria-label=”image closeup view” src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
+          <img class="media" tabindex="0" role="button" aria-label=”image closeup view” src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
         </div>
         <div class="legend">
           <h2>${this.title}</h2>
@@ -29,6 +30,7 @@ export default class ImageMedia extends Media {
       `;
     return $_image;
   }
+
 
   createSliderItem(currentId) {
     return `

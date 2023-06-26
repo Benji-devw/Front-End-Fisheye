@@ -1,9 +1,12 @@
-import PhotographersApi from "../../data/data.js";
+  import PhotographersApi from "../../data/data.js";
 import ImageMedia from "../models/Image.js";
 import VideoMedia from "../models/Video.js";
 import Modal from "../utils/Modal.js";
 import ContactModel from "../models/contact.js";
 import SliderModel from "../utils/slider.js";
+
+
+
 
 
 /**
@@ -40,6 +43,8 @@ function FocusTrap(element) {
 
 
 
+
+
 /**
   * @function getIdQuery
   * @description Get Photographer id
@@ -51,6 +56,9 @@ function getIdQuery() {
   // console.log(typeof(urlParams.get('id')));
   return urlParams.get('id');
 }
+
+
+
 
 
 /**
@@ -97,6 +105,8 @@ export default class PhotographerPage {
     contact.getFormContact()
   }
 }
+
+
 
 
 
@@ -203,6 +213,9 @@ class PhotographerInstance extends PhotographerPage {
 }
 
 
+
+
+
 /**
   * @class SliderInstance
   * @description Represents an instance of a Slider Modal
@@ -225,7 +238,7 @@ class SliderInstance {
     };
 
     cards.forEach((card) => {
-      const cardMedia = card.querySelector('.card-media');
+      const cardMedia = card.querySelector('.card-media .media');
       
       cardMedia.addEventListener('click', () => { 
         this.id = card.id;
@@ -233,7 +246,7 @@ class SliderInstance {
       });
       
       cardMedia.addEventListener('keydown', (event) => {
-        if (event.key === "e") {
+        if (event.key === "Enter") {
           this.id = card.id;
           handleSlider();
         }
@@ -242,6 +255,9 @@ class SliderInstance {
   } 
 
 }
+
+
+
 
 
 /**
@@ -273,6 +289,8 @@ class ContactInstance extends PhotographerPage {
       }})
     }
 }
+
+
 
 
 

@@ -9,6 +9,7 @@ export default class Modal {
     this.main = document.querySelector('#main')
   }
 
+
   createModal() {
     this.modalElement.innerHTML = this.children
     this.modalContainer.appendChild(this.modalElement)
@@ -16,6 +17,7 @@ export default class Modal {
     document.body.appendChild(this.modalContainer);
     this.showModal()
   }
+
 
   showModal() {
     const closeModalBtn = document.querySelector('.close-modal');
@@ -31,6 +33,7 @@ export default class Modal {
       e.key === "Enter" && this.hideModal()
     })
   }
+  
   
   hideModal() {
     this.modalContainer.remove();
