@@ -2,21 +2,24 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <link type='text/css' href="/css/photographer.css" rel="stylesheet"/>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
+    <title>Fisheye - Photographe </title>
+
+    <link href="./css/photographer.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
   </head>
 
   <body>
-    <header>
+    <header aria-label="header with logo">
       <div class="header_content">
-        <img src="/assets/images/logo.png" alt="logo site web" class="logo"/>
+        <img src="./assets/images/logo.png" alt="logo site web" class="logo"/>
       </div>
     </header>
 
-    <main id="main" name="main" aria-hidden="false">
+    <main id="main" name="main" aria-label="main banner + gallery" aria-hidden="false">
       <section class="photographer_page">
 
         <div class="photographer_header">
@@ -45,6 +48,6 @@
     </main>
 
     <!-- Pages -->
-    <script type="module" src="/scripts/pages/photographerPage.js"></script>
+    <script type="module" src="./scripts/pages/photographerPage.js"></script>
   </body>
 </html>

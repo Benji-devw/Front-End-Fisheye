@@ -28,9 +28,9 @@ export default class Photographer {
           </div>
         <div class="article_body">
           <h2>${this.name}</h2>
-          <p class="city">${this.city}, ${this.country}</p>
-          <p class="tagline">${this.tagline}</p>
-          <p class="price">${this.price}€/jour</p>
+          <p class="city" aria-label="${this.city}">${this.city}, ${this.country}</p>
+          <p class="tagline" aria-label="${this.tagline}">${this.tagline}</p>
+          <p class="price" aria-label="${this.price}">${this.price}€/jour</p>
         </div>
       </article>
       `
