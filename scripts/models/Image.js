@@ -14,7 +14,7 @@ export default class ImageMedia extends Media {
 
   createImage() {
     const $_image = `
-      <div id="${this.id}" class="card" aria-label="titre ${this.title}, nombre de like ${this.likes}">
+      <div id="card-${this.id}" class="card" aria-label="titre ${this.title}, nombre de like ${this.likes}">
         <div class="card-media">
           <img class="media" tabindex="0" role="button" src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
         </div>
@@ -33,7 +33,7 @@ export default class ImageMedia extends Media {
 
   createSliderItem(currentId) {
     return `
-      <li class="slide" ${currentId == `${this.id}` ? 'data-active' : ''}>
+      <li class="slide" ${currentId == `card-${this.id}` ? 'data-active' : ''}>
         <img src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
         <p class="slide-title">${this.title}</p>
       </li>

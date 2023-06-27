@@ -227,7 +227,7 @@ class SliderInstance {
       const sliderModel = new SliderModel(this.datas)
       const modal = new Modal(sliderModel.createSlider(this.id))
       modal.createModal()
-      sliderModel.getNavigation()
+      sliderModel.getNavigation(this.id)
       FocusTrap(document.querySelector('.modal-container'))
     };
 
