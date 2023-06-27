@@ -21,7 +21,7 @@ export default class ContactModel extends checkContactForm {
 
   createContact() {
     const $contactForm = `
-      <div class="contact-container" aria-hidden="true" aria-describedby="contact" role="dialog">
+      <div class="contact-container" aria-hidden="true" aria-label="contact" role="dialog">
         <div class="form-header">
           <h2>Contactez-moi <br /> <span class="contact_name">${this.name}</span></h2>
           <button class="close-modal"><img src="assets/icons/close.svg" alt="close" /></button>
@@ -52,7 +52,7 @@ export default class ContactModel extends checkContactForm {
           </div>
         </form>
         <div class="form-footer">
-          <button class="submit_btn" type=submit aria-describedby="envoyer">Envoyer</button>
+          <button class="submit_btn" type=submit >Envoyer</button>
         </div>
       </div>
     `
