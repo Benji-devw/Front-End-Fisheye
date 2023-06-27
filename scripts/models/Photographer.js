@@ -28,6 +28,9 @@ export default class Photographer {
           </div>
         <div class="article_body">
           <h2>${this.name}</h2>
+          <p class="city">${this.city}, ${this.country}</p>
+          <p class="tagline">${this.tagline}</p>
+          <p class="price">${this.price}€/jour</p>
         </div>
       </article>
       `

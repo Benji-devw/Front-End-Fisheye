@@ -2,6 +2,7 @@
 @import "./slider.css";
 
 :root {
+  --maxW: 1400px;
   --color-primary: #901c1c;
   --color-second: #d3573c;
   --color-grey: #525252;
@@ -18,13 +19,17 @@
 body {
   font-family: "DM Sans", sans-serif;
   padding: 1rem;
-  /* background-color: rgba(0, 0, 0, 0.9); */
+}
+main {
+  max-width: var(--maxW);
+  margin: auto;
+
 }
 
 header {
   margin: auto;
   padding: 0.5rem;
-  max-width: 1400px;
+  max-width: var(--maxW);
 }
 header .header_content {
   display: flex;
@@ -42,9 +47,7 @@ header .header_content h1 {
 
 h1 {
   font-size: 2.5rem;
-  /* color: var(--color-primary); */
   margin: 0;
-  /* margin-right: 100px; */
 }
 h2 {
   font-size: 2.5rem;
@@ -79,11 +82,7 @@ select {
 
 
 
-div:focus,
-button:focus,
-a:focus,
-select:focus,
-.card:focus {
+:is(div, button, a, select, img, i):focus {
   outline: none;
   box-shadow: 0 0 0 1px white, 0 0 0 3px var(--color-primary);
 }

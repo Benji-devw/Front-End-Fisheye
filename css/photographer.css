@@ -50,15 +50,20 @@ header .header_content {
   object-fit: cover;
 }
 
-.photographer_body {
-  max-width: 1400px;
-}
+
+
+
+
+
+
 
 
 .photographer_body .gallery {
-  margin: auto;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
+
   gap: 2rem;
   justify-content: space-between;
 }
@@ -77,10 +82,17 @@ header .header_content {
   }
 }
 
+
+
+
+
+
+
+
+
 .photographer_body .gallery .card {
   display: flex;
   flex-direction: column;
-  justify-content: start;
   padding: 0.3rem;
   width: 100%;
   border-radius: 8px;
@@ -129,13 +141,20 @@ header .header_content {
 
 
 
+
+
+.photographer_page {
+  position: relative;
+  max-width: var(--maxW);
+  padding-bottom: 3rem;
+}
 .photographer_page .totals-photographer {
   display: flex;
   flex-direction: row;
   justify-content: center;
   position: fixed;
   bottom: 0;
-  right: 2rem;
+  right: 10%;
   padding: 1rem;
   font-weight: 700;
   border-radius: 8px 8px 0 0;

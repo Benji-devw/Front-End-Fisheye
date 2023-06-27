@@ -1,5 +1,4 @@
 
-
 .submit_btn,
 .contact_btn {
   font-size: 20px;
@@ -54,7 +53,6 @@
 }
 .contact-container form .formData label {
   text-align: left !important;
-  /* float: left; */
 }
 
 .contact-container form input, textarea {
@@ -98,25 +96,3 @@
   border: 2px solid var(--color-error);
 }
 
-/* input[data-error]::after {
-  content: attr(data-error);
-  font-size: 0.7em;
-  color: var(--color-error);
-} */
-
-
-
-
-
-
-
-
-
-
-
-/* 
-@media screen and (max-width: 800px) {
-  .modal {
-    width: 70vw;
-  }
-} */
