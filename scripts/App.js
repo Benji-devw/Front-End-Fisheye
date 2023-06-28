@@ -4,7 +4,7 @@ class App {
   constructor() {
     this.$_photographerSection = document.querySelector('.photographer_section')
     
-    this.$_photographersApi = new PhotographersApi("../data/photographers.json")
+    this.$_photographersApi = new PhotographersApi("https://benji-devw.github.io/Front-End-Fisheye/data/photographers.json")
   }
 
   async main() {
