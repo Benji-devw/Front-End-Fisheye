@@ -1,12 +1,12 @@
 export default class Modal {
   constructor(children) {
-    this.children = children;
-    this.modalElement = null;
+    this.children       = children;
+    this.modalElement   = null;
     this.modalContainer = document.createElement('div');
-    this.modalElement = document.createElement('div');
+    this.modalElement   = document.createElement('div');
+    this.main           = document.querySelector('#main')
     this.modalContainer.classList.add('modal-container');
     this.modalElement.classList.add('modal');
-    this.main = document.querySelector('#main')
   }
 
 

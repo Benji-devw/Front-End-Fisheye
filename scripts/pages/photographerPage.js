@@ -52,8 +52,7 @@ function FocusTrap(element) {
   **********************************/
 function getIdQuery() {
   const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  // console.log(typeof(urlParams.get('id')));
+  const urlParams   = new URLSearchParams(queryString);
   return urlParams.get('id');
 }
 
@@ -67,16 +66,16 @@ function getIdQuery() {
   **********************************/
 export default class PhotographerPage {
   constructor() {
-    this.$photographersApi = new PhotographersApi('https://benji-devw.github.io/Front-End-Fisheye/data/photographers.json');
+    this.$photographersApi  = new PhotographersApi('https://benji-devw.github.io/Front-End-Fisheye/data/photographers.json');
     this.$photographerInfos = document.querySelector('#photographer_infos_banner');
-    this.$imageBanner = document.querySelector('#image_banner');
-    this.$contactBtn = document.querySelector('.contact_btn_banner');
-    this.$openContactModal = document.querySelector('.contact_btn');
-    this.$gallery = document.querySelector('.gallery');
-    this.$totals_likes = document.querySelector('.likes');
-    this.$price = document.querySelector('.price');
-    this.$submitContact = document.querySelector('.submit_btn');
-    this.$filter = document.querySelector('#filter-select');
+    this.$imageBanner       = document.querySelector('#image_banner');
+    this.$contactBtn        = document.querySelector('.contact_btn_banner');
+    this.$openContactModal  = document.querySelector('.contact_btn');
+    this.$gallery           = document.querySelector('.gallery');
+    this.$totals_likes      = document.querySelector('.likes');
+    this.$price             = document.querySelector('.price');
+    this.$submitContact     = document.querySelector('.submit_btn');
+    this.$filter            = document.querySelector('#filter-select');
   }
 
   async main() {
