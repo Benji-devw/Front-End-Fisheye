@@ -14,6 +14,7 @@ export default class Modal {
     this.modalElement.innerHTML = this.children
     this.modalContainer.appendChild(this.modalElement)
     this.modalContainer.setAttribute('role', 'dialog')
+    this.modalContainer.setAttribute('aria-label', 'image closeup view')
     document.body.appendChild(this.modalContainer);
     this.showModal()
   }

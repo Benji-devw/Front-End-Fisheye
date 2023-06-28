@@ -44,18 +44,18 @@ export default class SliderModel {
       <div class="slider-content">
   
         <div class="slider-header">
-          <button class="close-modal"><img src="assets/icons/close.svg" alt="close" /></button>
+          <button class="close-modal" aria-label="Close dialog"><img src="assets/icons/close.svg" alt="close" /></button>
         </div>
   
         <div class="slider-body">
-          <button class="carousel-nav prev" data-carousel-btn="prev">&lt;</button>
+          <button class="carousel-nav prev" data-carousel-btn="prev" aria-label="Previous image">&lt;</button>
         
           <div id="image-carousel" class="carousel" data-carousel>
             <ul data-slides>
               ${this.medias.map((media) => media.createSliderItem(currentId) )}
             </ul>
           </div>
-          <button class="carousel-nav next" data-carousel-btn="next">&gt;</button>
+          <button class="carousel-nav next" data-carousel-btn="next" aria-label="Next image">&gt;</button>
           
         </div>
       </div>
