@@ -9,11 +9,12 @@ import VideoMedia from "../scripts/models/Video.js";
   * @param url - The Path to Photographer data (json)
   **********************************/
 class Api {
-  constructor(url) {
-    this._url = url;
-  }
-  async get() {
-    return fetch(this._url)
+  // constructor(url) {
+  //   this._url = url;
+  // }
+  async get(url) {
+    console.log(url);
+    return fetch(url)
     .then((res) => res.json())
     .catch((err) => console.log("ERROR => ", err));
   }
@@ -30,15 +31,16 @@ class Api {
 export default class PhotographersApi extends Api {
   constructor(url) {
     super(url);
+    this._url = url;
   }
   
   async getPhotographers() {
-    const response = await this.get();
+    const response = await this.get(this._url);
     return response.photographers.map(photographer => new Photographer(photographer));
   }
 
   async getPhotographerWithMedias(id) {
-    const datas = await this.get();
+    const datas = await this.get(this._url);
     const photographer = datas.photographers.find(photographer => photographer.id == id);
     
     const mediasJson = datas.media.filter(media => media.photographerId == id);
