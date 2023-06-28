@@ -16,7 +16,7 @@ export default class VideoMedia extends Media {
     const $_video = `
       <div id="card-${this.id}" class="card" aria-label="titre ${this.title}, nombre de like ${this.likes}">
         <div class="card-media">
-          <video class="media">
+          <video class="media" role="button">
           <source type="video/mp4" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" alt="${this.title}">
         </div>
         <div class="legend">

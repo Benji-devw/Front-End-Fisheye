@@ -15,8 +15,9 @@ export default class SliderModel {
     const prevfocus = document.querySelector(`#${id} .media`)
       
       if (closeModal) {
-        closeModal.addEventListener('click', () => {
-          prevfocus.focus()
+        closeModal.addEventListener('click', () => prevfocus.focus())
+        closeModal.addEventListener('click', (event) => {
+          if (event.key == "e" || event.key == "Enter" || event.keyCode === 13) prevfocus.focus()
         })
       }
     

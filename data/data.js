@@ -14,11 +14,9 @@ class Api {
   }
   async get() {
     try {
-      console.log(this._url);
       return fetch(this._url)
       .then((res) => res.json())
       .catch((err) => console.log("ERROR => ", err));
-      
     } catch (error) {
       return error
     }
@@ -41,7 +39,6 @@ export default class PhotographersApi extends Api {
   
   async getPhotographers() {
     const response = await this.get();
-    console.log(response);
     return response.photographers.map(photographer => new Photographer(photographer));
   }
 

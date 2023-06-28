@@ -29,8 +29,8 @@ export default class Modal {
     closeModalBtn.addEventListener("click", () => {
       this.hideModal()
     })
-    closeModalBtn.addEventListener("keydown", (e) => {
-      e.key === "Enter" && this.hideModal()
+    closeModalBtn.addEventListener("keydown", (event) => {
+     if (event.key === "e" || event.key === "Enter" || event.keyCode === 13) this.hideModal()
     })
   }
   

@@ -183,9 +183,7 @@ class PhotographerInstance extends PhotographerPage {
       addLikeToCard.textContent = likes;
       likedSwitch = !likedSwitch;
     }
-    addLikeButton.addEventListener('click', (event) => {
-      addLikeEvent()
-    });
+    addLikeButton.addEventListener('click', () => addLikeEvent());
     addLikeButton.addEventListener('keydown', (event) => {
       if(event.key === "Enter") addLikeEvent()})
   }
@@ -237,13 +235,11 @@ class SliderInstance {
         handleSlider();
       }
 
-      cardMedia.addEventListener('click', () => { 
-        cardEvent()
-      });
+      cardMedia.addEventListener('click', () => cardEvent());
       cardMedia.addEventListener('keydown', (event) => {
-        if (event.key === "e") {
-          console.log(cardMedia );
-          cardEvent()
+        if (event.key === "e" || event.key === "Enter" || event.keyCode === 13) {
+          this.id = card.id;
+          handleSlider();
         }
       });
     });
