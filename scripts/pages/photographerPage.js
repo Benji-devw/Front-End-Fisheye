@@ -12,7 +12,7 @@ import SliderModel from "../utils/slider.js";
 /**
   * @function FocusTrap
   * @description Get Elements focusable in modal
-  * @param {object} element - The html element
+  * @param {object} element - The html element = modal-container
   **********************************/
 function FocusTrap(element) {
   const focusableElements = element.querySelectorAll(
@@ -23,7 +23,7 @@ function FocusTrap(element) {
   const lastFocusable = focusableElements[focusableElements.length - 1];
 
   element.addEventListener('keydown', (e) => {
-    var isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
+    const isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
     if (!isTabPressed) return; 
     
     if ( e.shiftKey ) /* shift + tab */ {
@@ -48,7 +48,7 @@ function FocusTrap(element) {
 /**
   * @function getIdQuery
   * @description Get Photographer id
-  * @param {string} id - The url params ?id
+  * @return {string} id - The url params ?id
   **********************************/
 function getIdQuery() {
   const queryString = window.location.search;
@@ -61,7 +61,7 @@ function getIdQuery() {
 
 
 /**
-  * Main Class for contruct photographer page
+  * Main Class for construct photographer page
   * @class PhotographerPage
   **********************************/
 export default class PhotographerPage {
@@ -74,7 +74,6 @@ export default class PhotographerPage {
     this.$gallery           = document.querySelector('.gallery');
     this.$totals_likes      = document.querySelector('.likes');
     this.$price             = document.querySelector('.price');
-    this.$submitContact     = document.querySelector('.submit_btn');
     this.$filter            = document.querySelector('#filter-select');
   }
 
@@ -82,7 +81,7 @@ export default class PhotographerPage {
     //** Get Photographer by id */
     const photographerWithMedias = await this.$photographersApi.getPhotographerWithMedias(getIdQuery())
 
-    //** Create Photographer elemenrs */
+    //** Create Photographer elements */
     const photographerEvents = new PhotographerInstance(photographerWithMedias)
     photographerEvents.getBanner()
     photographerEvents.getTotals()
@@ -98,7 +97,7 @@ export default class PhotographerPage {
 
 
 
-    // AJOUTER FOCUSTRAP pour boulez avec touche tab dans la modal
+    // Todo create focustrap in modal
     //** Create Modal Contact */
     const contact = new ContactInstance(photographerWithMedias.name)
     contact.getFormContact()
@@ -174,11 +173,11 @@ class PhotographerInstance extends PhotographerPage {
       if (likedSwitch) {
         likes++;
         addTotalLikes.textContent++;
-        addLikeButton.classList.add('liked'); 
+        addLikeButton.classList.add('liked');
       } else {
         likes--;
         addTotalLikes.textContent--;
-        addLikeButton.classList.remove('liked'); 
+        addLikeButton.classList.remove('liked');
       }
       addLikeToCard.textContent = likes;
       likedSwitch = !likedSwitch;
@@ -212,16 +211,16 @@ class PhotographerInstance extends PhotographerPage {
   * @description Represents an instance of a Slider Modal
   **********************************/
 class SliderInstance {
-  constructor(datas) {
-    this.datas = datas
+  constructor(data) {
+    this.data = data
     this.id = ''
   }
 
   getSlider() {
     const cards = document.querySelectorAll('.card');
-    
+
     const handleSlider = () => {
-      const sliderModel = new SliderModel(this.datas)
+      const sliderModel = new SliderModel(this.data)
       const modal = new Modal(sliderModel.createSlider(this.id))
       modal.createModal()
       sliderModel.getNavigation(this.id)
@@ -268,7 +267,7 @@ class ContactInstance extends PhotographerPage {
       const modal = new Modal(getContactModel.createContact())
       modal.createModal()
       getContactModel.checkForm()
-      FocusTrap(document.querySelector('.modal-container')) 
+      FocusTrap(document.querySelector('.modal-container'))
     }
 
     this.$openContactModal.addEventListener("click", () => {
@@ -286,4 +285,4 @@ class ContactInstance extends PhotographerPage {
 
 
 const app = new PhotographerPage()
-app.main()
+app.main().then()

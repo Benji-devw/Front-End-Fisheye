@@ -60,7 +60,6 @@ header .header_content {
 
 .photographer_body .gallery {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   width: 100%;
 
@@ -129,7 +128,7 @@ header .header_content {
   cursor: pointer;
   color: transparent;
   -webkit-background-clip: text;
-  -moz-background-clip: text;
+  /*-moz-background-clip: text;*/
   background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 2px var(--color-primary);

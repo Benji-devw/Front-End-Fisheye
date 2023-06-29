@@ -13,10 +13,10 @@ export default class VideoMedia extends Media {
   }
 
   createVideo() {
-    const $_video = `
+    return `
       <div id="card-${this.id}" class="card" aria-label="titre ${this.title}, nombre de like ${this.likes}">
         <div class="card-media">
-          <video class="media" role="button">
+          <video class="media">
           <source type="video/mp4" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" alt="${this.title}">
         </div>
         <div class="legend">
@@ -28,13 +28,12 @@ export default class VideoMedia extends Media {
         </div>
       </div>
       `
-    return $_video;
   }
 
 
   createSliderItem(currentId) {
     return `
-      <li class="slide" ${currentId == `card-${this.id}` ? 'data-active' : ''}>
+      <li class="slide" ${currentId === `card-${this.id}` ? 'data-active' : ''}>
         <video tabindex="0" src="assets/images/${this.name.replace(' ', '_')}/${this.video}" controls></video>
         <p class="slide-title">${this.title}</p>
       </li>

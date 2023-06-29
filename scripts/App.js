@@ -20,4 +20,4 @@ class App {
 }
 
 const app = new App()
-app.main()
+app.main().then()

@@ -20,7 +20,7 @@ export default class ContactModel extends checkContactForm {
   }
 
   createContact() {
-    const $contactForm = `
+    return `
       <div class="contact-container" aria-hidden="true" aria-label="Contact Form" role="dialog">
         <div class="form-header">
           <h2>Contactez-moi <br /> <span class="contact_name">${this.name}</span></h2>
@@ -56,7 +56,6 @@ export default class ContactModel extends checkContactForm {
         </div>
       </div>
     `
-    return $contactForm;
   }
 
 }

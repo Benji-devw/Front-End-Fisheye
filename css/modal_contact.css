@@ -14,7 +14,7 @@
   margin: .5rem 0;
 }
 
-.contact_btn:hover,
+².contact_btn:hover,
 .contact_btn:focus {
   color: black;
   background-color: var(--color-second);
