@@ -40,9 +40,9 @@ export default class PhotographersApi extends Api {
 
   async getPhotographerWithMedias(id) {
     const data = await this.get();
-    const photographer = data.photographers.find(photographer => photographer.id === id);
+    const photographer = data.photographers.find(photographer => photographer.id === parseInt(id));
     
-    const mediasJson = data.media.filter(media => media.photographerId === id);
+    const mediasJson = data.media.filter(media => media.photographerId === parseInt(id));
     const medias = mediasJson.map(media => this.createMediaFactory(photographer.name, media));
 
     return new Photographer(photographer, medias)
