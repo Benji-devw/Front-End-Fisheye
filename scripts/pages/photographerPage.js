@@ -95,9 +95,6 @@ export default class PhotographerPage {
       photographerEvents.getCardsMedias()
     })
 
-
-
-    // Todo create focustrap in modal
     //** Create Modal Contact */
     const contact = new ContactInstance(photographerWithMedias.name)
     contact.getFormContact()
