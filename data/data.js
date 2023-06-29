@@ -32,21 +32,17 @@ class Api {
   * @param url - The Path Photographer.json (json)
   **********************************/
 export default class PhotographersApi extends Api {
-  constructor(url) {
-    super(url);
-    this._url = url;
-  }
-  
+
   async getPhotographers() {
     const response = await this.get();
     return response.photographers.map(photographer => new Photographer(photographer));
   }
 
   async getPhotographerWithMedias(id) {
-    const datas = await this.get();
-    const photographer = datas.photographers.find(photographer => photographer.id == id);
+    const data = await this.get();
+    const photographer = data.photographers.find(photographer => photographer.id === id);
     
-    const mediasJson = datas.media.filter(media => media.photographerId == id);
+    const mediasJson = data.media.filter(media => media.photographerId === id);
     const medias = mediasJson.map(media => this.createMediaFactory(photographer.name, media));
 
     return new Photographer(photographer, medias)
