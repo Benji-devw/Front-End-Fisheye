@@ -9,7 +9,6 @@ export default class Modal {
     this.modalElement.classList.add('modal');
   }
 
-
   createModal() {
     this.modalElement.innerHTML = this.children
     this.modalContainer.appendChild(this.modalElement)
@@ -19,6 +18,13 @@ export default class Modal {
     this.showModal()
   }
 
+  hideModal() {
+    this.modalContainer.remove();
+    document.body.style.overflow = 'auto';
+    this.main.setAttribute('aria-hidden', 'false');
+    this.modalContainer.setAttribute('aria-hidden', 'true')
+
+  }
 
   showModal() {
     const closeModalBtn = document.querySelector('.close-modal');
@@ -31,16 +37,7 @@ export default class Modal {
       this.hideModal()
     })
     closeModalBtn.addEventListener("keydown", (event) => {
-     if (event.key === "e" || event.key === "Enter" || event.keyCode === 13) this.hideModal()
+     if (event.key === "Enter" || event.keyCode === 13) this.hideModal()
     })
-  }
-  
-  
-  hideModal() {
-    this.modalContainer.remove();
-    document.body.style.overflow = 'auto';
-    this.main.setAttribute('aria-hidden', 'false');
-    this.modalContainer.setAttribute('aria-hidden', 'true')
-
   }
 }
