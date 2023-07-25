@@ -19,10 +19,11 @@ export default class Photographer {
   }
 
   createPhotographerCard() {
+    console.log(window.location.href);
     return `
     <article aria-label="${this.name}">
         <div class="article_head">
-          <a class="article_head_link" href="${window.location === "http://127.0.0.1:5500/" ? `/photographer.html?id=${this.id}`: `/Front-End-Fisheye/photographer.html?id=${this.id}`}">
+          <a class="article_head_link" href="${window.location.href === "http://127.0.0.1:5500/" ? `/photographer.html?id=${this.id}`: `/Front-End-Fisheye/photographer.html?id=${this.id}`}">
             <img class="card_img" alt="${this.name}" src="assets/photographers/${this.portrait}" />
           </a>
           </div>
