@@ -12,14 +12,14 @@ export default class SliderModel {
     const buttons = document.querySelectorAll('.carousel-nav');
     const closeModal = document.querySelector('.close-modal')
     const lastFocus = document.querySelector(`#${id} .media`)
-      
+
     if (closeModal) {
       closeModal.addEventListener('click', () => lastFocus.focus())
-      closeModal.addEventListener('click', (event) => {
-        if (event.key === "e" || event.key === "Enter" || event.keyCode === 13) lastFocus.focus()
+      closeModal.addEventListener('keydown', (event) => {
+        if (event.key === "Enter" || event.keyCode === 13) lastFocus.focus()
       })
     }
-    
+
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         const offset = btn.dataset.carouselBtn === 'next' ? 1 : -1
