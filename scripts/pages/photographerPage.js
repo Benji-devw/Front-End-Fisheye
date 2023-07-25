@@ -9,6 +9,7 @@ import SliderModel from "../utils/slider.js";
 
 
 
+
 /**
   * @function FocusTrap
   * @description Get Elements focusable in modal
@@ -24,8 +25,8 @@ function FocusTrap(element) {
 
   element.addEventListener('keydown', (e) => {
     const isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
-    if (!isTabPressed) return; 
-    
+    if (!isTabPressed) return;
+
     if ( e.shiftKey ) /* shift + tab */ {
       if (document.activeElement === firstFocusable) {
         lastFocusable.focus();
@@ -116,21 +117,18 @@ class PhotographerInstance extends PhotographerPage {
     this.photographer = photographer
   }
 
-
   getBanner() {
-    const {$_banner, $_contactBtn, $_image} = this.photographer.createPhotographerBanner()
+  const {$_banner, $_contactBtn, $_image} = this.photographer.createPhotographerBanner()
     this.$photographerInfos.innerHTML = $_banner
     this.$contactBtn.innerHTML = $_contactBtn
     this.$imageBanner.innerHTML = $_image
   }
-
 
   getFilter(sortBy) {
     this.photographer.medias = this.photographer.medias.sort((firstElement, secondElement) => secondElement[sortBy] > firstElement[sortBy] ? 1 : -1)
     sortBy === "title" && this.photographer.medias.reverse()
     // console.log(this.photographer.medias);
   }
-
 
   getCardsMedias() {
     this.$gallery.innerHTML = null;
@@ -156,7 +154,6 @@ class PhotographerInstance extends PhotographerPage {
     const slider = new SliderInstance(this.photographer)
     slider.getSlider()
   }
-
 
   addLike(cardElement, mediaElement) {
     const addTotalLikes = document.querySelector('.total-likes');
@@ -233,13 +230,14 @@ class SliderInstance {
 
       cardMedia.addEventListener('click', () => cardEvent());
       cardMedia.addEventListener('keydown', (event) => {
-        if (event.key === "e" || event.key === "Enter" || event.keyCode === 13) {
+        if (event.key === "Enter" || event.keyCode === 13) {
+          event.preventDefault()
           this.id = card.id;
-          handleSlider();
+          cardEvent()
         }
-      });
-    });
-  } 
+      })
+    })
+  }
 
 }
 
@@ -257,7 +255,7 @@ class ContactInstance extends PhotographerPage {
     super(name)
     this.name = name
   }
-  
+
   getFormContact() {
     const handleSlider = () => {
       const getContactModel = new ContactModel(this.name);
