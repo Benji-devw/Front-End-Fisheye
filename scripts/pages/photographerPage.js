@@ -23,21 +23,22 @@ function FocusTrap(element) {
   const firstFocusable = focusableElements[0];
   const lastFocusable = focusableElements[focusableElements.length - 1];
 
+  // TODO: add comments
   element.addEventListener('keydown', (e) => {
     const isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
     if (!isTabPressed) return;
 
-    if ( e.shiftKey ) /* shift + tab */ {
+    if (e.shiftKey) /* shift + tab */ {
       if (document.activeElement === firstFocusable) {
         lastFocusable.focus();
-          e.preventDefault();
-        }
-      } else /* tab */ {
+        e.preventDefault();
+      }
+    } else /* tab */ {
       if (document.activeElement === lastFocusable) {
         firstFocusable.focus();
-          e.preventDefault();
-        }
+        e.preventDefault();
       }
+    }
   });
 
 }
@@ -53,7 +54,7 @@ function FocusTrap(element) {
   **********************************/
 function getIdQuery() {
   const queryString = window.location.search;
-  const urlParams   = new URLSearchParams(queryString);
+  const urlParams = new URLSearchParams(queryString);
   return urlParams.get('id');
 }
 
@@ -67,15 +68,15 @@ function getIdQuery() {
   **********************************/
 export default class PhotographerPage {
   constructor() {
-    this.$photographersApi  = new PhotographersApi('https://benji-devw.github.io/Front-End-Fisheye/data/photographers.json');
+    this.$photographersApi = new PhotographersApi('https://benji-devw.github.io/Front-End-Fisheye/data/photographers.json');
     this.$photographerInfos = document.querySelector('#photographer_infos_banner');
-    this.$imageBanner       = document.querySelector('#image_banner');
-    this.$contactBtn        = document.querySelector('.contact_btn_banner');
-    this.$openContactModal  = document.querySelector('.contact_btn');
-    this.$gallery           = document.querySelector('.gallery');
-    this.$totals_likes      = document.querySelector('.likes');
-    this.$price             = document.querySelector('.price');
-    this.$filter            = document.querySelector('#filter-select');
+    this.$imageBanner = document.querySelector('#image_banner');
+    this.$contactBtn = document.querySelector('.contact_btn_banner');
+    this.$openContactModal = document.querySelector('.contact_btn');
+    this.$gallery = document.querySelector('.gallery');
+    this.$totals_likes = document.querySelector('.likes');
+    this.$price = document.querySelector('.price');
+    this.$filter = document.querySelector('#filter-select');
   }
 
   async main() {
@@ -118,14 +119,18 @@ class PhotographerInstance extends PhotographerPage {
   }
 
   getBanner() {
-  const {$_banner, $_contactBtn, $_image} = this.photographer.createPhotographerBanner()
+    const { $_banner, $_contactBtn, $_image } = this.photographer.createPhotographerBanner()
     this.$photographerInfos.innerHTML = $_banner
     this.$contactBtn.innerHTML = $_contactBtn
     this.$imageBanner.innerHTML = $_image
   }
 
   getFilter(sortBy) {
-    this.photographer.medias = this.photographer.medias.sort((firstElement, secondElement) => secondElement[sortBy] > firstElement[sortBy] ? 1 : -1)
+    this.photographer.medias = this.photographer.medias.sort(
+      (firstElement, secondElement) =>
+        // Compare propertie of elements by sortBy and sort values
+        secondElement[sortBy] > firstElement[sortBy] ? 1 : -1
+    )
     sortBy === "title" && this.photographer.medias.reverse()
     // console.log(this.photographer.medias);
   }
@@ -137,9 +142,9 @@ class PhotographerInstance extends PhotographerPage {
       let cardHTML = '';
 
       if (mediaElement instanceof ImageMedia) {
-        cardHTML =  mediaElement.createImage();
+        cardHTML = mediaElement.createImage();
       } else if (mediaElement instanceof VideoMedia) {
-        cardHTML =  mediaElement.createVideo();
+        cardHTML = mediaElement.createVideo();
       }
 
       const cardElement = document.createElement('div');
@@ -156,29 +161,30 @@ class PhotographerInstance extends PhotographerPage {
   }
 
   addLike(cardElement, mediaElement) {
-    const addTotalLikes = document.querySelector('.total-likes');
+    const totalLikeCounter = document.querySelector('.total-likes');
 
-    let likes = mediaElement.likes;
+    let cardLikeCounter = mediaElement.likes;
     let likedSwitch = true;
     const addLikeButton = cardElement.querySelector('.add-like');
     const addLikeToCard = cardElement.querySelector(`.likes-${mediaElement.id}`)
 
     const addLikeEvent = () => {
       if (likedSwitch) {
-        likes++;
-        addTotalLikes.textContent++;
+        cardLikeCounter++;
+        totalLikeCounter.textContent++;
         addLikeButton.classList.add('liked');
       } else {
-        likes--;
-        addTotalLikes.textContent--;
+        cardLikeCounter--;
+        totalLikeCounter.textContent--;
         addLikeButton.classList.remove('liked');
       }
-      addLikeToCard.textContent = likes;
+      addLikeToCard.textContent = cardLikeCounter;
       likedSwitch = !likedSwitch;
     }
     addLikeButton.addEventListener('click', () => addLikeEvent());
     addLikeButton.addEventListener('keydown', (event) => {
-      if(event.key === "Enter") addLikeEvent()})
+      if (event.key === "Enter") addLikeEvent()
+    })
   }
 
 
@@ -211,11 +217,11 @@ class SliderInstance {
   }
 
   getSlider() {
-		const cards = document.querySelectorAll('.card');
+    const cards = document.querySelectorAll('.card');
 
     const handleSlider = () => {
       const sliderModel = new SliderModel(this.data)
-			const modal = new Modal(sliderModel.createSlider(this.id))
+      const modal = new Modal(sliderModel.createSlider(this.id))
       modal.createModal()
       sliderModel.getNavigation(this.id)
       FocusTrap(document.querySelector('.modal-container'))
@@ -251,7 +257,7 @@ class SliderInstance {
   * @param {string} name - The Photographer name
   **********************************/
 class ContactInstance extends PhotographerPage {
-	constructor(name){
+  constructor(name) {
     super(name)
     this.name = name
   }
@@ -269,12 +275,13 @@ class ContactInstance extends PhotographerPage {
       handleSlider()
     })
     this.$openContactModal.addEventListener("keydown", (e) => {
-      if (e.key === "e" ) {
+      if (e.key === "e") {
         handleSlider()
-      }})
-		
-}
+      }
+    })
 
+  }
+}
 
 
 const app = new PhotographerPage()

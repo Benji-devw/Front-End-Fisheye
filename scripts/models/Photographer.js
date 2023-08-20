@@ -50,7 +50,9 @@ export default class Photographer {
   }
 
   totalLikes() {
-    return this.medias.reduce((acc, curr) => acc + curr.likes, 0)
+    // Accumul each media.likes value for reduce to total value
+    // 0 = initial value of acc
+    return this.medias.reduce((acc, media) => acc + media.likes, 0)
   }
 
 }
