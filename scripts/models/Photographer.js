@@ -8,21 +8,21 @@
   **********************************/
 export default class Photographer {
   constructor(photographer, medias) {
-    this.id       = photographer.id
-    this.name     = photographer.name
-    this.city     = photographer.city
-    this.country  = photographer.country
-    this.tagline  = photographer.tagline
-    this.price    = photographer.price
+    this.id = photographer.id
+    this.name = photographer.name
+    this.city = photographer.city
+    this.country = photographer.country
+    this.tagline = photographer.tagline
+    this.price = photographer.price
     this.portrait = photographer.portrait
-    this.medias   = medias
+    this.medias = medias
   }
 
   createPhotographerCard() {
     return `
     <article aria-label="${this.name}">
         <div class="article_head">
-          <a class="article_head_link" href="${window.location.href === "http://127.0.0.1:5500/" ? `/photographer.html?id=${this.id}`: `/Front-End-Fisheye/photographer.html?id=${this.id}`}">
+          <a class="article_head_link" href="${window.location.href === "http://127.0.0.1:8080/" ? `/photographer.html?id=${this.id}` : `/Front-End-Fisheye/photographer.html?id=${this.id}`}">
             <img class="card_img" alt="${this.name}" src="assets/photographers/${this.portrait}" />
           </a>
           </div>
@@ -44,9 +44,9 @@ export default class Photographer {
         <span class="banner_tagline">${this.tagline}</span>
       </div>
       `
-    const $_contactBtn  = `<button class="contact_btn">Contactez-moi</button>`
-    const $_image       = `<img src="assets/photographers/${this.portrait}" alt="${this.name}" />`
-    return {$_banner, $_contactBtn, $_image}
+    const $_contactBtn = `<button class="contact_btn">Contactez-moi</button>`
+    const $_image = `<img src="assets/photographers/${this.portrait}" alt="${this.name}" />`
+    return { $_banner, $_contactBtn, $_image }
   }
 
   totalLikes() {
