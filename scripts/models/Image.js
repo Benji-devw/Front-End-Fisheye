@@ -13,7 +13,7 @@ export default class ImageMedia extends Media {
   }
 
   createImage() {
-    const $_image = `
+    return `
       <div id="card-${this.id}" class="card" aria-label="titre ${this.title}, nombre de like ${this.likes}">
         <div class="card-media">
           <img class="media" tabindex="0" role="button" src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
@@ -22,18 +22,17 @@ export default class ImageMedia extends Media {
           <h2>${this.title}</h2>
           <div class="likes-container">
             <span class="likes-${this.id}">${this.likes} </span>
-            <i class="fa-solid fa-heart add-like" title="like" aria-hidden="true" tabindex="0" role="button"></i>
+            <i class="fa-solid fa-heart add-like" aria-label="like this image" tabindex="0" role="button"></i>
           </div>
         </div>
       </div>
       `;
-      return $_image;
-    }
+  }
 
 
   createSliderItem(currentId) {
     return `
-      <li class="slide" ${currentId == `card-${this.id}` ? 'data-active' : ''}>
+      <li class="slide" ${currentId === `card-${this.id}` ? 'data-active' : ''}>
         <img src="assets/images/${this.name.replace(' ', '_')}/${this.image}" alt="${this.title}" />
         <p class="slide-title">${this.title}</p>
       </li>

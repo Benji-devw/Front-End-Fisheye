@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e483313c-39b9-4eee-b2e5-323ecd7494e3" name="Changes" comment="fix/ id type comparison">
+      <change beforePath="$PROJECT_DIR$/scripts/pages/photographerPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/pages/photographerPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/utils/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/utils/Modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/utils/slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/utils/slider.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/scripts/models/Photographer.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2RtAJ6ZnSZ1Pr9q1oKaxr7yRiTu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "full.screen.before.presentation.mode": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/benna/Desktop/oc_project/Front-End-Fisheye",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="photographerPage.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="photographerPage.js" working-dir="$PROJECT_DIR$/scripts/pages">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e483313c-39b9-4eee-b2e5-323ecd7494e3" name="Changes" comment="" />
+      <created>1688058929761</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688058929761</updated>
+      <workItem from="1688058931552" duration="83000" />
+      <workItem from="1688059057137" duration="11322000" />
+      <workItem from="1688071491296" duration="666000" />
+      <workItem from="1688072178025" duration="272000" />
+      <workItem from="1688072461599" duration="2602000" />
+      <workItem from="1688104468622" duration="2647000" />
+      <workItem from="1688117497888" duration="1768000" />
+      <workItem from="1688119358835" duration="7630000" />
+      <workItem from="1688202986053" duration="594000" />
+      <workItem from="1688578083655" duration="402000" />
+      <workItem from="1688578572813" duration="2182000" />
+      <workItem from="1688581748530" duration="242000" />
+      <workItem from="1688582011569" duration="2217000" />
+      <workItem from="1688715311598" duration="235000" />
+      <workItem from="1688715550383" duration="66000" />
+      <workItem from="1688715639413" duration="494000" />
+      <workItem from="1688716163947" duration="225000" />
+      <workItem from="1688716398948" duration="80000" />
+      <workItem from="1688716487043" duration="1029000" />
+      <workItem from="1688717535264" duration="40000" />
+      <workItem from="1688717576558" duration="35000" />
+      <workItem from="1688717619994" duration="60000" />
+      <workItem from="1688717688154" duration="31000" />
+      <workItem from="1688717752885" duration="156000" />
+      <workItem from="1688718312293" duration="10000" />
+      <workItem from="1688718329821" duration="174000" />
+      <workItem from="1688718522847" duration="1689000" />
+      <workItem from="1688721451663" duration="47000" />
+      <workItem from="1688721506337" duration="10000" />
+      <workItem from="1688721524375" duration="2190000" />
+      <workItem from="1688723770395" duration="327000" />
+      <workItem from="1688724120593" duration="1063000" />
+      <workItem from="1690309802257" duration="3205000" />
+    </task>
+    <task id="LOCAL-00001" summary="Fix/ various defaults">
+      <option name="closed" value="true" />
+      <created>1688070380023</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1688070380023</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix/ del todo comment">
+      <option name="closed" value="true" />
+      <created>1688070839046</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1688070839046</updated>
+    </task>
+    <task id="LOCAL-00003" summary="rafacto/data.js">
+      <option name="closed" value="true" />
+      <created>1688073827955</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1688073827955</updated>
+    </task>
+    <task id="LOCAL-00004" summary="change files settings">
+      <option name="closed" value="true" />
+      <created>1688073999397</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1688073999397</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix/ id type comparison">
+      <option name="closed" value="true" />
+      <created>1688074829655</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688074829655</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix/ various defaults" />
+    <MESSAGE value="fix/ del todo comment" />
+    <MESSAGE value="rafacto/data.js" />
+    <MESSAGE value="change files settings" />
+    <MESSAGE value="fix/ id type comparison" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix/ id type comparison" />
+  </component>
+</project>

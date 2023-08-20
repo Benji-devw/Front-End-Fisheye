@@ -13,7 +13,7 @@ export default class VideoMedia extends Media {
   }
 
   createVideo() {
-    const $_video = `
+    return `
       <div id="card-${this.id}" class="card" aria-label="titre ${this.title}, nombre de like ${this.likes}">
         <div class="card-media">
           <video class="media">
@@ -28,7 +28,6 @@ export default class VideoMedia extends Media {
         </div>
       </div>
       `
-    return $_video;
   }
 
 

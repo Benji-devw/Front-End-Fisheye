@@ -9,34 +9,36 @@ import SliderModel from "../utils/slider.js";
 
 
 
+
 /**
   * @function FocusTrap
   * @description Get Elements focusable in modal
-  * @param {object} element - The html element
+  * @param {object} element - The html element = modal-container
   **********************************/
 function FocusTrap(element) {
   const focusableElements = element.querySelectorAll(
     'video, a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
   );
 
+  // TODO: add comments
   const firstFocusable = focusableElements[0];
   const lastFocusable = focusableElements[focusableElements.length - 1];
 
   element.addEventListener('keydown', (e) => {
-    var isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
-    if (!isTabPressed) return; 
-    
-    if ( e.shiftKey ) /* shift + tab */ {
+    const isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
+    if (!isTabPressed) return;
+
+    if (e.shiftKey) /* shift + tab */ {
       if (document.activeElement === firstFocusable) {
         lastFocusable.focus();
-          e.preventDefault();
-        }
-      } else /* tab */ {
+        e.preventDefault();
+      }
+    } else /* tab */ {
       if (document.activeElement === lastFocusable) {
         firstFocusable.focus();
-          e.preventDefault();
-        }
+        e.preventDefault();
       }
+    }
   });
 
 }
@@ -48,12 +50,11 @@ function FocusTrap(element) {
 /**
   * @function getIdQuery
   * @description Get Photographer id
-  * @param {string} id - The url params ?id
+  * @return {string} id - The url params ?id
   **********************************/
 function getIdQuery() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  // console.log(typeof(urlParams.get('id')));
   return urlParams.get('id');
 }
 
@@ -62,28 +63,27 @@ function getIdQuery() {
 
 
 /**
-  * Main Class for contruct photographer page
+  * Main Class for construct photographer page
   * @class PhotographerPage
   **********************************/
 export default class PhotographerPage {
   constructor() {
-    this.$photographersApi = new PhotographersApi('../../data/photographers.json');
+    this.$photographersApi = new PhotographersApi('https://benji-devw.github.io/Front-End-Fisheye/data/photographers.json');
     this.$photographerInfos = document.querySelector('#photographer_infos_banner');
     this.$imageBanner = document.querySelector('#image_banner');
-    this.$contactBtn = document.querySelector('.contact_btn_banner')
+    this.$contactBtn = document.querySelector('.contact_btn_banner');
     this.$openContactModal = document.querySelector('.contact_btn');
     this.$gallery = document.querySelector('.gallery');
     this.$totals_likes = document.querySelector('.likes');
     this.$price = document.querySelector('.price');
-    this.$submitContact = document.querySelector('.submit_btn');
-    this.$filter = document.querySelector('#filter-select')
+    this.$filter = document.querySelector('#filter-select');
   }
 
   async main() {
     //** Get Photographer by id */
     const photographerWithMedias = await this.$photographersApi.getPhotographerWithMedias(getIdQuery())
 
-    //** Create Photographer elemenrs */
+    //** Create Photographer elements */
     const photographerEvents = new PhotographerInstance(photographerWithMedias)
     photographerEvents.getBanner()
     photographerEvents.getTotals()
@@ -97,9 +97,6 @@ export default class PhotographerPage {
       photographerEvents.getCardsMedias()
     })
 
-
-
-    // AJOUTER FOCUSTRAP pour boulez avec touche tab dans la modal
     //** Create Modal Contact */
     const contact = new ContactInstance(photographerWithMedias.name)
     contact.getFormContact()
@@ -121,21 +118,19 @@ class PhotographerInstance extends PhotographerPage {
     this.photographer = photographer
   }
 
-
   getBanner() {
-    const {$_banner, $_contactBtn, $_image} = this.photographer.createPhotographerBanner()
+    const { $_banner, $_contactBtn, $_image } = this.photographer.createPhotographerBanner()
     this.$photographerInfos.innerHTML = $_banner
     this.$contactBtn.innerHTML = $_contactBtn
     this.$imageBanner.innerHTML = $_image
   }
 
-
+  // --TODO: add comment
   getFilter(sortBy) {
     this.photographer.medias = this.photographer.medias.sort((firstElement, secondElement) => secondElement[sortBy] > firstElement[sortBy] ? 1 : -1)
     sortBy === "title" && this.photographer.medias.reverse()
     // console.log(this.photographer.medias);
   }
-
 
   getCardsMedias() {
     this.$gallery.innerHTML = null;
@@ -144,9 +139,9 @@ class PhotographerInstance extends PhotographerPage {
       let cardHTML = '';
 
       if (mediaElement instanceof ImageMedia) {
-        cardHTML =  mediaElement.createImage();
+        cardHTML = mediaElement.createImage();
       } else if (mediaElement instanceof VideoMedia) {
-        cardHTML =  mediaElement.createVideo();
+        cardHTML = mediaElement.createVideo();
       }
 
       const cardElement = document.createElement('div');
@@ -162,33 +157,31 @@ class PhotographerInstance extends PhotographerPage {
     slider.getSlider()
   }
 
-
   addLike(cardElement, mediaElement) {
-    const addTotalLikes = document.querySelector('.total-likes');
+    const totalLikes = document.querySelector('.total-likes');
 
-    let likes = mediaElement.likes;
+    let cardLikesCounter = mediaElement.likes;
     let likedSwitch = true;
     const addLikeButton = cardElement.querySelector('.add-like');
     const addLikeToCard = cardElement.querySelector(`.likes-${mediaElement.id}`)
 
     const addLikeEvent = () => {
       if (likedSwitch) {
-        likes++;
-        addTotalLikes.textContent++;
-        addLikeButton.classList.add('liked'); 
+        cardLikesCounter++;
+        totalLikes.textContent++;
+        addLikeButton.classList.add('liked');
       } else {
-        likes--;
-        addTotalLikes.textContent--;
-        addLikeButton.classList.remove('liked'); 
+        cardLikesCounter--;
+        totalLikes.textContent--;
+        addLikeButton.classList.remove('liked');
       }
-      addLikeToCard.textContent = likes;
+      addLikeToCard.textContent = cardLikesCounter;
       likedSwitch = !likedSwitch;
     }
-    addLikeButton.addEventListener('click', (event) => {
-      addLikeEvent()
-    });
+    addLikeButton.addEventListener('click', () => addLikeEvent());
     addLikeButton.addEventListener('keydown', (event) => {
-      if(event.key === "Enter") addLikeEvent()})
+      if (event.key === "Enter") addLikeEvent()
+    })
   }
 
 
@@ -215,16 +208,16 @@ class PhotographerInstance extends PhotographerPage {
   * @description Represents an instance of a Slider Modal
   **********************************/
 class SliderInstance {
-  constructor(datas) {
-    this.datas = datas
+  constructor(data) {
+    this.data = data
     this.id = ''
   }
 
   getSlider() {
     const cards = document.querySelectorAll('.card');
-    
+
     const handleSlider = () => {
-      const sliderModel = new SliderModel(this.datas)
+      const sliderModel = new SliderModel(this.data)
       const modal = new Modal(sliderModel.createSlider(this.id))
       modal.createModal()
       sliderModel.getNavigation(this.id)
@@ -238,17 +231,16 @@ class SliderInstance {
         handleSlider();
       }
 
-      cardMedia.addEventListener('click', () => { 
-        cardEvent()
-      });
+      cardMedia.addEventListener('click', () => cardEvent());
       cardMedia.addEventListener('keydown', (event) => {
-        if (event.key === "e") {
-          console.log(cardMedia );
+        if (event.key === "Enter" || event.keyCode === 13) {
+          event.preventDefault()
+          this.id = card.id;
           cardEvent()
         }
-      });
-    });
-  } 
+      })
+    })
+  }
 
 }
 
@@ -262,28 +254,29 @@ class SliderInstance {
   * @param {string} name - The Photographer name
   **********************************/
 class ContactInstance extends PhotographerPage {
-  constructor(name){
+  constructor(name) {
     super(name)
     this.name = name
   }
-  
+
   getFormContact() {
     const handleSlider = () => {
       const getContactModel = new ContactModel(this.name);
       const modal = new Modal(getContactModel.createContact())
       modal.createModal()
       getContactModel.checkForm()
-      FocusTrap(document.querySelector('.modal-container')) 
+      FocusTrap(document.querySelector('.modal-container'))
     }
 
     this.$openContactModal.addEventListener("click", () => {
       handleSlider()
     })
     this.$openContactModal.addEventListener("keydown", (e) => {
-      if (e.key === "e" ) {
+      if (e.key === "e") {
         handleSlider()
-      }})
-    }
+      }
+    })
+  }
 }
 
 
@@ -291,4 +284,4 @@ class ContactInstance extends PhotographerPage {
 
 
 const app = new PhotographerPage()
-app.main()
+app.main().then()
