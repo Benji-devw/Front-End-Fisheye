@@ -28,15 +28,14 @@ export default class SliderModel {
     // Add event listener on each btn
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
-        // return offset value 1 or -1
+        // return offset value 1 or -1 -- if carouselBtn not equal to next, offset = -1
         const offset = btn.dataset.carouselBtn === 'next' ? 1 : -1
         // return parent element of btn > ul
-        const slides = btn.closest('.slider-body').querySelector('[data-slides]')
+        const slides = document.querySelector('[data-slides]')
         // return element with data-active attr > li
         const activeSlide = slides.querySelector('[data-active]')
-        // return index of activeSlide
+        // return index of activeSlide and attribute data-active to newIndex
         let newIndex = [...slides.children].indexOf(activeSlide) + offset
-        // console.log(...slides.children);
         
         // Case for infinite loop
         // target last element index
@@ -44,8 +43,8 @@ export default class SliderModel {
         // if newIndex > last element index, newIndex = 0
         if (newIndex >= slides.children.length) newIndex = 0
 
-        // add data-active attr to new element
-        slides.children[newIndex].dataset.active = "true"
+        // add for li element data-active attr
+        slides.children[newIndex].dataset.active = "display"
         // remove data-active attr to old element
         delete activeSlide.dataset.active
       })

@@ -11,11 +11,16 @@ export default class ContactModel extends checkContactForm {
     this.name = name
   }
 
+  /**
+   * @method createContact
+   * @description Check and submit form
+   * @returns {methode} checkForm
+   * */
   checkForm() {
     const contact_submit = document.querySelector('.submit_btn');
     contact_submit.addEventListener('click', () => {
-      const test = new checkContactForm(this.name)
-      return test.onSubmitForm()
+      const checkContactInstance = new checkContactForm(this.name)
+      return checkContactInstance.onSubmitForm()
     })
   }
 

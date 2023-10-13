@@ -18,7 +18,6 @@ export default class Photographer {
   }
 
   createPhotographerCard() {
-    console.log(window.location.href);
     return `
     <article aria-label="${this.name}">
         <div class="article_head">
