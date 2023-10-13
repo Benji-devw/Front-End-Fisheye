@@ -1,5 +1,10 @@
 import PhotographersApi from "../data/data.js"
 
+/**
+ * @class App
+ * @description Represents an instance of an App
+ * @returns {object} response - The response of the API
+ */
 class App {
   constructor() {
     this.$_photographerSection = document.querySelector('.photographer_section')

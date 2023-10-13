@@ -4,54 +4,13 @@ import VideoMedia from "../models/Video.js";
 import Modal from "../utils/Modal.js";
 import ContactModel from "../models/contact.js";
 import SliderModel from "../utils/slider.js";
-
-
-
-
+import FocusTrap from "../utils/focusTrap.js";
 
 
 /**
-  * @function FocusTrap
-  * @description Get Elements focusable in modal
-  * @param {object} element - The html element = modal-container
-  **********************************/
-function FocusTrap(element) {
-  const focusableElements = element.querySelectorAll(
-    'video, a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-  );
-
-  const firstFocusable = focusableElements[0];
-  const lastFocusable = focusableElements[focusableElements.length - 1];
-
-  // TODO: add comments
-  element.addEventListener('keydown', (e) => {
-    const isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
-    if (!isTabPressed) return;
-
-    if (e.shiftKey) /* shift + tab */ {
-      if (document.activeElement === firstFocusable) {
-        lastFocusable.focus();
-        e.preventDefault();
-      }
-    } else /* tab */ {
-      if (document.activeElement === lastFocusable) {
-        firstFocusable.focus();
-        e.preventDefault();
-      }
-    }
-  });
-
-}
-
-
-
-
-
-/**
-  * @function getIdQuery
-  * @description Get Photographer id
-  * @return {string} id - The url params ?id
-  **********************************/
+ * Get id from url
+ * @returns {string} id - The id of the photographer
+ */
 function getIdQuery() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -59,16 +18,16 @@ function getIdQuery() {
 }
 
 
-
-
-
 /**
-  * Main Class for construct photographer page
-  * @class PhotographerPage
-  **********************************/
+ * @class PhotographerPage
+ * @param {string} url - The url of the API
+ * @param {object} document - The DOM elements
+ */
 export default class PhotographerPage {
   constructor() {
+    // Create new instance of PhotographersApi and pass the url for the API
     this.$photographersApi = new PhotographersApi('https://benji-devw.github.io/Front-End-Fisheye/data/photographers.json');
+    
     this.$photographerInfos = document.querySelector('#photographer_infos_banner');
     this.$imageBanner = document.querySelector('#image_banner');
     this.$contactBtn = document.querySelector('.contact_btn_banner');
@@ -79,26 +38,39 @@ export default class PhotographerPage {
     this.$filter = document.querySelector('#filter-select');
   }
 
+
   async main() {
-    //** Get Photographer by id */
+    /*
+    * Get photographer data from API
+    * @returns {object} photographerWithMedias - The photographer with medias
+    * */
     const photographerWithMedias = await this.$photographersApi.getPhotographerWithMedias(getIdQuery())
 
-    //** Create Photographer elements */
-    const photographerEvents = new PhotographerInstance(photographerWithMedias)
+    /*
+    * Create Photographer Instance
+    * @returns {object} photographerEvents - The photographer instance
+    * */
+    const photographerEvents = new PhotographerManage(photographerWithMedias)
     photographerEvents.getBanner()
     photographerEvents.getTotals()
     photographerEvents.getFilter('likes')
     photographerEvents.getCardsMedias()
 
-    //** Create Filter */
+    /*
+    * Add event listener on filter
+    * @returns {string} photographerEvents.getFilter - The photographer instance
+    * */
     this.$filter.addEventListener('change', () => {
       // console.log(this.$filter.value);
       photographerEvents.getFilter(this.$filter.value)
       photographerEvents.getCardsMedias()
     })
 
-    //** Create Modal Contact */
-    const contact = new ContactInstance(photographerWithMedias.name)
+    /*
+    * Create Contact Instance
+    * @returns {object} contact - The contact instance
+    * */
+    const contact = new ContactManage(photographerWithMedias.name)
     contact.getFormContact()
   }
 }
@@ -108,11 +80,13 @@ export default class PhotographerPage {
 
 
 /**
-  * @class PhotographerInstance
-  * @description Represents an instance of a photographer on the photographer page
-  * @param {object} Photographer - The photographer
-  **********************************/
-class PhotographerInstance extends PhotographerPage {
+ * @class PhotographerManage
+ * @extends PhotographerPage 
+ * @description Call all methods to manage the photographer page
+ * @param {object} photographer - The photographer data
+ * @returns {object} photographer - The photographer instance
+ */
+class PhotographerManage extends PhotographerPage {
   constructor(photographer) {
     super(photographer)
     this.photographer = photographer
@@ -125,16 +99,28 @@ class PhotographerInstance extends PhotographerPage {
     this.$imageBanner.innerHTML = $_image
   }
 
+  /**
+   * @method getFilter
+   * @param {string} sortBy - The sortBy value
+   * @returns {object} photographer.medias - The photographer medias sorted
+   */
   getFilter(sortBy) {
     this.photographer.medias = this.photographer.medias.sort(
+      // Compare two elements of the array
       (firstElement, secondElement) =>
-        // Compare propertie of elements by sortBy and sort values
+        // If the first element is greater than the second, return 1 (true)
         secondElement[sortBy] > firstElement[sortBy] ? 1 : -1
     )
+    // Reverse the array if sortBy === "title"
     sortBy === "title" && this.photographer.medias.reverse()
     // console.log(this.photographer.medias);
   }
 
+  /**
+   * @method getCardsMedias
+   * @description Create all cards for the photographer page
+   * @returns {object} cardElement - The card element
+   * */
   getCardsMedias() {
     this.$gallery.innerHTML = null;
 
@@ -155,14 +141,25 @@ class PhotographerInstance extends PhotographerPage {
       this.$gallery.appendChild(cardElement);
     });
 
-    //** Create Modal Slider */
-    const slider = new SliderInstance(this.photographer)
+    /**
+     * Create slider instance
+     * @description Represents an instance of a Slider
+     * @param {object} photographer - The photographer data
+     * @returns {object} slider - The slider instance
+     */
+    const slider = new SliderManage(this.photographer)
     slider.getSlider()
   }
 
+  /**
+   * Adds a like to a media element (photo or video) displayed on the photographer's page.
+   * @param {HTMLElement} cardElement - The card element containing the media element.
+   * @param {Object} mediaElement - The media element to add a like to.
+   * */
   addLike(cardElement, mediaElement) {
     const totalLikeCounter = document.querySelector('.total-likes');
 
+    // Set the initial like counter to the number of likes the media element has.
     let cardLikeCounter = mediaElement.likes;
     let likedSwitch = true;
     const addLikeButton = cardElement.querySelector('.add-like');
@@ -207,17 +204,26 @@ class PhotographerInstance extends PhotographerPage {
 
 
 /**
-  * @class SliderInstance
-  * @description Represents an instance of a Slider Modal
-  **********************************/
-class SliderInstance {
+ * @class SliderManage
+ * @param {object} data - The data of the slider
+ * @param {string} name - The name of the photographer
+ * @param {array} medias - The medias of the photographer
+ * @returns {HTMLElement} - The slider
+ * */
+class SliderManage {
   constructor(data) {
     this.data = data
     this.id = ''
   }
 
+  /**
+   * @method getSlider
+   * @description Create slider instance in modal
+   * @returns {object} slider - The slider instance
+   * */
   getSlider() {
     const cards = document.querySelectorAll('.card');
+
 
     const handleSlider = () => {
       const sliderModel = new SliderModel(this.data)
@@ -252,11 +258,11 @@ class SliderInstance {
 
 
 /**
-  * @class ContactInstance
-  * @description Represents an instance of a Contact Modal
+  * @class ContactManage
+  * @description Create
   * @param {string} name - The Photographer name
   **********************************/
-class ContactInstance extends PhotographerPage {
+class ContactManage extends PhotographerPage {
   constructor(name) {
     super(name)
     this.name = name
