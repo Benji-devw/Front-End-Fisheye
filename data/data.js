@@ -2,12 +2,12 @@ import Photographer from "../scripts/models/Photographer.js";
 import ImageMedia from "../scripts/models/Image.js";
 import VideoMedia from "../scripts/models/Video.js";
 
-/**
+/*
   * @class Api
-  * @description Get photographer data
-  * @description Get media data
-  * @param url - The Path to Photographer data (json)
-  **********************************/
+  * @description Fetch data from API
+  * @param {string} url - The url from new instance of PhotographersApi
+  * @returns {object} response - The response of the API
+  * */
 class Api {
   constructor(url) {
     this._url = url;
@@ -23,21 +23,20 @@ class Api {
   }
 }
 
-
-
-/**
-  * @class Create Media factory
-  * @description Get photographers
-  * @description Get Photographer by id with medias
-  * @param url - The Path Photographer.json (json)
-  **********************************/
+ /*
+  * Get photographer data from API
+  * @returns {instance} photographers - The photographer instance
+  * */
 export default class PhotographersApi extends Api {
-
   async getPhotographers() {
     const response = await this.get();
     return response.photographers.map(photographer => new Photographer(photographer));
   }
 
+  /*
+    * Find photographer by id
+    * @returns {instance} photographer - The photographer instance
+    * */
   async getPhotographerWithMedias(id) {
     const data = await this.get();
     const photographer = data.photographers.find(photographer => photographer.id === parseInt(id));
@@ -48,6 +47,11 @@ export default class PhotographersApi extends Api {
     return new Photographer(photographer, medias)
   }
 
+  /**
+   * @method createMediaFactory
+   * @description Create media factory for Image or Video
+   * @returns {InstanceType} ImageMedia or VideoMedia
+   */
   createMediaFactory(photographerName, media) {
     if (media.image)  return new ImageMedia(photographerName, media)
     else if (media.video) return new VideoMedia(photographerName, media)

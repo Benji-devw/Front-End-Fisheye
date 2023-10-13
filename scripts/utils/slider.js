@@ -1,12 +1,17 @@
+
 /**
- * @class Slider
-**********************************/
+ * @class SliderModel
+ * @description Represents a Slider Model
+ * @param {object} data - The data of the slider
+ * @param {string} name - The name of the photographer
+ * @param {array} medias - The medias of the photographer
+ * @returns {HTMLElement} - The slider
+ */
 export default class SliderModel {
   constructor(data) {
     this.name = data.name
     this.medias = data.medias
   }
-
 
   getNavigation(id) {
     const buttons = document.querySelectorAll('.carousel-nav');
@@ -20,36 +25,32 @@ export default class SliderModel {
       })
     }
 
+    // Add event listener on each btn
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
-        // If click next or prev btn => return 1 or -1
+        // return offset value 1 or -1
         const offset = btn.dataset.carouselBtn === 'next' ? 1 : -1
-        // return ul element
+        // return parent element of btn > ul
         const slides = btn.closest('.slider-body').querySelector('[data-slides]')
-        // return active li element
+        // return element with data-active attr > li
         const activeSlide = slides.querySelector('[data-active]')
-<<<<<<< HEAD
-        console.log(activeSlide)
-        // Create copy child element in array for use indexOf func
-        // Search index of active element and add it offset result 1 or -1
+        // return index of activeSlide
         let newIndex = [...slides.children].indexOf(activeSlide) + offset
-        // Condition for boucle in slider for first and last element
-=======
-        // Create copy child element in array for use indexOf func
-        // Search index of active element and add it offset result 1 or -1
-        let newIndex = [...slides.children].indexOf(activeSlide) + offset
-        // Condition for boucle in slider from first and last element
->>>>>>> main
+        // console.log(...slides.children);
+        
+        // Case for infinite loop
+        // target last element index
         if (newIndex < 0) newIndex = slides.children.length - 1
+        // if newIndex > last element index, newIndex = 0
         if (newIndex >= slides.children.length) newIndex = 0
 
-        // Display or hide element with data-active attr
+        // add data-active attr to new element
         slides.children[newIndex].dataset.active = "true"
+        // remove data-active attr to old element
         delete activeSlide.dataset.active
       })
     })
   }
-
 
   createSlider(currentId) {
     return `

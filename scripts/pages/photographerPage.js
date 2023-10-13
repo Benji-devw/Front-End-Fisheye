@@ -10,7 +10,6 @@ import SliderModel from "../utils/slider.js";
 
 
 
-
 /**
   * @function FocusTrap
   * @description Get Elements focusable in modal
@@ -36,14 +35,8 @@ function FocusTrap(element) {
         e.preventDefault();
       }
     } else /* tab */ {
-        e.preventDefault();
-      }
-    } else /* tab */ {
       if (document.activeElement === lastFocusable) {
         firstFocusable.focus();
-        e.preventDefault();
-      }
-    }
         e.preventDefault();
       }
     }
@@ -133,7 +126,6 @@ class PhotographerInstance extends PhotographerPage {
     this.$imageBanner.innerHTML = $_image
   }
 
-
   getFilter(sortBy) {
     this.photographer.medias = this.photographer.medias.sort(
       (firstElement, secondElement) =>
@@ -170,24 +162,24 @@ class PhotographerInstance extends PhotographerPage {
   }
 
   addLike(cardElement, mediaElement) {
-    const addTotalLikes = document.querySelector('.total-likes');
+    const totalLikeCounter = document.querySelector('.total-likes');
 
-    let likes = mediaElement.likes;
+    let cardLikeCounter = mediaElement.likes;
     let likedSwitch = true;
     const addLikeButton = cardElement.querySelector('.add-like');
     const addLikeToCard = cardElement.querySelector(`.likes-${mediaElement.id}`)
 
     const addLikeEvent = () => {
       if (likedSwitch) {
-        likes++;
-        addTotalLikes.textContent++;
-        addLikeButton.classList.add('liked'); 
+        cardLikeCounter++;
+        totalLikeCounter.textContent++;
+        addLikeButton.classList.add('liked');
       } else {
-        likes--;
-        addTotalLikes.textContent--;
-        addLikeButton.classList.remove('liked'); 
+        cardLikeCounter--;
+        totalLikeCounter.textContent--;
+        addLikeButton.classList.remove('liked');
       }
-      addLikeToCard.textContent = likes;
+      addLikeToCard.textContent = cardLikeCounter;
       likedSwitch = !likedSwitch;
     }
     addLikeButton.addEventListener('click', () => addLikeEvent());
@@ -286,8 +278,10 @@ class ContactInstance extends PhotographerPage {
     this.$openContactModal.addEventListener("keydown", (e) => {
       if (e.key === "e") {
         handleSlider()
-      }})
-    }
+      }
+    })
+
+  }
 }
 
 

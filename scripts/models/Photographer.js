@@ -1,11 +1,10 @@
 /**
-  * @class Photographer
-  * @description Create Photographer Card element (html)
-  * @description Create Photographer Banner element (html)
-  * @description Return total likes counter from all medias (number)
-  * @param photographer - The photographer (object)
-  * @param medias - The photographer medias (array)
-  **********************************/
+ * @class Photographer
+ * @description Create a photographer
+ * @param {object} photographer - The photographer
+ * @param {array} medias - The medias of the photographer
+ * @returns {HTMLElements} - The photographer
+ * */
 export default class Photographer {
   constructor(photographer, medias) {
     this.id = photographer.id
@@ -19,10 +18,11 @@ export default class Photographer {
   }
 
   createPhotographerCard() {
+    console.log(window.location.href);
     return `
     <article aria-label="${this.name}">
         <div class="article_head">
-          <a class="article_head_link" href="${window.location.href === "http://127.0.0.1:8080/" ? `/photographer.html?id=${this.id}` : `/Front-End-Fisheye/photographer.html?id=${this.id}`}">
+          <a class="artrcle_head_link" href="${ window.location.href }/photographer.html?id=${this.id}">
             <img class="card_img" alt="${this.name}" src="assets/photographers/${this.portrait}" />
           </a>
           </div>
@@ -49,9 +49,12 @@ export default class Photographer {
     return { $_banner, $_contactBtn, $_image }
   }
 
+  /**
+   * Calculates the total number of likes for all medias of a photographer.
+   * @returns {number} The total number of likes.
+   */
   totalLikes() {
-    // Accumul each media.likes value for reduce to total value
-    // 0 = initial value of acc
+    // Accumulate the total number of likes for all medias.
     return this.medias.reduce((acc, media) => acc + media.likes, 0)
   }
 
