@@ -27,7 +27,7 @@ export default class ImageMedia extends Media {
         </div>
       </div>
       `;
-  }
+    }
 
 
   createSliderItem(currentId) {

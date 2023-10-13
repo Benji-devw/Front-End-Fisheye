@@ -9,14 +9,17 @@ import VideoMedia from "../scripts/models/Video.js";
   * @param url - The Path to Photographer data (json)
   **********************************/
 class Api {
-  // constructor(url) {
-  //   this._url = url;
-  // }
-  async get(url) {
-    console.log(url);
-    return fetch(url)
-    .then((res) => res.json())
-    .catch((err) => console.log("ERROR => ", err));
+  constructor(url) {
+    this._url = url;
+  }
+  async get() {
+    try {
+      return fetch(this._url)
+      .then((res) => res.json())
+      .catch((err) => console.log("ERROR => ", err));
+    } catch (error) {
+      return error
+    }
   }
 }
 
@@ -29,21 +32,17 @@ class Api {
   * @param url - The Path Photographer.json (json)
   **********************************/
 export default class PhotographersApi extends Api {
-  constructor(url) {
-    super(url);
-    this._url = url;
-  }
-  
+
   async getPhotographers() {
-    const response = await this.get(this._url);
+    const response = await this.get();
     return response.photographers.map(photographer => new Photographer(photographer));
   }
 
   async getPhotographerWithMedias(id) {
-    const datas = await this.get(this._url);
-    const photographer = datas.photographers.find(photographer => photographer.id == id);
+    const data = await this.get();
+    const photographer = data.photographers.find(photographer => photographer.id === parseInt(id));
     
-    const mediasJson = datas.media.filter(media => media.photographerId == id);
+    const mediasJson = data.media.filter(media => media.photographerId === parseInt(id));
     const medias = mediasJson.map(media => this.createMediaFactory(photographer.name, media));
 
     return new Photographer(photographer, medias)

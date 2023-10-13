@@ -10,6 +10,7 @@ import SliderModel from "../utils/slider.js";
 
 
 
+
 /**
   * @function FocusTrap
   * @description Get Elements focusable in modal
@@ -24,6 +25,7 @@ function FocusTrap(element) {
   const firstFocusable = focusableElements[0];
   const lastFocusable = focusableElements[focusableElements.length - 1];
 
+  // TODO: add comments
   element.addEventListener('keydown', (e) => {
     const isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
     if (!isTabPressed) return;
@@ -34,8 +36,14 @@ function FocusTrap(element) {
         e.preventDefault();
       }
     } else /* tab */ {
+        e.preventDefault();
+      }
+    } else /* tab */ {
       if (document.activeElement === lastFocusable) {
         firstFocusable.focus();
+        e.preventDefault();
+      }
+    }
         e.preventDefault();
       }
     }
@@ -125,9 +133,13 @@ class PhotographerInstance extends PhotographerPage {
     this.$imageBanner.innerHTML = $_image
   }
 
-  // --TODO: add comment
+
   getFilter(sortBy) {
-    this.photographer.medias = this.photographer.medias.sort((firstElement, secondElement) => secondElement[sortBy] > firstElement[sortBy] ? 1 : -1)
+    this.photographer.medias = this.photographer.medias.sort(
+      (firstElement, secondElement) =>
+        // Compare propertie of elements by sortBy and sort values
+        secondElement[sortBy] > firstElement[sortBy] ? 1 : -1
+    )
     sortBy === "title" && this.photographer.medias.reverse()
     // console.log(this.photographer.medias);
   }
@@ -158,24 +170,24 @@ class PhotographerInstance extends PhotographerPage {
   }
 
   addLike(cardElement, mediaElement) {
-    const totalLikes = document.querySelector('.total-likes');
+    const addTotalLikes = document.querySelector('.total-likes');
 
-    let cardLikesCounter = mediaElement.likes;
+    let likes = mediaElement.likes;
     let likedSwitch = true;
     const addLikeButton = cardElement.querySelector('.add-like');
     const addLikeToCard = cardElement.querySelector(`.likes-${mediaElement.id}`)
 
     const addLikeEvent = () => {
       if (likedSwitch) {
-        cardLikesCounter++;
-        totalLikes.textContent++;
-        addLikeButton.classList.add('liked');
+        likes++;
+        addTotalLikes.textContent++;
+        addLikeButton.classList.add('liked'); 
       } else {
-        cardLikesCounter--;
-        totalLikes.textContent--;
-        addLikeButton.classList.remove('liked');
+        likes--;
+        addTotalLikes.textContent--;
+        addLikeButton.classList.remove('liked'); 
       }
-      addLikeToCard.textContent = cardLikesCounter;
+      addLikeToCard.textContent = likes;
       likedSwitch = !likedSwitch;
     }
     addLikeButton.addEventListener('click', () => addLikeEvent());
@@ -274,13 +286,9 @@ class ContactInstance extends PhotographerPage {
     this.$openContactModal.addEventListener("keydown", (e) => {
       if (e.key === "e") {
         handleSlider()
-      }
-    })
-  }
+      }})
+    }
 }
-
-
-
 
 
 const app = new PhotographerPage()

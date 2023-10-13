@@ -4,7 +4,7 @@
 :root {
   --maxW: 1400px;
   --color-primary: #901c1c;
-  --color-second: #d3573c;
+  --color-second: #db8876;
   --color-grey: #525252;
   --color-light: #fafafa;
   --color-error: rgb(191, 16, 16)
@@ -70,19 +70,18 @@ select {
   border: none;
   border-radius: 4px;
   padding: .3em;
-  margin: 0;
+  margin: 1rem 0;
   width: 8rem;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
   cursor: pointer;
   color: #fff;
-  margin: 1rem 0;
 }
 
 
 
-:is(div, button, a, select, img, i):focus {
+:is(div, button, a, select, img, video, i):focus {
   outline: none;
   box-shadow: 0 0 0 1px white, 0 0 0 3px var(--color-primary);
 }

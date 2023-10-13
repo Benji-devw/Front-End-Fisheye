@@ -28,11 +28,18 @@ export default class SliderModel {
         const slides = btn.closest('.slider-body').querySelector('[data-slides]')
         // return active li element
         const activeSlide = slides.querySelector('[data-active]')
+<<<<<<< HEAD
         console.log(activeSlide)
         // Create copy child element in array for use indexOf func
         // Search index of active element and add it offset result 1 or -1
         let newIndex = [...slides.children].indexOf(activeSlide) + offset
         // Condition for boucle in slider for first and last element
+=======
+        // Create copy child element in array for use indexOf func
+        // Search index of active element and add it offset result 1 or -1
+        let newIndex = [...slides.children].indexOf(activeSlide) + offset
+        // Condition for boucle in slider from first and last element
+>>>>>>> main
         if (newIndex < 0) newIndex = slides.children.length - 1
         if (newIndex >= slides.children.length) newIndex = 0
 

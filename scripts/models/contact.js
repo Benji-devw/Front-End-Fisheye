@@ -20,11 +20,11 @@ export default class ContactModel extends checkContactForm {
   }
 
   createContact() {
-    const $contactForm = `
-      <div class="contact-container" aria-hidden="true" aria-label="contact" role="dialog">
+    return `
+      <div class="contact-container" aria-hidden="true" aria-label="Contact Form" role="dialog">
         <div class="form-header">
           <h2>Contactez-moi <br /> <span class="contact_name">${this.name}</span></h2>
-          <button class="close-modal"><img src="assets/icons/close.svg" alt="close" /></button>
+          <button class="close-modal" aria-label="Close dialog"><img src="assets/icons/close.svg" alt="close" /></button>
         </div>
         <form id="myForm" action="" method="POST">
           <div class="form-group">
@@ -52,11 +52,10 @@ export default class ContactModel extends checkContactForm {
           </div>
         </form>
         <div class="form-footer">
-          <button class="submit_btn" type=submit >Envoyer</button>
+          <button class="submit_btn" type=submit aria-label="Send">Envoyer</button>
         </div>
       </div>
     `
-    return $contactForm;
   }
 
 }

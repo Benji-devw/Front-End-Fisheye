@@ -19,10 +19,10 @@ export default class Photographer {
   }
 
   createPhotographerCard() {
-    const $_photographerCard = `
+    return `
     <article aria-label="${this.name}">
         <div class="article_head">
-          <a class="article_head_link" href="${`/photographer.html?id=${this.id}`}">
+          <a class="article_head_link" href="${window.location.href === "http://127.0.0.1:8080/" ? `/photographer.html?id=${this.id}` : `/Front-End-Fisheye/photographer.html?id=${this.id}`}">
             <img class="card_img" alt="${this.name}" src="assets/photographers/${this.portrait}" />
           </a>
           </div>
@@ -34,7 +34,6 @@ export default class Photographer {
         </div>
       </article>
       `
-    return $_photographerCard;
   }
 
   createPhotographerBanner() {
@@ -47,11 +46,13 @@ export default class Photographer {
       `
     const $_contactBtn = `<button class="contact_btn">Contactez-moi</button>`
     const $_image = `<img src="assets/photographers/${this.portrait}" alt="${this.name}" />`
-    return {$_banner, $_contactBtn, $_image}
+    return { $_banner, $_contactBtn, $_image }
   }
 
   totalLikes() {
-    return this.medias.reduce((acc, curr) => acc + curr.likes, 0)
+    // Accumul each media.likes value for reduce to total value
+    // 0 = initial value of acc
+    return this.medias.reduce((acc, media) => acc + media.likes, 0)
   }
 
 }

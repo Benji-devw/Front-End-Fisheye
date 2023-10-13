@@ -8,12 +8,17 @@
   width: 170px;
   height: 70px;
   border: none;
-  background-color: #901c1c;
+  background-color: var(--color-primary);
   border-radius: 5px;
   cursor: pointer;
   margin: .5rem 0;
 }
 
+².contact_btn:hover,
+.contact_btn:focus {
+  color: black;
+  background-color: var(--color-second);
+}
 
 
 .contact-container {

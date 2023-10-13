@@ -1,10 +1,10 @@
 /**
   * @regex Form Contact
-  * @textRegex Two letters min && autorize French alphabet
-  * @emailRegex Two letters min all && autorize (-) or (_)
+  * @textRegex Two letters min && authorize French alphabet
+  * @emailRegex Two letters min all && authorize (-) or (_)
   **********************************/
-var textRegex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s]{2,}$/;
-var emailRegex = /^[a-zA-Z0-9-_.]{2,}@[a-zA-Z0-9]{1,61}\.[a-zA-Z]{2,}$/;
+const textRegex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s]{2,}$/;
+const emailRegex = /^[a-zA-Z0-9-_.]{2,}@[a-zA-Z0-9]{1,61}\.[a-zA-Z]{2,}$/;
 
 
 
@@ -16,8 +16,6 @@ var emailRegex = /^[a-zA-Z0-9-_.]{2,}@[a-zA-Z0-9]{1,61}\.[a-zA-Z]{2,}$/;
 export default class checkContactForm {
   constructor(name) {
     this.name = name
-    this.$submitContact = document.querySelector('.submit_btn');
-
     this.form = document.querySelector("#myForm");
     this.firstNameInput = document.getElementById("fistName");
     this.lastNameInput = document.getElementById("lastName");
@@ -48,7 +46,7 @@ export default class checkContactForm {
     this.inputChecker(textRegex.test(this.messageTextarea.value), this.messageTextarea, 'areaData');
 
     if (this.errors.length === 0) {
-      console.log('Form submited !!! => ', this.datas);
+      console.log('Form submitted !!! => ', this.datas);
       // this.closeModal()
       this.form.reset()
     } else {
